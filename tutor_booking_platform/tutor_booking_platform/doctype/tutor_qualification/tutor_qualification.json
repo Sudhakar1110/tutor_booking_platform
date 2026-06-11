@@ -1,0 +1,161 @@
+{
+  "doctype": "DocType",
+  "name": "Tutor Qualification",
+  "module": "Tutor Booking Platform",
+  "custom": 0,
+  "is_submittable": 0,
+  "is_child_table": 0,
+  "istable": 0,
+  "track_changes": 1,
+  "track_seen": 1,
+  "autoname": "naming_series:",
+  "naming_rule": "By naming series",
+  "title_field": "degree",
+  "search_fields": "",
+  "allow_copy": 1,
+  "allow_import": 1,
+  "allow_rename": 0,
+  "fields": [
+    {
+      "fieldname": "naming_series",
+      "fieldtype": "Select",
+      "label": "Naming Series",
+      "options": "TQAL-.YYYY.-.####",
+      "reqd": 0,
+      "in_list_view": 0,
+      "set_only_once": 1
+    },
+    {
+      "fieldname": "sb_qualification_details",
+      "fieldtype": "Section Break",
+      "label": "Qualification Details"
+    },
+    {
+      "fieldname": "tutor_profile",
+      "fieldtype": "Link",
+      "label": "Tutor Profile",
+      "options": "Tutor Profile",
+      "reqd": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "degree",
+      "fieldtype": "Data",
+      "label": "Degree / Qualification",
+      "reqd": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "cb_dn4fjb",
+      "fieldtype": "Column Break"
+    },
+    {
+      "fieldname": "field_of_study",
+      "fieldtype": "Data",
+      "label": "Field of Study",
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "institution",
+      "fieldtype": "Data",
+      "label": "Institution / University",
+      "reqd": 1
+    },
+    {
+      "fieldname": "sb_duration",
+      "fieldtype": "Section Break",
+      "label": "Duration"
+    },
+    {
+      "fieldname": "passing_year",
+      "fieldtype": "Int",
+      "label": "Passing Year"
+    },
+    {
+      "fieldname": "grade_percentage",
+      "fieldtype": "Percent",
+      "label": "Grade / Percentage"
+    },
+    {
+      "fieldname": "cb_eyrvf1",
+      "fieldtype": "Column Break"
+    },
+    {
+      "fieldname": "document_proof",
+      "fieldtype": "Attach",
+      "label": "Document Proof"
+    },
+    {
+      "fieldname": "is_verified",
+      "fieldtype": "Check",
+      "label": "Verified",
+      "read_only": 1
+    }
+  ],
+  "permissions": [
+    {
+      "role": "System Manager",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "delete": 1,
+      "submit": 1,
+      "cancel": 1,
+      "amend": 1,
+      "permlevel": 0
+    },
+    {
+      "role": "Tutor Booking Manager",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "delete": 1,
+      "submit": 1,
+      "cancel": 1,
+      "amend": 0,
+      "permlevel": 0
+    },
+    {
+      "role": "Tutor Booking Operator",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "delete": 0,
+      "submit": 1,
+      "cancel": 0,
+      "amend": 0,
+      "permlevel": 0
+    },
+    {
+      "role": "Tutor",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "delete": 0,
+      "submit": 0,
+      "cancel": 0,
+      "amend": 0,
+      "permlevel": 0
+    }
+  ],
+  "links": [],
+  "actions": [],
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "engine": "InnoDB",
+  "field_order": [
+    "naming_series",
+    "sb_qualification_details",
+    "tutor_profile",
+    "degree",
+    "cb_dn4fjb",
+    "field_of_study",
+    "institution",
+    "sb_duration",
+    "passing_year",
+    "grade_percentage",
+    "cb_eyrvf1",
+    "document_proof",
+    "is_verified"
+  ]
+}

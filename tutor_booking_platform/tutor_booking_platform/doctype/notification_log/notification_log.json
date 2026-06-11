@@ -1,0 +1,170 @@
+{
+  "doctype": "DocType",
+  "name": "Notification Log",
+  "module": "Tutor Booking Platform",
+  "custom": 0,
+  "is_submittable": 0,
+  "is_child_table": 0,
+  "istable": 0,
+  "track_changes": 1,
+  "track_seen": 1,
+  "autoname": "naming_series:",
+  "naming_rule": "By naming series",
+  "title_field": "name",
+  "search_fields": "",
+  "allow_copy": 1,
+  "allow_import": 1,
+  "allow_rename": 0,
+  "fields": [
+    {
+      "fieldname": "naming_series",
+      "fieldtype": "Select",
+      "label": "Naming Series",
+      "options": "NLOG-.YYYY.MM.-.####",
+      "reqd": 0,
+      "in_list_view": 0,
+      "set_only_once": 1
+    },
+    {
+      "fieldname": "sb_notification_details",
+      "fieldtype": "Section Break",
+      "label": "Notification Details"
+    },
+    {
+      "fieldname": "recipient",
+      "fieldtype": "Data",
+      "label": "Recipient",
+      "reqd": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "notification_type",
+      "fieldtype": "Select",
+      "label": "Type",
+      "options": "Booking Created\nBooking Confirmed\nSession Reminder\nDemo Request\nDemo Reminder\nPayment\nReview\nGeneral",
+      "reqd": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "cb_6iwloz",
+      "fieldtype": "Column Break"
+    },
+    {
+      "fieldname": "status",
+      "fieldtype": "Select",
+      "label": "Status",
+      "options": "Pending\nSent\nFailed\nRead",
+      "default": "Pending",
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "reference_doctype",
+      "fieldtype": "Link",
+      "label": "Reference DocType",
+      "options": "DocType"
+    },
+    {
+      "fieldname": "reference_name",
+      "fieldtype": "Data",
+      "label": "Reference Name"
+    },
+    {
+      "fieldname": "sb_content",
+      "fieldtype": "Section Break",
+      "label": "Content"
+    },
+    {
+      "fieldname": "subject",
+      "fieldtype": "Data",
+      "label": "Subject",
+      "reqd": 1
+    },
+    {
+      "fieldname": "message",
+      "fieldtype": "Text Editor",
+      "label": "Message"
+    },
+    {
+      "fieldname": "sent_at",
+      "fieldtype": "Datetime",
+      "label": "Sent At",
+      "read_only": 1
+    }
+  ],
+  "permissions": [
+    {
+      "role": "System Manager",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "delete": 1,
+      "submit": 1,
+      "cancel": 1,
+      "amend": 1,
+      "permlevel": 0
+    },
+    {
+      "role": "Tutor Booking Manager",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "delete": 1,
+      "submit": 1,
+      "cancel": 1,
+      "amend": 0,
+      "permlevel": 0
+    },
+    {
+      "role": "Tutor Booking Operator",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "delete": 0,
+      "submit": 1,
+      "cancel": 0,
+      "amend": 0,
+      "permlevel": 0
+    },
+    {
+      "role": "Tutor",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "delete": 0,
+      "submit": 0,
+      "cancel": 0,
+      "amend": 0,
+      "permlevel": 0
+    },
+    {
+      "role": "Student",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "delete": 0,
+      "submit": 0,
+      "cancel": 0,
+      "amend": 0,
+      "permlevel": 0
+    }
+  ],
+  "links": [],
+  "actions": [],
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "engine": "InnoDB",
+  "field_order": [
+    "naming_series",
+    "sb_notification_details",
+    "recipient",
+    "notification_type",
+    "cb_6iwloz",
+    "status",
+    "reference_doctype",
+    "reference_name",
+    "sb_content",
+    "subject",
+    "message",
+    "sent_at"
+  ]
+}

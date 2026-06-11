@@ -1,0 +1,185 @@
+{
+  "doctype": "DocType",
+  "name": "Student Feedback",
+  "module": "Tutor Booking Platform",
+  "custom": 0,
+  "is_submittable": 0,
+  "is_child_table": 0,
+  "istable": 0,
+  "track_changes": 1,
+  "track_seen": 1,
+  "autoname": "naming_series:",
+  "naming_rule": "By naming series",
+  "title_field": "name",
+  "search_fields": "",
+  "allow_copy": 1,
+  "allow_import": 1,
+  "allow_rename": 0,
+  "fields": [
+    {
+      "fieldname": "naming_series",
+      "fieldtype": "Select",
+      "label": "Naming Series",
+      "options": "SFBK-.YYYY.-.####",
+      "reqd": 0,
+      "in_list_view": 0,
+      "set_only_once": 1
+    },
+    {
+      "fieldname": "sb_feedback_details",
+      "fieldtype": "Section Break",
+      "label": "Feedback Details"
+    },
+    {
+      "fieldname": "student_profile",
+      "fieldtype": "Link",
+      "label": "Student Profile",
+      "options": "Student Profile",
+      "reqd": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "tutor_profile",
+      "fieldtype": "Link",
+      "label": "Tutor Profile",
+      "options": "Tutor Profile",
+      "reqd": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "cb_607wb0",
+      "fieldtype": "Column Break"
+    },
+    {
+      "fieldname": "tutor_session",
+      "fieldtype": "Link",
+      "label": "Tutor Session",
+      "options": "Tutor Session"
+    },
+    {
+      "fieldname": "feedback_date",
+      "fieldtype": "Date",
+      "label": "Feedback Date"
+    },
+    {
+      "fieldname": "sb_feedback",
+      "fieldtype": "Section Break",
+      "label": "Feedback"
+    },
+    {
+      "fieldname": "session_helpful",
+      "fieldtype": "Check",
+      "label": "Session was Helpful"
+    },
+    {
+      "fieldname": "topics_covered",
+      "fieldtype": "Data",
+      "label": "Topics Covered"
+    },
+    {
+      "fieldname": "cb_nbobrp",
+      "fieldtype": "Column Break"
+    },
+    {
+      "fieldname": "difficulty_level",
+      "fieldtype": "Select",
+      "label": "Session Difficulty",
+      "options": "Too Easy\nJust Right\nToo Hard"
+    },
+    {
+      "fieldname": "overall_experience",
+      "fieldtype": "Select",
+      "label": "Overall Experience",
+      "options": "Excellent\nGood\nAverage\nPoor"
+    },
+    {
+      "fieldname": "feedback_text",
+      "fieldtype": "Text Editor",
+      "label": "Detailed Feedback"
+    },
+    {
+      "fieldname": "suggestions",
+      "fieldtype": "Text",
+      "label": "Suggestions for Improvement"
+    }
+  ],
+  "permissions": [
+    {
+      "role": "System Manager",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "delete": 1,
+      "submit": 1,
+      "cancel": 1,
+      "amend": 1,
+      "permlevel": 0
+    },
+    {
+      "role": "Tutor Booking Manager",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "delete": 1,
+      "submit": 1,
+      "cancel": 1,
+      "amend": 0,
+      "permlevel": 0
+    },
+    {
+      "role": "Tutor Booking Operator",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "delete": 0,
+      "submit": 1,
+      "cancel": 0,
+      "amend": 0,
+      "permlevel": 0
+    },
+    {
+      "role": "Tutor",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "delete": 0,
+      "submit": 0,
+      "cancel": 0,
+      "amend": 0,
+      "permlevel": 0
+    },
+    {
+      "role": "Student",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "delete": 0,
+      "submit": 0,
+      "cancel": 0,
+      "amend": 0,
+      "permlevel": 0
+    }
+  ],
+  "links": [],
+  "actions": [],
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "engine": "InnoDB",
+  "field_order": [
+    "naming_series",
+    "sb_feedback_details",
+    "student_profile",
+    "tutor_profile",
+    "cb_607wb0",
+    "tutor_session",
+    "feedback_date",
+    "sb_feedback",
+    "session_helpful",
+    "topics_covered",
+    "cb_nbobrp",
+    "difficulty_level",
+    "overall_experience",
+    "feedback_text",
+    "suggestions"
+  ]
+}

@@ -1,0 +1,175 @@
+{
+  "doctype": "DocType",
+  "name": "Student Address",
+  "module": "Tutor Booking Platform",
+  "custom": 0,
+  "is_submittable": 0,
+  "is_child_table": 0,
+  "istable": 0,
+  "track_changes": 1,
+  "track_seen": 1,
+  "autoname": "naming_series:",
+  "naming_rule": "By naming series",
+  "title_field": "name",
+  "search_fields": "",
+  "allow_copy": 1,
+  "allow_import": 1,
+  "allow_rename": 0,
+  "fields": [
+    {
+      "fieldname": "naming_series",
+      "fieldtype": "Select",
+      "label": "Naming Series",
+      "options": "SADR-.YYYY.-.####",
+      "reqd": 0,
+      "in_list_view": 0,
+      "set_only_once": 1
+    },
+    {
+      "fieldname": "sb_address_details",
+      "fieldtype": "Section Break",
+      "label": "Address Details"
+    },
+    {
+      "fieldname": "student_profile",
+      "fieldtype": "Link",
+      "label": "Student Profile",
+      "options": "Student Profile",
+      "reqd": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "address_type",
+      "fieldtype": "Select",
+      "label": "Address Type",
+      "options": "Home\nWork\nOther",
+      "default": "Home"
+    },
+    {
+      "fieldname": "cb_xa0v80",
+      "fieldtype": "Column Break"
+    },
+    {
+      "fieldname": "is_default",
+      "fieldtype": "Check",
+      "label": "Is Default",
+      "default": "0"
+    },
+    {
+      "fieldname": "address_title",
+      "fieldtype": "Data",
+      "label": "Address Title"
+    },
+    {
+      "fieldname": "sb_location",
+      "fieldtype": "Section Break",
+      "label": "Location"
+    },
+    {
+      "fieldname": "address_line1",
+      "fieldtype": "Data",
+      "label": "Address Line 1",
+      "reqd": 1
+    },
+    {
+      "fieldname": "address_line2",
+      "fieldtype": "Data",
+      "label": "Address Line 2"
+    },
+    {
+      "fieldname": "cb_odeuvc",
+      "fieldtype": "Column Break"
+    },
+    {
+      "fieldname": "city",
+      "fieldtype": "Data",
+      "label": "City",
+      "reqd": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "state",
+      "fieldtype": "Data",
+      "label": "State"
+    },
+    {
+      "fieldname": "pincode",
+      "fieldtype": "Data",
+      "label": "Pincode",
+      "reqd": 1
+    },
+    {
+      "fieldname": "landmark",
+      "fieldtype": "Data",
+      "label": "Landmark"
+    }
+  ],
+  "permissions": [
+    {
+      "role": "System Manager",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "delete": 1,
+      "submit": 1,
+      "cancel": 1,
+      "amend": 1,
+      "permlevel": 0
+    },
+    {
+      "role": "Tutor Booking Manager",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "delete": 1,
+      "submit": 1,
+      "cancel": 1,
+      "amend": 0,
+      "permlevel": 0
+    },
+    {
+      "role": "Tutor Booking Operator",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "delete": 0,
+      "submit": 1,
+      "cancel": 0,
+      "amend": 0,
+      "permlevel": 0
+    },
+    {
+      "role": "Student",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "delete": 0,
+      "submit": 0,
+      "cancel": 0,
+      "amend": 0,
+      "permlevel": 0
+    }
+  ],
+  "links": [],
+  "actions": [],
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "engine": "InnoDB",
+  "field_order": [
+    "naming_series",
+    "sb_address_details",
+    "student_profile",
+    "address_type",
+    "cb_xa0v80",
+    "is_default",
+    "address_title",
+    "sb_location",
+    "address_line1",
+    "address_line2",
+    "cb_odeuvc",
+    "city",
+    "state",
+    "pincode",
+    "landmark"
+  ]
+}

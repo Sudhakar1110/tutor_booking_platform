@@ -1,0 +1,194 @@
+{
+  "doctype": "DocType",
+  "name": "Tutor Booking Settings",
+  "module": "Tutor Booking Platform",
+  "custom": 0,
+  "issingle": 1,
+  "is_submittable": 0,
+  "track_changes": 1,
+  "autoname": "",
+  "naming_rule": "",
+  "field_order": [],
+  "fields": [
+    {
+      "fieldname": "tf_general",
+      "fieldtype": "Tab Break",
+      "label": "General"
+    },
+    {
+      "fieldname": "sb_platform",
+      "fieldtype": "Section Break",
+      "label": "Platform"
+    },
+    {
+      "fieldname": "platform_name",
+      "fieldtype": "Data",
+      "label": "Platform Name",
+      "reqd": 1,
+      "default": "Tutor Booking Platform"
+    },
+    {
+      "fieldname": "default_currency",
+      "fieldtype": "Link",
+      "label": "Default Currency",
+      "options": "Currency",
+      "default": "INR"
+    },
+    {
+      "fieldname": "cb_7kfh8t",
+      "fieldtype": "Column Break"
+    },
+    {
+      "fieldname": "commission_percentage",
+      "fieldtype": "Float",
+      "label": "Platform Commission (%)",
+      "default": "10",
+      "precision": 2
+    },
+    {
+      "fieldname": "support_email",
+      "fieldtype": "Data",
+      "label": "Support Email",
+      "options": "Email"
+    },
+    {
+      "fieldname": "tf_booking",
+      "fieldtype": "Tab Break",
+      "label": "Booking"
+    },
+    {
+      "fieldname": "sb_session_settings",
+      "fieldtype": "Section Break",
+      "label": "Session Settings"
+    },
+    {
+      "fieldname": "min_session_duration",
+      "fieldtype": "Int",
+      "label": "Minimum Session Duration (Minutes)",
+      "default": "60"
+    },
+    {
+      "fieldname": "max_advance_booking_days",
+      "fieldtype": "Int",
+      "label": "Max Advance Booking Days",
+      "default": "30"
+    },
+    {
+      "fieldname": "cb_6mg0mg",
+      "fieldtype": "Column Break"
+    },
+    {
+      "fieldname": "auto_confirm_booking",
+      "fieldtype": "Check",
+      "label": "Auto Confirm Bookings"
+    },
+    {
+      "fieldname": "session_reminder_hours",
+      "fieldtype": "Int",
+      "label": "Session Reminder Before (Hours)",
+      "default": "24"
+    },
+    {
+      "fieldname": "sb_features",
+      "fieldtype": "Section Break",
+      "label": "Features"
+    },
+    {
+      "fieldname": "enable_demo_class",
+      "fieldtype": "Check",
+      "label": "Enable Demo Classes",
+      "default": "1"
+    },
+    {
+      "fieldname": "enable_online_class",
+      "fieldtype": "Check",
+      "label": "Enable Online Classes",
+      "default": "1"
+    },
+    {
+      "fieldname": "cb_g3kwo6",
+      "fieldtype": "Column Break"
+    },
+    {
+      "fieldname": "enable_offline_class",
+      "fieldtype": "Check",
+      "label": "Enable Offline Classes",
+      "default": "1"
+    },
+    {
+      "fieldname": "rating_mandatory_after_session",
+      "fieldtype": "Check",
+      "label": "Rating Mandatory After Session",
+      "default": "1"
+    },
+    {
+      "fieldname": "tf_payments",
+      "fieldtype": "Tab Break",
+      "label": "Payments"
+    },
+    {
+      "fieldname": "sb_payment_methods",
+      "fieldtype": "Section Break",
+      "label": "Payment Methods"
+    },
+    {
+      "fieldname": "enable_upi_payment",
+      "fieldtype": "Check",
+      "label": "Enable UPI Payment",
+      "default": "1"
+    },
+    {
+      "fieldname": "enable_card_payment",
+      "fieldtype": "Check",
+      "label": "Enable Card Payment",
+      "default": "1"
+    },
+    {
+      "fieldname": "cb_41chpj",
+      "fieldtype": "Column Break"
+    },
+    {
+      "fieldname": "enable_cash_payment",
+      "fieldtype": "Check",
+      "label": "Enable Cash Payment",
+      "default": "1"
+    },
+    {
+      "fieldname": "payment_gateway",
+      "fieldtype": "Select",
+      "label": "Default Payment Gateway",
+      "options": "Razorpay\nPayU\nCCAvenue\nStripe"
+    },
+    {
+      "fieldname": "gateway_api_key",
+      "fieldtype": "Data",
+      "label": "Gateway API Key"
+    },
+    {
+      "fieldname": "gateway_api_secret",
+      "fieldtype": "Password",
+      "label": "Gateway API Secret"
+    }
+  ],
+  "permissions": [
+    {
+      "role": "System Manager",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "permlevel": 0
+    },
+    {
+      "role": "Tutor Booking Manager",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "permlevel": 0
+    }
+  ],
+  "links": [],
+  "actions": [],
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "engine": "InnoDB"
+}

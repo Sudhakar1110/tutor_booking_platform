@@ -1,0 +1,198 @@
+{
+  "doctype": "DocType",
+  "name": "Learning Progress",
+  "module": "Tutor Booking Platform",
+  "custom": 0,
+  "is_submittable": 0,
+  "is_child_table": 0,
+  "istable": 0,
+  "track_changes": 1,
+  "track_seen": 1,
+  "autoname": "naming_series:",
+  "naming_rule": "By naming series",
+  "title_field": "name",
+  "search_fields": "",
+  "allow_copy": 1,
+  "allow_import": 1,
+  "allow_rename": 0,
+  "fields": [
+    {
+      "fieldname": "naming_series",
+      "fieldtype": "Select",
+      "label": "Naming Series",
+      "options": "LPRG-.YYYY.-.####",
+      "reqd": 0,
+      "in_list_view": 0,
+      "set_only_once": 1
+    },
+    {
+      "fieldname": "sb_progress_details",
+      "fieldtype": "Section Break",
+      "label": "Progress Details"
+    },
+    {
+      "fieldname": "student_profile",
+      "fieldtype": "Link",
+      "label": "Student Profile",
+      "options": "Student Profile",
+      "reqd": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "tutor_profile",
+      "fieldtype": "Link",
+      "label": "Tutor Profile",
+      "options": "Tutor Profile",
+      "reqd": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "cb_dt63tv",
+      "fieldtype": "Column Break"
+    },
+    {
+      "fieldname": "subject",
+      "fieldtype": "Link",
+      "label": "Subject",
+      "options": "Subject",
+      "reqd": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "tutor_booking",
+      "fieldtype": "Link",
+      "label": "Tutor Booking",
+      "options": "Tutor Booking"
+    },
+    {
+      "fieldname": "sb_statistics",
+      "fieldtype": "Section Break",
+      "label": "Statistics"
+    },
+    {
+      "fieldname": "sessions_completed",
+      "fieldtype": "Int",
+      "label": "Sessions Completed",
+      "read_only": 1
+    },
+    {
+      "fieldname": "sessions_attended",
+      "fieldtype": "Int",
+      "label": "Sessions Attended",
+      "read_only": 1
+    },
+    {
+      "fieldname": "cb_7blyg4",
+      "fieldtype": "Column Break"
+    },
+    {
+      "fieldname": "total_hours",
+      "fieldtype": "Float",
+      "label": "Total Hours",
+      "read_only": 1
+    },
+    {
+      "fieldname": "completion_percentage",
+      "fieldtype": "Percent",
+      "label": "Completion %",
+      "read_only": 1
+    },
+    {
+      "fieldname": "performance_rating",
+      "fieldtype": "Select",
+      "label": "Performance Rating",
+      "options": "Excellent\nGood\nAverage\nNeeds Improvement"
+    },
+    {
+      "fieldname": "notes",
+      "fieldtype": "Text Editor",
+      "label": "Progress Notes"
+    },
+    {
+      "fieldname": "last_updated",
+      "fieldtype": "Date",
+      "label": "Last Updated",
+      "read_only": 1
+    }
+  ],
+  "permissions": [
+    {
+      "role": "System Manager",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "delete": 1,
+      "submit": 1,
+      "cancel": 1,
+      "amend": 1,
+      "permlevel": 0
+    },
+    {
+      "role": "Tutor Booking Manager",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "delete": 1,
+      "submit": 1,
+      "cancel": 1,
+      "amend": 0,
+      "permlevel": 0
+    },
+    {
+      "role": "Tutor Booking Operator",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "delete": 0,
+      "submit": 1,
+      "cancel": 0,
+      "amend": 0,
+      "permlevel": 0
+    },
+    {
+      "role": "Tutor",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "delete": 0,
+      "submit": 0,
+      "cancel": 0,
+      "amend": 0,
+      "permlevel": 0
+    },
+    {
+      "role": "Student",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "delete": 0,
+      "submit": 0,
+      "cancel": 0,
+      "amend": 0,
+      "permlevel": 0
+    }
+  ],
+  "links": [],
+  "actions": [],
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "engine": "InnoDB",
+  "field_order": [
+    "naming_series",
+    "sb_progress_details",
+    "student_profile",
+    "tutor_profile",
+    "cb_dt63tv",
+    "subject",
+    "tutor_booking",
+    "sb_statistics",
+    "sessions_completed",
+    "sessions_attended",
+    "cb_7blyg4",
+    "total_hours",
+    "completion_percentage",
+    "performance_rating",
+    "notes",
+    "last_updated"
+  ]
+}

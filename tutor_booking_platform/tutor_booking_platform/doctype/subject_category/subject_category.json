@@ -1,0 +1,120 @@
+{
+  "doctype": "DocType",
+  "name": "Subject Category",
+  "module": "Tutor Booking Platform",
+  "custom": 0,
+  "is_submittable": 0,
+  "is_child_table": 0,
+  "istable": 0,
+  "track_changes": 1,
+  "track_seen": 1,
+  "autoname": "field:category_name",
+  "naming_rule": "By fieldname",
+  "title_field": "category_name",
+  "search_fields": "",
+  "allow_copy": 1,
+  "allow_import": 1,
+  "allow_rename": 0,
+  "fields": [
+    {
+      "fieldname": "sb_category_details",
+      "fieldtype": "Section Break",
+      "label": "Category Details"
+    },
+    {
+      "fieldname": "category_name",
+      "fieldtype": "Data",
+      "label": "Category Name",
+      "reqd": 1,
+      "in_list_view": 1,
+      "bold": 1
+    },
+    {
+      "fieldname": "category_code",
+      "fieldtype": "Data",
+      "label": "Category Code"
+    },
+    {
+      "fieldname": "cb_ohus6r",
+      "fieldtype": "Column Break"
+    },
+    {
+      "fieldname": "parent_category",
+      "fieldtype": "Link",
+      "label": "Parent Category",
+      "options": "Subject Category"
+    },
+    {
+      "fieldname": "is_active",
+      "fieldtype": "Check",
+      "label": "Is Active",
+      "default": "1"
+    },
+    {
+      "fieldname": "description",
+      "fieldtype": "Text",
+      "label": "Description"
+    },
+    {
+      "fieldname": "icon",
+      "fieldtype": "Data",
+      "label": "Icon / Emoji"
+    },
+    {
+      "fieldname": "display_order",
+      "fieldtype": "Int",
+      "label": "Display Order"
+    }
+  ],
+  "permissions": [
+    {
+      "role": "System Manager",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "delete": 1,
+      "submit": 1,
+      "cancel": 1,
+      "amend": 1,
+      "permlevel": 0
+    },
+    {
+      "role": "Tutor Booking Manager",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "delete": 1,
+      "submit": 1,
+      "cancel": 1,
+      "amend": 0,
+      "permlevel": 0
+    },
+    {
+      "role": "Tutor Booking Operator",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "delete": 0,
+      "submit": 1,
+      "cancel": 0,
+      "amend": 0,
+      "permlevel": 0
+    }
+  ],
+  "links": [],
+  "actions": [],
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "engine": "InnoDB",
+  "field_order": [
+    "sb_category_details",
+    "category_name",
+    "category_code",
+    "cb_ohus6r",
+    "parent_category",
+    "is_active",
+    "description",
+    "icon",
+    "display_order"
+  ]
+}

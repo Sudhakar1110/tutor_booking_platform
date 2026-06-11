@@ -1,0 +1,195 @@
+{
+  "doctype": "DocType",
+  "name": "Offline Class",
+  "module": "Tutor Booking Platform",
+  "custom": 0,
+  "is_submittable": 1,
+  "is_child_table": 0,
+  "istable": 0,
+  "track_changes": 1,
+  "track_seen": 1,
+  "autoname": "naming_series:",
+  "naming_rule": "By naming series",
+  "title_field": "name",
+  "search_fields": "",
+  "allow_copy": 1,
+  "allow_import": 1,
+  "allow_rename": 0,
+  "fields": [
+    {
+      "fieldname": "naming_series",
+      "fieldtype": "Select",
+      "label": "Naming Series",
+      "options": "OFCL-.YYYY.-.####",
+      "reqd": 0,
+      "in_list_view": 0,
+      "set_only_once": 1
+    },
+    {
+      "fieldname": "sb_class_details",
+      "fieldtype": "Section Break",
+      "label": "Class Details"
+    },
+    {
+      "fieldname": "class_title",
+      "fieldtype": "Data",
+      "label": "Class Title",
+      "reqd": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "tutor_profile",
+      "fieldtype": "Link",
+      "label": "Tutor Profile",
+      "options": "Tutor Profile",
+      "reqd": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "cb_lq8nsd",
+      "fieldtype": "Column Break"
+    },
+    {
+      "fieldname": "subject",
+      "fieldtype": "Link",
+      "label": "Subject",
+      "options": "Subject",
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "status",
+      "fieldtype": "Select",
+      "label": "Status",
+      "options": "Scheduled\nOngoing\nCompleted\nCancelled",
+      "default": "Scheduled",
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "sb_schedule_&_location",
+      "fieldtype": "Section Break",
+      "label": "Schedule & Location"
+    },
+    {
+      "fieldname": "class_date",
+      "fieldtype": "Date",
+      "label": "Class Date",
+      "reqd": 1
+    },
+    {
+      "fieldname": "start_time",
+      "fieldtype": "Time",
+      "label": "Start Time",
+      "reqd": 1
+    },
+    {
+      "fieldname": "cb_cocc6g",
+      "fieldtype": "Column Break"
+    },
+    {
+      "fieldname": "end_time",
+      "fieldtype": "Time",
+      "label": "End Time"
+    },
+    {
+      "fieldname": "location",
+      "fieldtype": "Data",
+      "label": "Location / Address",
+      "reqd": 1
+    },
+    {
+      "fieldname": "city",
+      "fieldtype": "Data",
+      "label": "City"
+    },
+    {
+      "fieldname": "max_students",
+      "fieldtype": "Int",
+      "label": "Max Students"
+    },
+    {
+      "fieldname": "class_notes",
+      "fieldtype": "Text Editor",
+      "label": "Class Notes"
+    }
+  ],
+  "permissions": [
+    {
+      "role": "System Manager",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "delete": 1,
+      "submit": 1,
+      "cancel": 1,
+      "amend": 1,
+      "permlevel": 0
+    },
+    {
+      "role": "Tutor Booking Manager",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "delete": 1,
+      "submit": 1,
+      "cancel": 1,
+      "amend": 0,
+      "permlevel": 0
+    },
+    {
+      "role": "Tutor Booking Operator",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "delete": 0,
+      "submit": 1,
+      "cancel": 0,
+      "amend": 0,
+      "permlevel": 0
+    },
+    {
+      "role": "Tutor",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "delete": 0,
+      "submit": 0,
+      "cancel": 0,
+      "amend": 0,
+      "permlevel": 0
+    },
+    {
+      "role": "Student",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "delete": 0,
+      "submit": 0,
+      "cancel": 0,
+      "amend": 0,
+      "permlevel": 0
+    }
+  ],
+  "links": [],
+  "actions": [],
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "engine": "InnoDB",
+  "field_order": [
+    "naming_series",
+    "sb_class_details",
+    "class_title",
+    "tutor_profile",
+    "cb_lq8nsd",
+    "subject",
+    "status",
+    "sb_schedule_&_location",
+    "class_date",
+    "start_time",
+    "cb_cocc6g",
+    "end_time",
+    "location",
+    "city",
+    "max_students",
+    "class_notes"
+  ]
+}

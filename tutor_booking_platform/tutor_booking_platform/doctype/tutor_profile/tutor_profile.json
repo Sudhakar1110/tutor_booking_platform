@@ -1,0 +1,420 @@
+{
+  "doctype": "DocType",
+  "name": "Tutor Profile",
+  "module": "Tutor Booking Platform",
+  "custom": 0,
+  "is_submittable": 0,
+  "is_child_table": 0,
+  "istable": 0,
+  "track_changes": 1,
+  "track_seen": 1,
+  "autoname": "naming_series:",
+  "naming_rule": "By naming series",
+  "title_field": "tutor_name",
+  "search_fields": "tutor_name,email,mobile",
+  "allow_copy": 1,
+  "allow_import": 1,
+  "allow_rename": 0,
+  "fields": [
+    {
+      "fieldname": "naming_series",
+      "fieldtype": "Select",
+      "label": "Naming Series",
+      "options": "TUT-.YYYY.-.####",
+      "reqd": 0,
+      "in_list_view": 0,
+      "set_only_once": 1
+    },
+    {
+      "fieldname": "tf_personal_info",
+      "fieldtype": "Tab Break",
+      "label": "Personal Info"
+    },
+    {
+      "fieldname": "sb_basic_details",
+      "fieldtype": "Section Break",
+      "label": "Basic Details"
+    },
+    {
+      "fieldname": "tutor_name",
+      "fieldtype": "Data",
+      "label": "Tutor Name",
+      "reqd": 1,
+      "in_list_view": 1,
+      "bold": 1,
+      "in_global_search": 1
+    },
+    {
+      "fieldname": "gender",
+      "fieldtype": "Select",
+      "label": "Gender",
+      "options": "Male\nFemale\nOther\nPrefer not to say"
+    },
+    {
+      "fieldname": "date_of_birth",
+      "fieldtype": "Date",
+      "label": "Date of Birth"
+    },
+    {
+      "fieldname": "cb_8v9g3s",
+      "fieldtype": "Column Break"
+    },
+    {
+      "fieldname": "profile_image",
+      "fieldtype": "Attach Image",
+      "label": "Profile Photo"
+    },
+    {
+      "fieldname": "user",
+      "fieldtype": "Link",
+      "label": "User",
+      "options": "User"
+    },
+    {
+      "fieldname": "is_active",
+      "fieldtype": "Check",
+      "label": "Is Active",
+      "default": "1"
+    },
+    {
+      "fieldname": "sb_contact_details",
+      "fieldtype": "Section Break",
+      "label": "Contact Details"
+    },
+    {
+      "fieldname": "email",
+      "fieldtype": "Data",
+      "label": "Email",
+      "options": "Email",
+      "reqd": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "mobile",
+      "fieldtype": "Data",
+      "label": "Mobile Number",
+      "reqd": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "cb_hyxvb1",
+      "fieldtype": "Column Break"
+    },
+    {
+      "fieldname": "alternate_mobile",
+      "fieldtype": "Data",
+      "label": "Alternate Mobile"
+    },
+    {
+      "fieldname": "website",
+      "fieldtype": "Data",
+      "label": "Website / Portfolio"
+    },
+    {
+      "fieldname": "sb_address",
+      "fieldtype": "Section Break",
+      "label": "Address"
+    },
+    {
+      "fieldname": "address_line1",
+      "fieldtype": "Data",
+      "label": "Address Line 1"
+    },
+    {
+      "fieldname": "address_line2",
+      "fieldtype": "Data",
+      "label": "Address Line 2"
+    },
+    {
+      "fieldname": "cb_fmq2dx",
+      "fieldtype": "Column Break"
+    },
+    {
+      "fieldname": "city",
+      "fieldtype": "Data",
+      "label": "City",
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "state",
+      "fieldtype": "Data",
+      "label": "State"
+    },
+    {
+      "fieldname": "pincode",
+      "fieldtype": "Data",
+      "label": "Pincode"
+    },
+    {
+      "fieldname": "country",
+      "fieldtype": "Link",
+      "label": "Country",
+      "options": "Country",
+      "default": "India"
+    },
+    {
+      "fieldname": "tf_professional_info",
+      "fieldtype": "Tab Break",
+      "label": "Professional Info"
+    },
+    {
+      "fieldname": "sb_teaching_details",
+      "fieldtype": "Section Break",
+      "label": "Teaching Details"
+    },
+    {
+      "fieldname": "teaching_mode",
+      "fieldtype": "Select",
+      "label": "Teaching Mode",
+      "options": "Online\nOffline\nBoth",
+      "reqd": 1
+    },
+    {
+      "fieldname": "experience_years",
+      "fieldtype": "Int",
+      "label": "Years of Experience",
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "cb_wdwqfo",
+      "fieldtype": "Column Break"
+    },
+    {
+      "fieldname": "hourly_rate",
+      "fieldtype": "Currency",
+      "label": "Rate Per Hour (INR)",
+      "reqd": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "minimum_hours",
+      "fieldtype": "Int",
+      "label": "Minimum Hours Per Session"
+    },
+    {
+      "fieldname": "sb_subjects",
+      "fieldtype": "Section Break",
+      "label": "Subjects"
+    },
+    {
+      "fieldname": "primary_subject",
+      "fieldtype": "Link",
+      "label": "Primary Subject",
+      "options": "Subject",
+      "reqd": 1
+    },
+    {
+      "fieldname": "subjects_taught",
+      "fieldtype": "Text Editor",
+      "label": "All Subjects Taught"
+    },
+    {
+      "fieldname": "cb_bmllng",
+      "fieldtype": "Column Break"
+    },
+    {
+      "fieldname": "teaching_levels",
+      "fieldtype": "Select",
+      "label": "Teaching Levels",
+      "options": "Primary\nMiddle School\nHigh School\nUndergraduate\nPostgraduate\nAll Levels"
+    },
+    {
+      "fieldname": "languages_known",
+      "fieldtype": "Data",
+      "label": "Languages Known"
+    },
+    {
+      "fieldname": "sb_status",
+      "fieldtype": "Section Break",
+      "label": "Status"
+    },
+    {
+      "fieldname": "verification_status",
+      "fieldtype": "Select",
+      "label": "Verification Status",
+      "options": "Pending\nVerified\nRejected\nSuspended",
+      "default": "Pending",
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "average_rating",
+      "fieldtype": "Float",
+      "label": "Average Rating",
+      "read_only": 1,
+      "in_list_view": 1,
+      "precision": 2
+    },
+    {
+      "fieldname": "cb_7p73w0",
+      "fieldtype": "Column Break"
+    },
+    {
+      "fieldname": "total_sessions",
+      "fieldtype": "Int",
+      "label": "Total Sessions Completed",
+      "read_only": 1
+    },
+    {
+      "fieldname": "total_students",
+      "fieldtype": "Int",
+      "label": "Total Students Taught",
+      "read_only": 1
+    },
+    {
+      "fieldname": "tf_bio_&_qualifications",
+      "fieldtype": "Tab Break",
+      "label": "Bio & Qualifications"
+    },
+    {
+      "fieldname": "sb_bio",
+      "fieldtype": "Section Break",
+      "label": "Bio"
+    },
+    {
+      "fieldname": "short_bio",
+      "fieldtype": "Small Text",
+      "label": "Short Bio",
+      "reqd": 1
+    },
+    {
+      "fieldname": "detailed_bio",
+      "fieldtype": "Text Editor",
+      "label": "Detailed Bio"
+    },
+    {
+      "fieldname": "sb_social_links",
+      "fieldtype": "Section Break",
+      "label": "Social Links"
+    },
+    {
+      "fieldname": "linkedin_url",
+      "fieldtype": "Data",
+      "label": "LinkedIn URL"
+    },
+    {
+      "fieldname": "youtube_channel",
+      "fieldtype": "Data",
+      "label": "YouTube Channel"
+    },
+    {
+      "fieldname": "cb_eydqz9",
+      "fieldtype": "Column Break"
+    },
+    {
+      "fieldname": "demo_video_url",
+      "fieldtype": "Data",
+      "label": "Demo Video URL"
+    },
+    {
+      "fieldname": "whatsapp_number",
+      "fieldtype": "Data",
+      "label": "WhatsApp Number"
+    }
+  ],
+  "permissions": [
+    {
+      "role": "System Manager",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "delete": 1,
+      "submit": 1,
+      "cancel": 1,
+      "amend": 1,
+      "permlevel": 0
+    },
+    {
+      "role": "Tutor Booking Manager",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "delete": 1,
+      "submit": 1,
+      "cancel": 1,
+      "amend": 0,
+      "permlevel": 0
+    },
+    {
+      "role": "Tutor Booking Operator",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "delete": 0,
+      "submit": 1,
+      "cancel": 0,
+      "amend": 0,
+      "permlevel": 0
+    },
+    {
+      "role": "Tutor",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "delete": 0,
+      "submit": 0,
+      "cancel": 0,
+      "amend": 0,
+      "permlevel": 0
+    }
+  ],
+  "links": [],
+  "actions": [],
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "engine": "InnoDB",
+  "field_order": [
+    "naming_series",
+    "tf_personal_info",
+    "sb_basic_details",
+    "tutor_name",
+    "gender",
+    "date_of_birth",
+    "cb_8v9g3s",
+    "profile_image",
+    "user",
+    "is_active",
+    "sb_contact_details",
+    "email",
+    "mobile",
+    "cb_hyxvb1",
+    "alternate_mobile",
+    "website",
+    "sb_address",
+    "address_line1",
+    "address_line2",
+    "cb_fmq2dx",
+    "city",
+    "state",
+    "pincode",
+    "country",
+    "tf_professional_info",
+    "sb_teaching_details",
+    "teaching_mode",
+    "experience_years",
+    "cb_wdwqfo",
+    "hourly_rate",
+    "minimum_hours",
+    "sb_subjects",
+    "primary_subject",
+    "subjects_taught",
+    "cb_bmllng",
+    "teaching_levels",
+    "languages_known",
+    "sb_status",
+    "verification_status",
+    "average_rating",
+    "cb_7p73w0",
+    "total_sessions",
+    "total_students",
+    "tf_bio_&_qualifications",
+    "sb_bio",
+    "short_bio",
+    "detailed_bio",
+    "sb_social_links",
+    "linkedin_url",
+    "youtube_channel",
+    "cb_eydqz9",
+    "demo_video_url",
+    "whatsapp_number"
+  ]
+}

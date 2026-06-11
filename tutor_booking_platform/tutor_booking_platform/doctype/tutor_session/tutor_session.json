@@ -1,0 +1,234 @@
+{
+  "doctype": "DocType",
+  "name": "Tutor Session",
+  "module": "Tutor Booking Platform",
+  "custom": 0,
+  "is_submittable": 1,
+  "is_child_table": 0,
+  "istable": 0,
+  "track_changes": 1,
+  "track_seen": 1,
+  "autoname": "naming_series:",
+  "naming_rule": "By naming series",
+  "title_field": "name",
+  "search_fields": "",
+  "allow_copy": 1,
+  "allow_import": 1,
+  "allow_rename": 0,
+  "fields": [
+    {
+      "fieldname": "naming_series",
+      "fieldtype": "Select",
+      "label": "Naming Series",
+      "options": "TSES-.YYYY.MM.-.####",
+      "reqd": 0,
+      "in_list_view": 0,
+      "set_only_once": 1
+    },
+    {
+      "fieldname": "sb_session_details",
+      "fieldtype": "Section Break",
+      "label": "Session Details"
+    },
+    {
+      "fieldname": "tutor_booking",
+      "fieldtype": "Link",
+      "label": "Tutor Booking",
+      "options": "Tutor Booking",
+      "reqd": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "tutor_profile",
+      "fieldtype": "Link",
+      "label": "Tutor Profile",
+      "options": "Tutor Profile",
+      "reqd": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "cb_wiepkg",
+      "fieldtype": "Column Break"
+    },
+    {
+      "fieldname": "student_profile",
+      "fieldtype": "Link",
+      "label": "Student Profile",
+      "options": "Student Profile",
+      "reqd": 1
+    },
+    {
+      "fieldname": "status",
+      "fieldtype": "Select",
+      "label": "Status",
+      "options": "Scheduled\nOngoing\nCompleted\nCancelled\nNo Show",
+      "default": "Scheduled",
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "sb_schedule",
+      "fieldtype": "Section Break",
+      "label": "Schedule"
+    },
+    {
+      "fieldname": "session_date",
+      "fieldtype": "Date",
+      "label": "Session Date",
+      "reqd": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "start_time",
+      "fieldtype": "Time",
+      "label": "Start Time",
+      "reqd": 1
+    },
+    {
+      "fieldname": "cb_mob9ur",
+      "fieldtype": "Column Break"
+    },
+    {
+      "fieldname": "end_time",
+      "fieldtype": "Time",
+      "label": "End Time"
+    },
+    {
+      "fieldname": "duration_minutes",
+      "fieldtype": "Int",
+      "label": "Duration (Minutes)"
+    },
+    {
+      "fieldname": "sb_session_info",
+      "fieldtype": "Section Break",
+      "label": "Session Info"
+    },
+    {
+      "fieldname": "subject",
+      "fieldtype": "Link",
+      "label": "Subject",
+      "options": "Subject",
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "mode",
+      "fieldtype": "Select",
+      "label": "Mode",
+      "options": "Online\nOffline"
+    },
+    {
+      "fieldname": "cb_n8iiqf",
+      "fieldtype": "Column Break"
+    },
+    {
+      "fieldname": "meeting_link",
+      "fieldtype": "Data",
+      "label": "Meeting Link"
+    },
+    {
+      "fieldname": "session_number",
+      "fieldtype": "Int",
+      "label": "Session Number"
+    },
+    {
+      "fieldname": "homework_assigned",
+      "fieldtype": "Check",
+      "label": "Homework Assigned"
+    },
+    {
+      "fieldname": "notes",
+      "fieldtype": "Text Editor",
+      "label": "Session Notes"
+    },
+    {
+      "fieldname": "tutor_remarks",
+      "fieldtype": "Text",
+      "label": "Tutor Remarks"
+    }
+  ],
+  "permissions": [
+    {
+      "role": "System Manager",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "delete": 1,
+      "submit": 1,
+      "cancel": 1,
+      "amend": 1,
+      "permlevel": 0
+    },
+    {
+      "role": "Tutor Booking Manager",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "delete": 1,
+      "submit": 1,
+      "cancel": 1,
+      "amend": 0,
+      "permlevel": 0
+    },
+    {
+      "role": "Tutor Booking Operator",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "delete": 0,
+      "submit": 1,
+      "cancel": 0,
+      "amend": 0,
+      "permlevel": 0
+    },
+    {
+      "role": "Tutor",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "delete": 0,
+      "submit": 0,
+      "cancel": 0,
+      "amend": 0,
+      "permlevel": 0
+    },
+    {
+      "role": "Student",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "delete": 0,
+      "submit": 0,
+      "cancel": 0,
+      "amend": 0,
+      "permlevel": 0
+    }
+  ],
+  "links": [],
+  "actions": [],
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "engine": "InnoDB",
+  "field_order": [
+    "naming_series",
+    "sb_session_details",
+    "tutor_booking",
+    "tutor_profile",
+    "cb_wiepkg",
+    "student_profile",
+    "status",
+    "sb_schedule",
+    "session_date",
+    "start_time",
+    "cb_mob9ur",
+    "end_time",
+    "duration_minutes",
+    "sb_session_info",
+    "subject",
+    "mode",
+    "cb_n8iiqf",
+    "meeting_link",
+    "session_number",
+    "homework_assigned",
+    "notes",
+    "tutor_remarks"
+  ]
+}

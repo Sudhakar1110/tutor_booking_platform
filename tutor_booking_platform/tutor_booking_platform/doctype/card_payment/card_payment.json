@@ -1,0 +1,182 @@
+{
+  "doctype": "DocType",
+  "name": "Card Payment",
+  "module": "Tutor Booking Platform",
+  "custom": 0,
+  "is_submittable": 1,
+  "is_child_table": 0,
+  "istable": 0,
+  "track_changes": 1,
+  "track_seen": 1,
+  "autoname": "naming_series:",
+  "naming_rule": "By naming series",
+  "title_field": "name",
+  "search_fields": "",
+  "allow_copy": 1,
+  "allow_import": 1,
+  "allow_rename": 0,
+  "fields": [
+    {
+      "fieldname": "naming_series",
+      "fieldtype": "Select",
+      "label": "Naming Series",
+      "options": "CRDP-.YYYY.-.####",
+      "reqd": 0,
+      "in_list_view": 0,
+      "set_only_once": 1
+    },
+    {
+      "fieldname": "sb_card_payment_details",
+      "fieldtype": "Section Break",
+      "label": "Card Payment Details"
+    },
+    {
+      "fieldname": "payment_transaction",
+      "fieldtype": "Link",
+      "label": "Payment Transaction",
+      "options": "Payment Transaction"
+    },
+    {
+      "fieldname": "tutor_booking",
+      "fieldtype": "Link",
+      "label": "Tutor Booking",
+      "options": "Tutor Booking",
+      "reqd": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "cb_sk1coh",
+      "fieldtype": "Column Break"
+    },
+    {
+      "fieldname": "amount",
+      "fieldtype": "Currency",
+      "label": "Amount (INR)",
+      "reqd": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "payment_status",
+      "fieldtype": "Select",
+      "label": "Status",
+      "options": "Pending\nSuccess\nFailed",
+      "default": "Pending",
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "sb_card_info",
+      "fieldtype": "Section Break",
+      "label": "Card Info"
+    },
+    {
+      "fieldname": "card_type",
+      "fieldtype": "Select",
+      "label": "Card Type",
+      "options": "Visa\nMastercard\nRuPay\nAmex\nOther"
+    },
+    {
+      "fieldname": "card_last_four",
+      "fieldtype": "Data",
+      "label": "Card Last 4 Digits"
+    },
+    {
+      "fieldname": "cb_bjprsi",
+      "fieldtype": "Column Break"
+    },
+    {
+      "fieldname": "gateway",
+      "fieldtype": "Select",
+      "label": "Payment Gateway",
+      "options": "Razorpay\nPayU\nCCAvenue\nStripe\nOther"
+    },
+    {
+      "fieldname": "gateway_transaction_id",
+      "fieldtype": "Data",
+      "label": "Gateway Transaction ID",
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "payment_date",
+      "fieldtype": "Date",
+      "label": "Payment Date"
+    }
+  ],
+  "permissions": [
+    {
+      "role": "System Manager",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "delete": 1,
+      "submit": 1,
+      "cancel": 1,
+      "amend": 1,
+      "permlevel": 0
+    },
+    {
+      "role": "Tutor Booking Manager",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "delete": 1,
+      "submit": 1,
+      "cancel": 1,
+      "amend": 0,
+      "permlevel": 0
+    },
+    {
+      "role": "Tutor Booking Operator",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "delete": 0,
+      "submit": 1,
+      "cancel": 0,
+      "amend": 0,
+      "permlevel": 0
+    },
+    {
+      "role": "Tutor",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "delete": 0,
+      "submit": 0,
+      "cancel": 0,
+      "amend": 0,
+      "permlevel": 0
+    },
+    {
+      "role": "Student",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "delete": 0,
+      "submit": 0,
+      "cancel": 0,
+      "amend": 0,
+      "permlevel": 0
+    }
+  ],
+  "links": [],
+  "actions": [],
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "engine": "InnoDB",
+  "field_order": [
+    "naming_series",
+    "sb_card_payment_details",
+    "payment_transaction",
+    "tutor_booking",
+    "cb_sk1coh",
+    "amount",
+    "payment_status",
+    "sb_card_info",
+    "card_type",
+    "card_last_four",
+    "cb_bjprsi",
+    "gateway",
+    "gateway_transaction_id",
+    "payment_date"
+  ]
+}

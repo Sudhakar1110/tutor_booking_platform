@@ -1,0 +1,202 @@
+{
+  "doctype": "DocType",
+  "name": "Student Requirement",
+  "module": "Tutor Booking Platform",
+  "custom": 0,
+  "is_submittable": 1,
+  "is_child_table": 0,
+  "istable": 0,
+  "track_changes": 1,
+  "track_seen": 1,
+  "autoname": "naming_series:",
+  "naming_rule": "By naming series",
+  "title_field": "name",
+  "search_fields": "",
+  "allow_copy": 1,
+  "allow_import": 1,
+  "allow_rename": 0,
+  "fields": [
+    {
+      "fieldname": "naming_series",
+      "fieldtype": "Select",
+      "label": "Naming Series",
+      "options": "SREQ-.YYYY.-.####",
+      "reqd": 0,
+      "in_list_view": 0,
+      "set_only_once": 1
+    },
+    {
+      "fieldname": "sb_requirement_details",
+      "fieldtype": "Section Break",
+      "label": "Requirement Details"
+    },
+    {
+      "fieldname": "student_profile",
+      "fieldtype": "Link",
+      "label": "Student Profile",
+      "options": "Student Profile",
+      "reqd": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "subject",
+      "fieldtype": "Link",
+      "label": "Subject",
+      "options": "Subject",
+      "reqd": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "cb_kbfrpa",
+      "fieldtype": "Column Break"
+    },
+    {
+      "fieldname": "requirement_title",
+      "fieldtype": "Data",
+      "label": "Requirement Title",
+      "reqd": 1
+    },
+    {
+      "fieldname": "status",
+      "fieldtype": "Select",
+      "label": "Status",
+      "options": "Open\nMatched\nClosed",
+      "default": "Open",
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "sb_preferences",
+      "fieldtype": "Section Break",
+      "label": "Preferences"
+    },
+    {
+      "fieldname": "preferred_mode",
+      "fieldtype": "Select",
+      "label": "Preferred Mode",
+      "options": "Online\nOffline\nBoth"
+    },
+    {
+      "fieldname": "preferred_gender",
+      "fieldtype": "Select",
+      "label": "Preferred Tutor Gender",
+      "options": "Any\nMale\nFemale"
+    },
+    {
+      "fieldname": "cb_61ktk6",
+      "fieldtype": "Column Break"
+    },
+    {
+      "fieldname": "budget_per_hour",
+      "fieldtype": "Currency",
+      "label": "Budget Per Hour (INR)"
+    },
+    {
+      "fieldname": "preferred_days",
+      "fieldtype": "Data",
+      "label": "Preferred Days"
+    },
+    {
+      "fieldname": "sb_details",
+      "fieldtype": "Section Break",
+      "label": "Details"
+    },
+    {
+      "fieldname": "description",
+      "fieldtype": "Text Editor",
+      "label": "Detailed Description"
+    },
+    {
+      "fieldname": "location",
+      "fieldtype": "Data",
+      "label": "Preferred Location / Area"
+    },
+    {
+      "fieldname": "cb_wsz2j1",
+      "fieldtype": "Column Break"
+    },
+    {
+      "fieldname": "urgency",
+      "fieldtype": "Select",
+      "label": "Urgency",
+      "options": "Low\nMedium\nHigh\nImmediate",
+      "default": "Medium"
+    },
+    {
+      "fieldname": "requirement_date",
+      "fieldtype": "Date",
+      "label": "Requirement Date"
+    }
+  ],
+  "permissions": [
+    {
+      "role": "System Manager",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "delete": 1,
+      "submit": 1,
+      "cancel": 1,
+      "amend": 1,
+      "permlevel": 0
+    },
+    {
+      "role": "Tutor Booking Manager",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "delete": 1,
+      "submit": 1,
+      "cancel": 1,
+      "amend": 0,
+      "permlevel": 0
+    },
+    {
+      "role": "Tutor Booking Operator",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "delete": 0,
+      "submit": 1,
+      "cancel": 0,
+      "amend": 0,
+      "permlevel": 0
+    },
+    {
+      "role": "Student",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "delete": 0,
+      "submit": 0,
+      "cancel": 0,
+      "amend": 0,
+      "permlevel": 0
+    }
+  ],
+  "links": [],
+  "actions": [],
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "engine": "InnoDB",
+  "field_order": [
+    "naming_series",
+    "sb_requirement_details",
+    "student_profile",
+    "subject",
+    "cb_kbfrpa",
+    "requirement_title",
+    "status",
+    "sb_preferences",
+    "preferred_mode",
+    "preferred_gender",
+    "cb_61ktk6",
+    "budget_per_hour",
+    "preferred_days",
+    "sb_details",
+    "description",
+    "location",
+    "cb_wsz2j1",
+    "urgency",
+    "requirement_date"
+  ]
+}

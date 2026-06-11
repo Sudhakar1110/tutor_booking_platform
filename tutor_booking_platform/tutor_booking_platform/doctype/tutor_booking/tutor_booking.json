@@ -1,0 +1,287 @@
+{
+  "doctype": "DocType",
+  "name": "Tutor Booking",
+  "module": "Tutor Booking Platform",
+  "custom": 0,
+  "is_submittable": 1,
+  "is_child_table": 0,
+  "istable": 0,
+  "track_changes": 1,
+  "track_seen": 1,
+  "autoname": "naming_series:",
+  "naming_rule": "By naming series",
+  "title_field": "booking_title",
+  "search_fields": "student_profile,tutor_profile,subject",
+  "allow_copy": 1,
+  "allow_import": 1,
+  "allow_rename": 0,
+  "fields": [
+    {
+      "fieldname": "naming_series",
+      "fieldtype": "Select",
+      "label": "Naming Series",
+      "options": "TBKN-.YYYY.-.####",
+      "reqd": 0,
+      "in_list_view": 0,
+      "set_only_once": 1
+    },
+    {
+      "fieldname": "tf_booking_info",
+      "fieldtype": "Tab Break",
+      "label": "Booking Info"
+    },
+    {
+      "fieldname": "sb_core_details",
+      "fieldtype": "Section Break",
+      "label": "Core Details"
+    },
+    {
+      "fieldname": "booking_title",
+      "fieldtype": "Data",
+      "label": "Booking Title",
+      "reqd": 1,
+      "in_list_view": 1,
+      "bold": 1
+    },
+    {
+      "fieldname": "booking_status",
+      "fieldtype": "Select",
+      "label": "Booking Status",
+      "options": "Pending\nConfirmed\nActive\nCompleted\nCancelled\nExpired",
+      "default": "Pending",
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "cb_6488jv",
+      "fieldtype": "Column Break"
+    },
+    {
+      "fieldname": "student_profile",
+      "fieldtype": "Link",
+      "label": "Student Profile",
+      "options": "Student Profile",
+      "reqd": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "tutor_profile",
+      "fieldtype": "Link",
+      "label": "Tutor Profile",
+      "options": "Tutor Profile",
+      "reqd": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "sb_subject_&_mode",
+      "fieldtype": "Section Break",
+      "label": "Subject & Mode"
+    },
+    {
+      "fieldname": "subject",
+      "fieldtype": "Link",
+      "label": "Subject",
+      "options": "Subject",
+      "reqd": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "course",
+      "fieldtype": "Link",
+      "label": "Course",
+      "options": "Course"
+    },
+    {
+      "fieldname": "cb_98660a",
+      "fieldtype": "Column Break"
+    },
+    {
+      "fieldname": "teaching_mode",
+      "fieldtype": "Select",
+      "label": "Teaching Mode",
+      "options": "Online\nOffline",
+      "reqd": 1
+    },
+    {
+      "fieldname": "booking_date",
+      "fieldtype": "Date",
+      "label": "Booking Date"
+    },
+    {
+      "fieldname": "tf_schedule_&_payment",
+      "fieldtype": "Tab Break",
+      "label": "Schedule & Payment"
+    },
+    {
+      "fieldname": "sb_schedule",
+      "fieldtype": "Section Break",
+      "label": "Schedule"
+    },
+    {
+      "fieldname": "start_date",
+      "fieldtype": "Date",
+      "label": "Start Date",
+      "reqd": 1
+    },
+    {
+      "fieldname": "end_date",
+      "fieldtype": "Date",
+      "label": "End Date"
+    },
+    {
+      "fieldname": "cb_8serdd",
+      "fieldtype": "Column Break"
+    },
+    {
+      "fieldname": "sessions_per_week",
+      "fieldtype": "Int",
+      "label": "Sessions Per Week"
+    },
+    {
+      "fieldname": "hours_per_session",
+      "fieldtype": "Float",
+      "label": "Hours Per Session"
+    },
+    {
+      "fieldname": "sb_payment",
+      "fieldtype": "Section Break",
+      "label": "Payment"
+    },
+    {
+      "fieldname": "rate_per_hour",
+      "fieldtype": "Currency",
+      "label": "Rate Per Hour (INR)",
+      "reqd": 1
+    },
+    {
+      "fieldname": "total_hours",
+      "fieldtype": "Float",
+      "label": "Total Hours"
+    },
+    {
+      "fieldname": "cb_ek95jb",
+      "fieldtype": "Column Break"
+    },
+    {
+      "fieldname": "total_amount",
+      "fieldtype": "Currency",
+      "label": "Total Amount (INR)",
+      "read_only": 1
+    },
+    {
+      "fieldname": "payment_status",
+      "fieldtype": "Select",
+      "label": "Payment Status",
+      "options": "Unpaid\nPartially Paid\nPaid\nRefunded",
+      "default": "Unpaid"
+    },
+    {
+      "fieldname": "tf_notes",
+      "fieldtype": "Tab Break",
+      "label": "Notes"
+    },
+    {
+      "fieldname": "special_instructions",
+      "fieldtype": "Text Editor",
+      "label": "Special Instructions"
+    },
+    {
+      "fieldname": "cancellation_reason",
+      "fieldtype": "Text",
+      "label": "Cancellation Reason"
+    }
+  ],
+  "permissions": [
+    {
+      "role": "System Manager",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "delete": 1,
+      "submit": 1,
+      "cancel": 1,
+      "amend": 1,
+      "permlevel": 0
+    },
+    {
+      "role": "Tutor Booking Manager",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "delete": 1,
+      "submit": 1,
+      "cancel": 1,
+      "amend": 0,
+      "permlevel": 0
+    },
+    {
+      "role": "Tutor Booking Operator",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "delete": 0,
+      "submit": 1,
+      "cancel": 0,
+      "amend": 0,
+      "permlevel": 0
+    },
+    {
+      "role": "Tutor",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "delete": 0,
+      "submit": 0,
+      "cancel": 0,
+      "amend": 0,
+      "permlevel": 0
+    },
+    {
+      "role": "Student",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "delete": 0,
+      "submit": 0,
+      "cancel": 0,
+      "amend": 0,
+      "permlevel": 0
+    }
+  ],
+  "links": [],
+  "actions": [],
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "engine": "InnoDB",
+  "field_order": [
+    "naming_series",
+    "tf_booking_info",
+    "sb_core_details",
+    "booking_title",
+    "booking_status",
+    "cb_6488jv",
+    "student_profile",
+    "tutor_profile",
+    "sb_subject_&_mode",
+    "subject",
+    "course",
+    "cb_98660a",
+    "teaching_mode",
+    "booking_date",
+    "tf_schedule_&_payment",
+    "sb_schedule",
+    "start_date",
+    "end_date",
+    "cb_8serdd",
+    "sessions_per_week",
+    "hours_per_session",
+    "sb_payment",
+    "rate_per_hour",
+    "total_hours",
+    "cb_ek95jb",
+    "total_amount",
+    "payment_status",
+    "tf_notes",
+    "special_instructions",
+    "cancellation_reason"
+  ]
+}

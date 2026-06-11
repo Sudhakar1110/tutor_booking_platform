@@ -1,0 +1,262 @@
+{
+  "doctype": "DocType",
+  "name": "Student Profile",
+  "module": "Tutor Booking Platform",
+  "custom": 0,
+  "is_submittable": 0,
+  "is_child_table": 0,
+  "istable": 0,
+  "track_changes": 1,
+  "track_seen": 1,
+  "autoname": "naming_series:",
+  "naming_rule": "By naming series",
+  "title_field": "student_name",
+  "search_fields": "student_name,email,mobile",
+  "allow_copy": 1,
+  "allow_import": 1,
+  "allow_rename": 0,
+  "fields": [
+    {
+      "fieldname": "naming_series",
+      "fieldtype": "Select",
+      "label": "Naming Series",
+      "options": "STU-.YYYY.-.####",
+      "reqd": 0,
+      "in_list_view": 0,
+      "set_only_once": 1
+    },
+    {
+      "fieldname": "tf_personal_info",
+      "fieldtype": "Tab Break",
+      "label": "Personal Info"
+    },
+    {
+      "fieldname": "sb_basic_details",
+      "fieldtype": "Section Break",
+      "label": "Basic Details"
+    },
+    {
+      "fieldname": "student_name",
+      "fieldtype": "Data",
+      "label": "Student Name",
+      "reqd": 1,
+      "in_list_view": 1,
+      "bold": 1,
+      "in_global_search": 1
+    },
+    {
+      "fieldname": "gender",
+      "fieldtype": "Select",
+      "label": "Gender",
+      "options": "Male\nFemale\nOther\nPrefer not to say"
+    },
+    {
+      "fieldname": "date_of_birth",
+      "fieldtype": "Date",
+      "label": "Date of Birth"
+    },
+    {
+      "fieldname": "cb_64nj73",
+      "fieldtype": "Column Break"
+    },
+    {
+      "fieldname": "profile_image",
+      "fieldtype": "Attach Image",
+      "label": "Profile Photo"
+    },
+    {
+      "fieldname": "user",
+      "fieldtype": "Link",
+      "label": "User",
+      "options": "User"
+    },
+    {
+      "fieldname": "is_active",
+      "fieldtype": "Check",
+      "label": "Is Active",
+      "default": "1"
+    },
+    {
+      "fieldname": "sb_contact_details",
+      "fieldtype": "Section Break",
+      "label": "Contact Details"
+    },
+    {
+      "fieldname": "email",
+      "fieldtype": "Data",
+      "label": "Email",
+      "options": "Email",
+      "reqd": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "mobile",
+      "fieldtype": "Data",
+      "label": "Mobile Number",
+      "reqd": 1
+    },
+    {
+      "fieldname": "cb_5xpcai",
+      "fieldtype": "Column Break"
+    },
+    {
+      "fieldname": "parent_name",
+      "fieldtype": "Data",
+      "label": "Parent / Guardian Name"
+    },
+    {
+      "fieldname": "parent_mobile",
+      "fieldtype": "Data",
+      "label": "Parent Mobile"
+    },
+    {
+      "fieldname": "tf_academic_details",
+      "fieldtype": "Tab Break",
+      "label": "Academic Details"
+    },
+    {
+      "fieldname": "sb_current_education",
+      "fieldtype": "Section Break",
+      "label": "Current Education"
+    },
+    {
+      "fieldname": "current_class",
+      "fieldtype": "Select",
+      "label": "Current Class / Grade",
+      "options": "Class 1\nClass 2\nClass 3\nClass 4\nClass 5\nClass 6\nClass 7\nClass 8\nClass 9\nClass 10\nClass 11\nClass 12\nUndergraduate\nPostgraduate\nWorking Professional"
+    },
+    {
+      "fieldname": "school_college",
+      "fieldtype": "Data",
+      "label": "School / College Name"
+    },
+    {
+      "fieldname": "cb_0acnqf",
+      "fieldtype": "Column Break"
+    },
+    {
+      "fieldname": "board",
+      "fieldtype": "Select",
+      "label": "Board / University",
+      "options": "CBSE\nICSE\nState Board\nIB\nIGCSE\nOther"
+    },
+    {
+      "fieldname": "academic_year",
+      "fieldtype": "Data",
+      "label": "Academic Year"
+    },
+    {
+      "fieldname": "sb_learning_preferences",
+      "fieldtype": "Section Break",
+      "label": "Learning Preferences"
+    },
+    {
+      "fieldname": "preferred_learning_mode",
+      "fieldtype": "Select",
+      "label": "Preferred Mode",
+      "options": "Online\nOffline\nBoth"
+    },
+    {
+      "fieldname": "preferred_timing",
+      "fieldtype": "Select",
+      "label": "Preferred Timing",
+      "options": "Morning\nAfternoon\nEvening\nWeekends Only\nFlexible"
+    },
+    {
+      "fieldname": "cb_4y1j9b",
+      "fieldtype": "Column Break"
+    },
+    {
+      "fieldname": "budget_per_hour",
+      "fieldtype": "Currency",
+      "label": "Budget Per Hour (INR)"
+    },
+    {
+      "fieldname": "special_requirements",
+      "fieldtype": "Text Editor",
+      "label": "Special Requirements"
+    }
+  ],
+  "permissions": [
+    {
+      "role": "System Manager",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "delete": 1,
+      "submit": 1,
+      "cancel": 1,
+      "amend": 1,
+      "permlevel": 0
+    },
+    {
+      "role": "Tutor Booking Manager",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "delete": 1,
+      "submit": 1,
+      "cancel": 1,
+      "amend": 0,
+      "permlevel": 0
+    },
+    {
+      "role": "Tutor Booking Operator",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "delete": 0,
+      "submit": 1,
+      "cancel": 0,
+      "amend": 0,
+      "permlevel": 0
+    },
+    {
+      "role": "Student",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "delete": 0,
+      "submit": 0,
+      "cancel": 0,
+      "amend": 0,
+      "permlevel": 0
+    }
+  ],
+  "links": [],
+  "actions": [],
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "engine": "InnoDB",
+  "field_order": [
+    "naming_series",
+    "tf_personal_info",
+    "sb_basic_details",
+    "student_name",
+    "gender",
+    "date_of_birth",
+    "cb_64nj73",
+    "profile_image",
+    "user",
+    "is_active",
+    "sb_contact_details",
+    "email",
+    "mobile",
+    "cb_5xpcai",
+    "parent_name",
+    "parent_mobile",
+    "tf_academic_details",
+    "sb_current_education",
+    "current_class",
+    "school_college",
+    "cb_0acnqf",
+    "board",
+    "academic_year",
+    "sb_learning_preferences",
+    "preferred_learning_mode",
+    "preferred_timing",
+    "cb_4y1j9b",
+    "budget_per_hour",
+    "special_requirements"
+  ]
+}
