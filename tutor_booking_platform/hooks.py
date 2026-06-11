@@ -120,6 +120,7 @@ permission_query_conditions = {
 
 # ─── Assets (Desk-side includes) ─────────────────────────────────────────────
 app_include_css = "/assets/tutor_booking_platform/css/tutor_booking_platform.css"
+app_include_js  = "/assets/tutor_booking_platform/js/tutor_booking_platform.js"
 
 # ─── Jinja Globals ────────────────────────────────────────────────────────────
 jinja = {
