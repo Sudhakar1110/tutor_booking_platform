@@ -93,7 +93,7 @@ def main():
         print(f"  ✓ {name}")
 
     # =========================================================
-    # 4. COURSES
+    # 4. COURSES (lookup by course_name field, not by naming series)
     # =========================================================
     print("\n--- Creating Courses ---")
     courses = [
@@ -105,17 +105,21 @@ def main():
         ("Mathematics Foundation", "Academic Courses", "Mathematics", 12, "Beginner", 10000),
     ]
     for name, cat, subj, weeks, level, fee in courses:
-        create_if_not_exists("Course", name, {
-            "doctype": "Course",
-            "course_name": name,
-            "course_category": cat,
-            "subject": subj,
-            "is_active": 1,
-            "duration_weeks": weeks,
-            "level": level,
-            "fee": fee,
-        })
-        print(f"  ✓ {name}")
+        if not frappe.db.get_value("Course", {"course_name": name}):
+            doc = frappe.get_doc({
+                "doctype": "Course",
+                "course_name": name,
+                "course_category": cat,
+                "subject": subj,
+                "is_active": 1,
+                "duration_weeks": weeks,
+                "level": level,
+                "fee": fee,
+            })
+            doc.insert(ignore_permissions=True, ignore_mandatory=True)
+            print(f"  ✓ {name}")
+        else:
+            print(f"  ✓ {name} (already exists)")
 
     # =========================================================
     # 5. SKILL CATEGORIES
@@ -1026,5 +1030,4 @@ def main():
     print(f"  Tutor Booking Settings: 1")
     print("\n✅ DONE! All demo data created successfully.")
 
-if __name__ == "__main__":
-    main()
+main()
