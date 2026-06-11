@@ -21,6 +21,8 @@ def after_install():
 def after_migrate():
     """Run after bench migrate."""
     create_default_settings()
+    clean_workspace()
+    fix_child_table_modules()
     frappe.db.commit()
     frappe.clear_cache()
     print("✅ Tutor Booking Platform migration completed.")
@@ -94,3 +96,77 @@ def create_module_def():
             frappe.db.commit()
         except Exception as e:
             frappe.log_error(str(e), "Create Module Def Error")
+
+
+def clean_workspace():
+    """Remove any cross-app doctypes from Tutor Booking Platform workspace."""
+    try:
+        workspace_name = "Tutor Booking Platform"
+        if not frappe.db.exists("Workspace", workspace_name):
+            return
+
+        workspace = frappe.get_doc("Workspace", workspace_name)
+        allowed_modules = ["Tutor Booking Platform"]
+        changed = False
+
+        # Clean shortcuts
+        for s in list(workspace.shortcuts):
+            if s.link_to and s.link_type == "DocType":
+                try:
+                    meta = frappe.get_meta(s.link_to)
+                    if meta.module not in allowed_modules:
+                        workspace.shortcuts.remove(s)
+                        changed = True
+                        print(f"  Removed shortcut: {s.label} (from {meta.module})")
+                except Exception:
+                    pass
+
+        # Clean links
+        for l in list(workspace.links):
+            if l.link_to and l.link_type == "DocType":
+                try:
+                    meta = frappe.get_meta(l.link_to)
+                    if meta.module not in allowed_modules:
+                        workspace.links.remove(l)
+                        changed = True
+                        print(f"  Removed link: {l.label} (from {meta.module})")
+                except Exception:
+                    pass
+
+        if changed:
+            workspace.save(ignore_permissions=True)
+            frappe.db.commit()
+            print("✅ Workspace cleaned - cross-app doctypes removed")
+    except Exception as e:
+        frappe.log_error(frappe.get_traceback(), "clean_workspace Error")
+
+
+def fix_child_table_modules():
+    """Fix module assignment for child table doctypes."""
+    child_tables = [
+        "Student Address",
+        "Student Preference",
+        "Tutor Qualification",
+        "Tutor Experience",
+        "Tutor Certification",
+        "Tutor Availability",
+        "Learning Schedule",
+        "Learning Progress",
+        "Attendance Record",
+        "UPI Payment",
+        "Card Payment",
+        "Cash Payment",
+        "Notification Log",
+        "Message Thread",
+        "Chat Message",
+        "Reminder Schedule",
+        "Tutor Rating",
+        "Student Feedback",
+    ]
+    for dt_name in child_tables:
+        try:
+            if frappe.db.exists("DocType", dt_name):
+                frappe.db.set_value("DocType", dt_name, "module", "Tutor Booking Platform")
+        except Exception:
+            pass
+    print("✅ Fixed module for child table doctypes")
