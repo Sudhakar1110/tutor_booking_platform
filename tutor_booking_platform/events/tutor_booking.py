@@ -2,7 +2,7 @@
 """Document events for Tutor Booking DocType."""
 import frappe
 from frappe import _
-from frappe.utils import nowdate
+from frappe.utils import nowdate, getdate
 
 
 def validate(doc, method=None):
@@ -52,7 +52,7 @@ def _validate_booking_dates(doc):
     if doc.start_date and doc.end_date:
         if doc.start_date > doc.end_date:
             frappe.throw(_("Start Date cannot be after End Date."))
-        if doc.start_date < nowdate():
+        if doc.start_date < getdate(nowdate()):
             frappe.throw(_("Start Date cannot be in the past."))
 
 
