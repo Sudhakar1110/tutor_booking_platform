@@ -17,9 +17,9 @@ def _update_tutor_rating(tutor_profile):
     try:
         result = frappe.db.sql("""
             SELECT AVG(rating) as avg_rating
-            FROM \`tabTutor Review\`
+            FROM `tabTutor Review`
             WHERE tutor_profile = %s
-        """, tutor_profile, as_dict=True)
+        """, (tutor_profile,), as_dict=True)
         avg = round(result[0].avg_rating or 0, 2) if result else 0
         frappe.db.set_value("Tutor Profile", tutor_profile, "average_rating", avg,
                             update_modified=False)
