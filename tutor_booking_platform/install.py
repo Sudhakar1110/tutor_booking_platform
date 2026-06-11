@@ -101,7 +101,9 @@ def create_module_def():
 
 
 def clean_workspace():
-    """Remove any cross-app doctypes from Tutor Booking Platform workspace."""
+    """Remove any cross-app doctypes from Tutor Booking Platform workspace.
+    Also removes links to doctypes that don't exist in the database.
+    """
     try:
         workspace_name = "Tutor Booking Platform"
         if not frappe.db.exists("Workspace", workspace_name):
@@ -111,34 +113,60 @@ def clean_workspace():
         allowed_modules = ["Tutor Booking Platform"]
         changed = False
 
-        # Clean shortcuts
+        # Clean shortcuts (shortcuts use 'type', not 'link_type')
         for s in list(workspace.shortcuts):
-            if s.link_to and s.link_type == "DocType":
-                try:
-                    meta = frappe.get_meta(s.link_to)
-                    if meta.module not in allowed_modules:
-                        workspace.shortcuts.remove(s)
-                        changed = True
-                        print(f"  Removed shortcut: {s.label} (from {meta.module})")
-                except Exception:
-                    pass
+            link_to = s.link_to
+            if not link_to:
+                continue
+            try:
+                meta = frappe.get_meta(link_to)
+                if hasattr(meta, 'module') and meta.module not in allowed_modules:
+                    workspace.shortcuts.remove(s)
+                    changed = True
+                    print(f"  Removed shortcut: {s.label} (module: {meta.module})")
+            except frappe.DoesNotExistError:
+                # Doctype not in DB - remove it from workspace
+                workspace.shortcuts.remove(s)
+                changed = True
+                print(f"  Removed shortcut (not in DB): {s.label} -> {link_to}")
+            except Exception:
+                pass
 
-        # Clean links
+        # Clean links (links have 'link_type')
         for l in list(workspace.links):
-            if l.link_to and l.link_type == "DocType":
-                try:
-                    meta = frappe.get_meta(l.link_to)
-                    if meta.module not in allowed_modules:
-                        workspace.links.remove(l)
-                        changed = True
-                        print(f"  Removed link: {l.label} (from {meta.module})")
-                except Exception:
-                    pass
+            link_to = l.link_to
+            if not link_to:
+                continue
+            # Skip non-DocType links (reports, card breaks, etc.)
+            if not hasattr(l, 'link_type') or l.link_type != "DocType":
+                continue
+            try:
+                meta = frappe.get_meta(link_to)
+                if hasattr(meta, 'module') and meta.module not in allowed_modules:
+                    workspace.links.remove(l)
+                    changed = True
+                    print(f"  Removed link: {l.label} (module: {meta.module})")
+            except frappe.DoesNotExistError:
+                # Doctype not in DB - remove it from workspace
+                workspace.links.remove(l)
+                changed = True
+                print(f"  Removed link (not in DB): {l.label} -> {link_to}")
+            except Exception:
+                pass
 
         if changed:
-            workspace.save(ignore_permissions=True)
-            frappe.db.commit()
-            print("✅ Workspace cleaned - cross-app doctypes removed")
+            try:
+                workspace.save(ignore_permissions=True)
+                frappe.db.commit()
+                print("✅ Workspace cleaned - cross-app doctypes removed")
+            except frappe.LinkValidationError:
+                # If still failing, force clear all links and reset from JSON
+                print("  Link validation failed. Resetting workspace from JSON...")
+                workspace.links = []
+                workspace.shortcuts = []
+                workspace.save(ignore_permissions=True)
+                frappe.db.commit()
+                print("✅ Workspace cleared. Will reload from JSON on next visit.")
     except Exception as e:
         frappe.log_error(frappe.get_traceback(), "clean_workspace Error")
 
