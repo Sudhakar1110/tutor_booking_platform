@@ -1,0 +1,10 @@
+{
+ "doctype": "Report",
+ "name": "Booking Analysis Report",
+ "report_name": "Booking Analysis Report",
+ "ref_doctype": "Tutor Booking",
+ "report_type": "Script Report",
+ "is_standard": "Yes",
+ "module": "Tutor Booking Platform",
+ "disabled": 0
+}

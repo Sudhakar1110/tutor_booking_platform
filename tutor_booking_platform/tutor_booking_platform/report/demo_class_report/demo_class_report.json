@@ -1,0 +1,10 @@
+{
+ "doctype": "Report",
+ "name": "Demo Class Report",
+ "report_name": "Demo Class Report",
+ "ref_doctype": "Demo Class Request",
+ "report_type": "Script Report",
+ "is_standard": "Yes",
+ "module": "Tutor Booking Platform",
+ "disabled": 0
+}

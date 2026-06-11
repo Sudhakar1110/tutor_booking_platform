@@ -1,0 +1,13 @@
+[
+  {
+    "doctype": "Custom Field",
+    "dt": "User",
+    "fieldname": "tutor_booking_profile",
+    "fieldtype": "Data",
+    "label": "Tutor/Student Profile",
+    "insert_after": "mobile_no",
+    "read_only": 1,
+    "reqd": 0,
+    "description": "Linked Tutor Profile or Student Profile"
+  }
+]

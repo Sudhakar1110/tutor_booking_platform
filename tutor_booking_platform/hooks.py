@@ -13,10 +13,9 @@ app_license     = "MIT"
 app_version     = app_version
 
 # ─── Required Apps ────────────────────────────────────────────────────────────
-required_apps = ["frappe", "erpnext"]
+required_apps = ["erpnext"]
 
 # ─── Fixtures ─────────────────────────────────────────────────────────────────
-# Fixtures are exported/imported via bench --site <site> export-fixtures
 fixtures = [
     {"dt": "Role", "filters": [["name", "in", [
         "Tutor Booking Manager",
@@ -24,20 +23,26 @@ fixtures = [
         "Student",
         "Tutor Booking Operator",
     ]]]},
-    {"dt": "Workflow", "filters": [["document_type", "in", [
-        "Tutor Booking",
-        "Demo Class Request",
-        "Refund Request",
+    {"dt": "Workflow", "filters": [["name", "in", [
+        "Tutor Verification Workflow",
+        "Demo Class Approval Workflow",
+        "Tutor Booking Approval Workflow",
+        "Refund Approval Workflow",
     ]]]},
-    {"dt": "Notification", "filters": [["document_type", "in", [
-        "Tutor Booking",
-        "Demo Class Request",
-        "Payment Transaction",
-        "Tutor Session",
+    {"dt": "Notification", "filters": [["name", "in", [
+        "New Student Enquiry",
+        "Demo Class Scheduled",
+        "Demo Class Completed",
+        "Booking Confirmed",
+        "Booking Cancelled",
+        "Session Reminder",
+        "Payment Received",
+        "Refund Approved",
+        "Tutor Verification Approved",
+        "Tutor Verification Rejected",
     ]]]},
     {"dt": "Custom Field"},
     {"dt": "Property Setter"},
-    {"dt": "Print Format", "filters": [["module", "=", "Tutor Booking Platform"]]},
 ]
 
 # ─── Installation / Migration Hooks ───────────────────────────────────────────
@@ -112,22 +117,6 @@ permission_query_conditions = {
     "Tutor Session": "tutor_booking_platform.permissions.tutor_session.get_permission_query_conditions",
     "Payment Transaction": "tutor_booking_platform.permissions.payment_transaction.get_permission_query_conditions",
 }
-
-# ─── Override Whitelisted Methods ─────────────────────────────────────────────
-# override_whitelisted_methods = {}
-
-# ─── Override DocType Class ───────────────────────────────────────────────────
-# override_doctype_class = {}
-
-# ─── App Include (Desk) ───────────────────────────────────────────────────────
-# app_include_css = "/assets/tutor_booking_platform/css/tutor_booking_platform.css"
-# app_include_js  = "/assets/tutor_booking_platform/js/tutor_booking_platform.js"
-
-# ─── Website ──────────────────────────────────────────────────────────────────
-# website_route_rules = []
-
-# ─── Dashboard Data ───────────────────────────────────────────────────────────
-# get_dashboard_data is done inside each DocType controller
 
 # ─── Jinja Globals ────────────────────────────────────────────────────────────
 jinja = {

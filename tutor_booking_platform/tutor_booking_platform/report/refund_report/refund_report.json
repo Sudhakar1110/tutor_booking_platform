@@ -1,0 +1,10 @@
+{
+ "doctype": "Report",
+ "name": "Refund Report",
+ "report_name": "Refund Report",
+ "ref_doctype": "Refund Request",
+ "report_type": "Script Report",
+ "is_standard": "Yes",
+ "module": "Tutor Booking Platform",
+ "disabled": 0
+}

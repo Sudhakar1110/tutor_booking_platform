@@ -1,0 +1,10 @@
+{
+ "doctype": "Report",
+ "name": "Tutor Rating Report",
+ "report_name": "Tutor Rating Report",
+ "ref_doctype": "Tutor Rating",
+ "report_type": "Script Report",
+ "is_standard": "Yes",
+ "module": "Tutor Booking Platform",
+ "disabled": 0
+}

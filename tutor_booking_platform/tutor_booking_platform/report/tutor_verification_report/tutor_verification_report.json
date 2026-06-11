@@ -1,0 +1,10 @@
+{
+ "doctype": "Report",
+ "name": "Tutor Verification Report",
+ "report_name": "Tutor Verification Report",
+ "ref_doctype": "Tutor Verification",
+ "report_type": "Script Report",
+ "is_standard": "Yes",
+ "module": "Tutor Booking Platform",
+ "disabled": 0
+}

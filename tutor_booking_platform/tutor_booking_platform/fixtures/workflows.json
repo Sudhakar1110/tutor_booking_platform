@@ -1,0 +1,75 @@
+[
+  {
+    "doctype": "Workflow", "document_type": "Tutor Verification",
+    "workflow_name": "Tutor Verification Workflow", "is_active": 1, "send_email_alert": 0,
+    "states": [
+      {"state": "Pending", "doc_status": 0, "allow_edit": "Tutor Booking Operator"},
+      {"state": "Under Review", "doc_status": 0, "allow_edit": "Tutor Booking Manager"},
+      {"state": "Verified", "doc_status": 1, "allow_edit": "Tutor Booking Manager"},
+      {"state": "Rejected", "doc_status": 1, "allow_edit": "Tutor Booking Manager"}
+    ],
+    "transitions": [
+      {"state": "Pending", "action": "Start Review", "next_state": "Under Review", "allowed": "Tutor Booking Operator", "allow_self_approval": 1},
+      {"state": "Under Review", "action": "Approve", "next_state": "Verified", "allowed": "Tutor Booking Manager", "allow_self_approval": 1},
+      {"state": "Under Review", "action": "Reject", "next_state": "Rejected", "allowed": "Tutor Booking Manager", "allow_self_approval": 1}
+    ],
+    "workflow_state_field": "verification_status"
+  },
+  {
+    "doctype": "Workflow", "document_type": "Demo Class Request",
+    "workflow_name": "Demo Class Approval Workflow", "is_active": 1, "send_email_alert": 0,
+    "states": [
+      {"state": "Pending", "doc_status": 0, "allow_edit": "Student"},
+      {"state": "Approved", "doc_status": 1, "allow_edit": "Tutor"},
+      {"state": "Scheduled", "doc_status": 1, "allow_edit": "Tutor"},
+      {"state": "Completed", "doc_status": 1, "allow_edit": "Tutor Booking Manager"},
+      {"state": "Rejected", "doc_status": 1, "allow_edit": "Tutor"},
+      {"state": "Cancelled", "doc_status": 1, "allow_edit": "Student"}
+    ],
+    "transitions": [
+      {"state": "Pending", "action": "Approve", "next_state": "Approved", "allowed": "Tutor", "allow_self_approval": 1},
+      {"state": "Pending", "action": "Reject", "next_state": "Rejected", "allowed": "Tutor", "allow_self_approval": 1},
+      {"state": "Approved", "action": "Schedule", "next_state": "Scheduled", "allowed": "Tutor", "allow_self_approval": 1},
+      {"state": "Scheduled", "action": "Complete", "next_state": "Completed", "allowed": "Tutor Booking Manager", "allow_self_approval": 1},
+      {"state": "Approved", "action": "Cancel", "next_state": "Cancelled", "allowed": "Student", "allow_self_approval": 1},
+      {"state": "Scheduled", "action": "Cancel", "next_state": "Cancelled", "allowed": "Student", "allow_self_approval": 1}
+    ],
+    "workflow_state_field": "status"
+  },
+  {
+    "doctype": "Workflow", "document_type": "Tutor Booking",
+    "workflow_name": "Tutor Booking Approval Workflow", "is_active": 1, "send_email_alert": 0,
+    "states": [
+      {"state": "Pending", "doc_status": 0, "allow_edit": "Student"},
+      {"state": "Confirmed", "doc_status": 1, "allow_edit": "Tutor"},
+      {"state": "Active", "doc_status": 1, "allow_edit": "Tutor"},
+      {"state": "Completed", "doc_status": 1, "allow_edit": "Tutor Booking Manager"},
+      {"state": "Cancelled", "doc_status": 1, "allow_edit": "Tutor Booking Manager"},
+      {"state": "Expired", "doc_status": 1, "allow_edit": "Tutor Booking Manager"}
+    ],
+    "transitions": [
+      {"state": "Pending", "action": "Confirm Booking", "next_state": "Confirmed", "allowed": "Tutor", "allow_self_approval": 1},
+      {"state": "Confirmed", "action": "Start", "next_state": "Active", "allowed": "Tutor", "allow_self_approval": 1},
+      {"state": "Active", "action": "Complete", "next_state": "Completed", "allowed": "Tutor Booking Manager", "allow_self_approval": 1},
+      {"state": "Pending", "action": "Cancel", "next_state": "Cancelled", "allowed": "Tutor Booking Manager", "allow_self_approval": 1},
+      {"state": "Confirmed", "action": "Cancel", "next_state": "Cancelled", "allowed": "Tutor Booking Manager", "allow_self_approval": 1}
+    ],
+    "workflow_state_field": "booking_status"
+  },
+  {
+    "doctype": "Workflow", "document_type": "Refund Request",
+    "workflow_name": "Refund Approval Workflow", "is_active": 1, "send_email_alert": 0,
+    "states": [
+      {"state": "Pending", "doc_status": 0, "allow_edit": "Student"},
+      {"state": "Approved", "doc_status": 1, "allow_edit": "Tutor Booking Manager"},
+      {"state": "Processed", "doc_status": 1, "allow_edit": "Tutor Booking Manager"},
+      {"state": "Rejected", "doc_status": 1, "allow_edit": "Tutor Booking Manager"}
+    ],
+    "transitions": [
+      {"state": "Pending", "action": "Approve", "next_state": "Approved", "allowed": "Tutor Booking Manager", "allow_self_approval": 1},
+      {"state": "Pending", "action": "Reject", "next_state": "Rejected", "allowed": "Tutor Booking Manager", "allow_self_approval": 1},
+      {"state": "Approved", "action": "Process Refund", "next_state": "Processed", "allowed": "Tutor Booking Manager", "allow_self_approval": 1}
+    ],
+    "workflow_state_field": "refund_status"
+  }
+]

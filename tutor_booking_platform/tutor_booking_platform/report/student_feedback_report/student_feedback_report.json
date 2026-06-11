@@ -1,0 +1,10 @@
+{
+ "doctype": "Report",
+ "name": "Student Feedback Report",
+ "report_name": "Student Feedback Report",
+ "ref_doctype": "Student Feedback",
+ "report_type": "Script Report",
+ "is_standard": "Yes",
+ "module": "Tutor Booking Platform",
+ "disabled": 0
+}

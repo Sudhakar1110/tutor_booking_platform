@@ -1,0 +1,10 @@
+{
+ "doctype": "Report",
+ "name": "Revenue Analysis Report",
+ "report_name": "Revenue Analysis Report",
+ "ref_doctype": "Payment Transaction",
+ "report_type": "Script Report",
+ "is_standard": "Yes",
+ "module": "Tutor Booking Platform",
+ "disabled": 0
+}
