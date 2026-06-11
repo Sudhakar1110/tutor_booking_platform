@@ -275,7 +275,7 @@ def main():
     # ----- 30. CARD PAYMENTS -----
     print("\n--- Creating Card Payments ---")
     for i in range(10):
-        create_if_not_exists("Card Payment", f"CRDP-2024-{i+1:04d}", {"doctype": "Card Payment", "payment_transaction": f"PTXN-2024.{random.randint(7,12):02d}.{i+21:04d}", "tutor_booking": booking_names[i % len(booking_names)], "amount": random.choice([1000, 1500, 2500, 5000]), "payment_status": "Success", "card_type": random.choice(["Visa", "Mastercard", "RuPay"]), "card_last_four": f"{random.randint(1000, 9999)}", "gateway": "Razorpay", "payment_date": random_date("2024-07-01", "2024-12-31")})
+        create_if_not_exists("Card Payment", f"CRDP-2024-{i+1:04d}", {"doctype": "Card Payment", "payment_transaction": f"PTXN-2024.{(7 + i % 5):02d}.{(i % 20) + 1:04d}", "tutor_booking": booking_names[i % len(booking_names)], "amount": random.choice([1000, 1500, 2500, 5000]), "payment_status": "Success", "card_type": random.choice(["Visa", "Mastercard", "RuPay"]), "card_last_four": f"{random.randint(1000, 9999)}", "gateway": "Razorpay", "payment_date": random_date("2024-07-01", "2024-12-31")})
         print(f"  ✓ Card Payment #{i+1}")
 
     # ----- 31. CASH PAYMENTS -----
