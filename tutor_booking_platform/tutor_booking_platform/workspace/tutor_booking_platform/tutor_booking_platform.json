@@ -9,7 +9,7 @@
   "is_hidden": 0,
   "disable_on_first_visit": 0,
   "icon": "book",
-  "indicator_color": "indigo",
+  "indicator_color": "blue",
   "title": "Tutor Booking Platform",
   "subtitle": "Complete Tutor Booking Management",
   "for_user": "",
@@ -21,7 +21,7 @@
     {"type": "DocType", "label": "Student Profile", "link_to": "Student Profile", "doc_view": "List", "color": "Green", "icon": "user", "description": "Manage Student Profiles", "idx": 2},
     {"type": "DocType", "label": "Tutor Booking", "link_to": "Tutor Booking", "doc_view": "List", "color": "Orange", "icon": "calendar", "description": "Manage Bookings", "idx": 3},
     {"type": "DocType", "label": "Tutor Session", "link_to": "Tutor Session", "doc_view": "List", "color": "Purple", "icon": "check-circle", "description": "Manage Sessions", "idx": 4},
-    {"type": "DocType", "label": "Tutor Booking Settings", "link_to": "Tutor Booking Settings", "doc_view": "Form", "color": "Gray", "icon": "settings", "description": "Platform Settings", "idx": 5}
+    {"type": "DocType", "label": "Tutor Booking Settings", "link_to": "Tutor Booking Settings", "doc_view": "List", "color": "Gray", "icon": "settings", "description": "Platform Settings", "idx": 5}
   ],
   "links": [
     {"type": "Card Break", "label": "Tutor Management", "hidden": 0, "is_query_report": 0, "idx": 1},
