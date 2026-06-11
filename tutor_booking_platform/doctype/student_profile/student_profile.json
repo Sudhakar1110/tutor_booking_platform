@@ -1,0 +1,163 @@
+{
+  "doctype": "DocType",
+  "name": "Student Profile",
+  "module": "Tutor Booking Platform",
+  "custom": 0,
+  "is_submittable": 0,
+  "is_child_table": 0,
+  "istable": 0,
+  "track_changes": 1,
+  "track_seen": 1,
+  "autoname": "naming_series:",
+  "naming_rule": "By naming series",
+  "title_field": "name",
+  "search_fields": "",
+  "allow_copy": 1,
+  "allow_import": 1,
+  "allow_rename": 0,
+  "fields": [
+    {
+      "fieldname": "student_name",
+      "fieldtype": "Data",
+      "label": "Student Name",
+      "reqd": 1,
+      "in_list_view": 1,
+      "bold": 1,
+      "in_global_search": "1 "
+    },
+    {
+      "fieldname": "gender",
+      "fieldtype": "Select",
+      "label": "Gender",
+      "options": "Male\\nFemale\\nOther\\nPrefer not to say"
+    },
+    {
+      "fieldname": "date_of_birth",
+      "fieldtype": "Date",
+      "label": "Date of Birth"
+    },
+    {
+      "fieldname": "profile_image",
+      "fieldtype": "Attach Image",
+      "label": "Profile Photo"
+    },
+    {
+      "fieldname": "user",
+      "fieldtype": "Link",
+      "label": "User",
+      "options": "User"
+    },
+    {
+      "fieldname": "is_active",
+      "fieldtype": "Check",
+      "label": "Is Active",
+      "default": 1
+    },
+    {
+      "fieldname": "email",
+      "fieldtype": "Data",
+      "label": "Email",
+      "options": "Email",
+      "reqd": 1,
+      "in_list_view": "1 "
+    },
+    {
+      "fieldname": "mobile",
+      "fieldtype": "Data",
+      "label": "Mobile Number",
+      "reqd": "1 "
+    },
+    {
+      "fieldname": "parent_name",
+      "fieldtype": "Data",
+      "label": "Parent / Guardian Name"
+    },
+    {
+      "fieldname": "parent_mobile",
+      "fieldtype": "Data",
+      "label": "Parent Mobile"
+    },
+    {
+      "fieldname": "current_class",
+      "fieldtype": "Select",
+      "label": "Current Class / Grade",
+      "options": "Class 1\\nClass 2\\nClass 3\\nClass 4\\nClass 5\\nClass 6\\nClass 7\\nClass 8\\nClass 9\\nClass 10\\nClass 11\\nClass 12\\nUndergraduate\\nPostgraduate\\nWorking Professional"
+    },
+    {
+      "fieldname": "school_college",
+      "fieldtype": "Data",
+      "label": "School / College Name"
+    },
+    {
+      "fieldname": "board",
+      "fieldtype": "Select",
+      "label": "Board / University",
+      "options": "CBSE\\nICSE\\nState Board\\nIB\\nIGCSE\\nOther"
+    },
+    {
+      "fieldname": "academic_year",
+      "fieldtype": "Data",
+      "label": "Academic Year"
+    },
+    {
+      "fieldname": "preferred_learning_mode",
+      "fieldtype": "Select",
+      "label": "Preferred Mode",
+      "options": "Online\\nOffline\\nBoth"
+    },
+    {
+      "fieldname": "preferred_timing",
+      "fieldtype": "Select",
+      "label": "Preferred Timing",
+      "options": "Morning\\nAfternoon\\nEvening\\nWeekends Only\\nFlexible"
+    },
+    {
+      "fieldname": "budget_per_hour",
+      "fieldtype": "Currency",
+      "label": "Budget Per Hour (INR)"
+    },
+    {
+      "fieldname": "special_requirements",
+      "fieldtype": "Text Editor",
+      "label": "Special Requirements"
+    }
+  ],
+  "permissions": [
+    {
+      "role": "System Manager",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "delete": 1,
+      "submit": 1,
+      "cancel": 1,
+      "amend": 1,
+      "permlevel": 0
+    }
+  ],
+  "links": [],
+  "actions": [],
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "engine": "InnoDB",
+  "field_order": [
+    "student_name",
+    "gender",
+    "date_of_birth",
+    "profile_image",
+    "user",
+    "is_active",
+    "email",
+    "mobile",
+    "parent_name",
+    "parent_mobile",
+    "current_class",
+    "school_college",
+    "board",
+    "academic_year",
+    "preferred_learning_mode",
+    "preferred_timing",
+    "budget_per_hour",
+    "special_requirements"
+  ]
+}

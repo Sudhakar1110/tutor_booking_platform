@@ -1,0 +1,112 @@
+{
+  "doctype": "DocType",
+  "name": "UPI Payment",
+  "module": "Tutor Booking Platform",
+  "custom": 0,
+  "is_submittable": 0,
+  "is_child_table": 0,
+  "istable": 0,
+  "track_changes": 1,
+  "track_seen": 1,
+  "autoname": "naming_series:",
+  "naming_rule": "By naming series",
+  "title_field": "name",
+  "search_fields": "",
+  "allow_copy": 1,
+  "allow_import": 1,
+  "allow_rename": 0,
+  "fields": [
+    {
+      "fieldname": "payment_transaction",
+      "fieldtype": "Link",
+      "label": "Payment Transaction",
+      "options": "Payment Transaction",
+      "in_list_view": "1 "
+    },
+    {
+      "fieldname": "tutor_booking",
+      "fieldtype": "Link",
+      "label": "Tutor Booking",
+      "options": "Tutor Booking",
+      "reqd": "1 "
+    },
+    {
+      "fieldname": "amount",
+      "fieldtype": "Currency",
+      "label": "Amount (INR)",
+      "reqd": 1,
+      "in_list_view": "1 "
+    },
+    {
+      "fieldname": "payment_status",
+      "fieldtype": "Select",
+      "label": "Status",
+      "options": "Pending\\nSuccess\\nFailed",
+      "default": "Pending",
+      "in_list_view": "1 "
+    },
+    {
+      "fieldname": "upi_id",
+      "fieldtype": "Data",
+      "label": "UPI ID (Payer)",
+      "reqd": "1 "
+    },
+    {
+      "fieldname": "receiver_upi_id",
+      "fieldtype": "Data",
+      "label": "Receiver UPI ID"
+    },
+    {
+      "fieldname": "upi_transaction_id",
+      "fieldtype": "Data",
+      "label": "UPI Transaction ID",
+      "in_list_view": "1 "
+    },
+    {
+      "fieldname": "payment_app",
+      "fieldtype": "Select",
+      "label": "Payment App",
+      "options": "Google Pay\\nPhonePe\\nPaytm\\nBHIM\\nOther"
+    },
+    {
+      "fieldname": "payment_date",
+      "fieldtype": "Date",
+      "label": "Payment Date"
+    },
+    {
+      "fieldname": "screenshot",
+      "fieldtype": "Attach Image",
+      "label": "Payment Screenshot"
+    }
+  ],
+  "permissions": [
+    {
+      "role": "System Manager",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "delete": 1,
+      "submit": 1,
+      "cancel": 1,
+      "amend": 1,
+      "permlevel": 0
+    }
+  ],
+  "links": [],
+  "actions": [],
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "engine": "InnoDB",
+  "field_order": [
+    "payment_transaction",
+    "tutor_booking",
+    "amount",
+    "payment_status",
+    "upi_id",
+    "receiver_upi_id",
+    "upi_transaction_id",
+    "payment_app",
+    "payment_date",
+    "screenshot"
+  ]
+}

@@ -1,0 +1,171 @@
+{
+  "doctype": "DocType",
+  "name": "Tutor Booking",
+  "module": "Tutor Booking Platform",
+  "custom": 0,
+  "is_submittable": 0,
+  "is_child_table": 0,
+  "istable": 0,
+  "track_changes": 1,
+  "track_seen": 1,
+  "autoname": "naming_series:",
+  "naming_rule": "By naming series",
+  "title_field": "name",
+  "search_fields": "",
+  "allow_copy": 1,
+  "allow_import": 1,
+  "allow_rename": 0,
+  "fields": [
+    {
+      "fieldname": "booking_title",
+      "fieldtype": "Data",
+      "label": "Booking Title",
+      "reqd": 1,
+      "in_list_view": 1,
+      "bold": "1 "
+    },
+    {
+      "fieldname": "booking_status",
+      "fieldtype": "Select",
+      "label": "Booking Status",
+      "options": "Pending\\nConfirmed\\nActive\\nCompleted\\nCancelled\\nExpired",
+      "default": "Pending",
+      "in_list_view": "1 "
+    },
+    {
+      "fieldname": "student_profile",
+      "fieldtype": "Link",
+      "label": "Student Profile",
+      "options": "Student Profile",
+      "reqd": 1,
+      "in_list_view": "1 "
+    },
+    {
+      "fieldname": "tutor_profile",
+      "fieldtype": "Link",
+      "label": "Tutor Profile",
+      "options": "Tutor Profile",
+      "reqd": 1,
+      "in_list_view": "1 "
+    },
+    {
+      "fieldname": "subject",
+      "fieldtype": "Link",
+      "label": "Subject",
+      "options": "Subject",
+      "reqd": 1,
+      "in_list_view": "1 "
+    },
+    {
+      "fieldname": "course",
+      "fieldtype": "Link",
+      "label": "Course",
+      "options": "Course"
+    },
+    {
+      "fieldname": "teaching_mode",
+      "fieldtype": "Select",
+      "label": "Teaching Mode",
+      "options": "Online\\nOffline",
+      "reqd": "1 "
+    },
+    {
+      "fieldname": "booking_date",
+      "fieldtype": "Date",
+      "label": "Booking Date"
+    },
+    {
+      "fieldname": "start_date",
+      "fieldtype": "Date",
+      "label": "Start Date",
+      "reqd": "1 "
+    },
+    {
+      "fieldname": "end_date",
+      "fieldtype": "Date",
+      "label": "End Date"
+    },
+    {
+      "fieldname": "sessions_per_week",
+      "fieldtype": "Int",
+      "label": "Sessions Per Week"
+    },
+    {
+      "fieldname": "hours_per_session",
+      "fieldtype": "Float",
+      "label": "Hours Per Session"
+    },
+    {
+      "fieldname": "rate_per_hour",
+      "fieldtype": "Currency",
+      "label": "Rate Per Hour (INR)",
+      "reqd": "1 "
+    },
+    {
+      "fieldname": "total_hours",
+      "fieldtype": "Float",
+      "label": "Total Hours"
+    },
+    {
+      "fieldname": "total_amount",
+      "fieldtype": "Currency",
+      "label": "Total Amount (INR)",
+      "read_only": "1 "
+    },
+    {
+      "fieldname": "payment_status",
+      "fieldtype": "Select",
+      "label": "Payment Status",
+      "options": "Unpaid\\nPartially Paid\\nPaid\\nRefunded",
+      "default": "Unpaid"
+    },
+    {
+      "fieldname": "special_instructions",
+      "fieldtype": "Text Editor",
+      "label": "Special Instructions"
+    },
+    {
+      "fieldname": "cancellation_reason",
+      "fieldtype": "Text",
+      "label": "Cancellation Reason"
+    }
+  ],
+  "permissions": [
+    {
+      "role": "System Manager",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "delete": 1,
+      "submit": 1,
+      "cancel": 1,
+      "amend": 1,
+      "permlevel": 0
+    }
+  ],
+  "links": [],
+  "actions": [],
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "engine": "InnoDB",
+  "field_order": [
+    "booking_title",
+    "booking_status",
+    "student_profile",
+    "tutor_profile",
+    "subject",
+    "course",
+    "teaching_mode",
+    "booking_date",
+    "start_date",
+    "end_date",
+    "sessions_per_week",
+    "hours_per_session",
+    "rate_per_hour",
+    "total_hours",
+    "total_amount",
+    "payment_status",
+    "special_instructions",
+    "cancellation_reason"
+  ]
+}

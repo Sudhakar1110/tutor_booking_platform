@@ -1,0 +1,89 @@
+{
+  "doctype": "DocType",
+  "name": "Message Thread",
+  "module": "Tutor Booking Platform",
+  "custom": 0,
+  "is_submittable": 0,
+  "is_child_table": 0,
+  "istable": 0,
+  "track_changes": 1,
+  "track_seen": 1,
+  "autoname": "naming_series:",
+  "naming_rule": "By naming series",
+  "title_field": "name",
+  "search_fields": "",
+  "allow_copy": 1,
+  "allow_import": 1,
+  "allow_rename": 0,
+  "fields": [
+    {
+      "fieldname": "thread_title",
+      "fieldtype": "Data",
+      "label": "Thread Title",
+      "reqd": 1,
+      "in_list_view": "1 "
+    },
+    {
+      "fieldname": "tutor_profile",
+      "fieldtype": "Link",
+      "label": "Tutor Profile",
+      "options": "Tutor Profile",
+      "reqd": 1,
+      "in_list_view": "1 "
+    },
+    {
+      "fieldname": "student_profile",
+      "fieldtype": "Link",
+      "label": "Student Profile",
+      "options": "Student Profile",
+      "reqd": 1,
+      "in_list_view": "1 "
+    },
+    {
+      "fieldname": "tutor_booking",
+      "fieldtype": "Link",
+      "label": "Related Booking",
+      "options": "Tutor Booking"
+    },
+    {
+      "fieldname": "status",
+      "fieldtype": "Select",
+      "label": "Status",
+      "options": "Active\\nClosed\\nArchived",
+      "default": "Active",
+      "in_list_view": "1 "
+    },
+    {
+      "fieldname": "last_message_date",
+      "fieldtype": "Datetime",
+      "label": "Last Message",
+      "read_only": "1 "
+    }
+  ],
+  "permissions": [
+    {
+      "role": "System Manager",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "delete": 1,
+      "submit": 1,
+      "cancel": 1,
+      "amend": 1,
+      "permlevel": 0
+    }
+  ],
+  "links": [],
+  "actions": [],
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "engine": "InnoDB",
+  "field_order": [
+    "thread_title",
+    "tutor_profile",
+    "student_profile",
+    "tutor_booking",
+    "status",
+    "last_message_date"
+  ]
+}

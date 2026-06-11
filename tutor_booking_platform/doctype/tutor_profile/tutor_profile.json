@@ -1,0 +1,276 @@
+{
+  "doctype": "DocType",
+  "name": "Tutor Profile",
+  "module": "Tutor Booking Platform",
+  "custom": 0,
+  "is_submittable": 0,
+  "is_child_table": 0,
+  "istable": 0,
+  "track_changes": 1,
+  "track_seen": 1,
+  "autoname": "naming_series:",
+  "naming_rule": "By naming series",
+  "title_field": "name",
+  "search_fields": "",
+  "allow_copy": 1,
+  "allow_import": 1,
+  "allow_rename": 0,
+  "fields": [
+    {
+      "fieldname": "tutor_name",
+      "fieldtype": "Data",
+      "label": "Tutor Name",
+      "reqd": 1,
+      "in_list_view": 1,
+      "bold": 1,
+      "in_global_search": "1 "
+    },
+    {
+      "fieldname": "gender",
+      "fieldtype": "Select",
+      "label": "Gender",
+      "options": "Male\\nFemale\\nOther\\nPrefer not to say"
+    },
+    {
+      "fieldname": "date_of_birth",
+      "fieldtype": "Date",
+      "label": "Date of Birth"
+    },
+    {
+      "fieldname": "profile_image",
+      "fieldtype": "Attach Image",
+      "label": "Profile Photo"
+    },
+    {
+      "fieldname": "user",
+      "fieldtype": "Link",
+      "label": "User",
+      "options": "User"
+    },
+    {
+      "fieldname": "is_active",
+      "fieldtype": "Check",
+      "label": "Is Active",
+      "default": 1
+    },
+    {
+      "fieldname": "email",
+      "fieldtype": "Data",
+      "label": "Email",
+      "options": "Email",
+      "reqd": 1,
+      "in_list_view": "1 "
+    },
+    {
+      "fieldname": "mobile",
+      "fieldtype": "Data",
+      "label": "Mobile Number",
+      "reqd": 1,
+      "in_list_view": "1 "
+    },
+    {
+      "fieldname": "alternate_mobile",
+      "fieldtype": "Data",
+      "label": "Alternate Mobile"
+    },
+    {
+      "fieldname": "website",
+      "fieldtype": "Data",
+      "label": "Website / Portfolio"
+    },
+    {
+      "fieldname": "address_line1",
+      "fieldtype": "Data",
+      "label": "Address Line 1"
+    },
+    {
+      "fieldname": "address_line2",
+      "fieldtype": "Data",
+      "label": "Address Line 2"
+    },
+    {
+      "fieldname": "city",
+      "fieldtype": "Data",
+      "label": "City",
+      "in_list_view": "1 "
+    },
+    {
+      "fieldname": "state",
+      "fieldtype": "Data",
+      "label": "State"
+    },
+    {
+      "fieldname": "pincode",
+      "fieldtype": "Data",
+      "label": "Pincode"
+    },
+    {
+      "fieldname": "country",
+      "fieldtype": "Link",
+      "label": "Country",
+      "options": "Country",
+      "default": "India"
+    },
+    {
+      "fieldname": "teaching_mode",
+      "fieldtype": "Select",
+      "label": "Teaching Mode",
+      "options": "Online\\nOffline\\nBoth",
+      "reqd": "1 "
+    },
+    {
+      "fieldname": "experience_years",
+      "fieldtype": "Int",
+      "label": "Years of Experience",
+      "in_list_view": "1 "
+    },
+    {
+      "fieldname": "hourly_rate",
+      "fieldtype": "Currency",
+      "label": "Rate Per Hour (INR)",
+      "reqd": 1,
+      "in_list_view": "1 "
+    },
+    {
+      "fieldname": "minimum_hours",
+      "fieldtype": "Int",
+      "label": "Minimum Hours Per Session"
+    },
+    {
+      "fieldname": "primary_subject",
+      "fieldtype": "Link",
+      "label": "Primary Subject",
+      "options": "Subject",
+      "reqd": "1 "
+    },
+    {
+      "fieldname": "subjects_taught",
+      "fieldtype": "Text Editor",
+      "label": "All Subjects Taught"
+    },
+    {
+      "fieldname": "teaching_levels",
+      "fieldtype": "Select",
+      "label": "Teaching Levels",
+      "options": "Primary\\nMiddle School\\nHigh School\\nUndergraduate\\nPostgraduate\\nAll Levels"
+    },
+    {
+      "fieldname": "languages_known",
+      "fieldtype": "Data",
+      "label": "Languages Known"
+    },
+    {
+      "fieldname": "verification_status",
+      "fieldtype": "Select",
+      "label": "Verification Status",
+      "options": "Pending\\nVerified\\nRejected\\nSuspended",
+      "default": "Pending",
+      "in_list_view": "1 "
+    },
+    {
+      "fieldname": "average_rating",
+      "fieldtype": "Float",
+      "label": "Average Rating",
+      "read_only": 1,
+      "in_list_view": 1,
+      "precision": "2 "
+    },
+    {
+      "fieldname": "total_sessions",
+      "fieldtype": "Int",
+      "label": "Total Sessions Completed",
+      "read_only": "1 "
+    },
+    {
+      "fieldname": "total_students",
+      "fieldtype": "Int",
+      "label": "Total Students Taught",
+      "read_only": "1 "
+    },
+    {
+      "fieldname": "short_bio",
+      "fieldtype": "Small Text",
+      "label": "Short Bio",
+      "reqd": "1 "
+    },
+    {
+      "fieldname": "detailed_bio",
+      "fieldtype": "Text Editor",
+      "label": "Detailed Bio"
+    },
+    {
+      "fieldname": "linkedin_url",
+      "fieldtype": "Data",
+      "label": "LinkedIn URL"
+    },
+    {
+      "fieldname": "youtube_channel",
+      "fieldtype": "Data",
+      "label": "YouTube Channel"
+    },
+    {
+      "fieldname": "demo_video_url",
+      "fieldtype": "Data",
+      "label": "Demo Video URL"
+    },
+    {
+      "fieldname": "whatsapp_number",
+      "fieldtype": "Data",
+      "label": "WhatsApp Number"
+    }
+  ],
+  "permissions": [
+    {
+      "role": "System Manager",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "delete": 1,
+      "submit": 1,
+      "cancel": 1,
+      "amend": 1,
+      "permlevel": 0
+    }
+  ],
+  "links": [],
+  "actions": [],
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "engine": "InnoDB",
+  "field_order": [
+    "tutor_name",
+    "gender",
+    "date_of_birth",
+    "profile_image",
+    "user",
+    "is_active",
+    "email",
+    "mobile",
+    "alternate_mobile",
+    "website",
+    "address_line1",
+    "address_line2",
+    "city",
+    "state",
+    "pincode",
+    "country",
+    "teaching_mode",
+    "experience_years",
+    "hourly_rate",
+    "minimum_hours",
+    "primary_subject",
+    "subjects_taught",
+    "teaching_levels",
+    "languages_known",
+    "verification_status",
+    "average_rating",
+    "total_sessions",
+    "total_students",
+    "short_bio",
+    "detailed_bio",
+    "linkedin_url",
+    "youtube_channel",
+    "demo_video_url",
+    "whatsapp_number"
+  ]
+}

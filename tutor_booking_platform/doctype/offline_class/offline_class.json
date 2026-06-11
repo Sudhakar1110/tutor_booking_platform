@@ -1,0 +1,119 @@
+{
+  "doctype": "DocType",
+  "name": "Offline Class",
+  "module": "Tutor Booking Platform",
+  "custom": 0,
+  "is_submittable": 0,
+  "is_child_table": 0,
+  "istable": 0,
+  "track_changes": 1,
+  "track_seen": 1,
+  "autoname": "naming_series:",
+  "naming_rule": "By naming series",
+  "title_field": "name",
+  "search_fields": "",
+  "allow_copy": 1,
+  "allow_import": 1,
+  "allow_rename": 0,
+  "fields": [
+    {
+      "fieldname": "class_title",
+      "fieldtype": "Data",
+      "label": "Class Title",
+      "reqd": 1,
+      "in_list_view": "1 "
+    },
+    {
+      "fieldname": "tutor_profile",
+      "fieldtype": "Link",
+      "label": "Tutor Profile",
+      "options": "Tutor Profile",
+      "reqd": 1,
+      "in_list_view": "1 "
+    },
+    {
+      "fieldname": "subject",
+      "fieldtype": "Link",
+      "label": "Subject",
+      "options": "Subject",
+      "in_list_view": "1 "
+    },
+    {
+      "fieldname": "status",
+      "fieldtype": "Select",
+      "label": "Status",
+      "options": "Scheduled\\nOngoing\\nCompleted\\nCancelled",
+      "default": "Scheduled",
+      "in_list_view": "1 "
+    },
+    {
+      "fieldname": "class_date",
+      "fieldtype": "Date",
+      "label": "Class Date",
+      "reqd": "1 "
+    },
+    {
+      "fieldname": "start_time",
+      "fieldtype": "Time",
+      "label": "Start Time",
+      "reqd": "1 "
+    },
+    {
+      "fieldname": "end_time",
+      "fieldtype": "Time",
+      "label": "End Time"
+    },
+    {
+      "fieldname": "location",
+      "fieldtype": "Data",
+      "label": "Location / Address",
+      "reqd": "1 "
+    },
+    {
+      "fieldname": "city",
+      "fieldtype": "Data",
+      "label": "City"
+    },
+    {
+      "fieldname": "max_students",
+      "fieldtype": "Int",
+      "label": "Max Students"
+    },
+    {
+      "fieldname": "class_notes",
+      "fieldtype": "Text Editor",
+      "label": "Class Notes"
+    }
+  ],
+  "permissions": [
+    {
+      "role": "System Manager",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "delete": 1,
+      "submit": 1,
+      "cancel": 1,
+      "amend": 1,
+      "permlevel": 0
+    }
+  ],
+  "links": [],
+  "actions": [],
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "engine": "InnoDB",
+  "field_order": [
+    "class_title",
+    "tutor_profile",
+    "subject",
+    "status",
+    "class_date",
+    "start_time",
+    "end_time",
+    "location",
+    "city",
+    "max_students",
+    "class_notes"
+  ]
+}

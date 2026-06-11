@@ -1,0 +1,129 @@
+{
+  "doctype": "DocType",
+  "name": "Refund Request",
+  "module": "Tutor Booking Platform",
+  "custom": 0,
+  "is_submittable": 0,
+  "is_child_table": 0,
+  "istable": 0,
+  "track_changes": 1,
+  "track_seen": 1,
+  "autoname": "naming_series:",
+  "naming_rule": "By naming series",
+  "title_field": "name",
+  "search_fields": "",
+  "allow_copy": 1,
+  "allow_import": 1,
+  "allow_rename": 0,
+  "fields": [
+    {
+      "fieldname": "tutor_booking",
+      "fieldtype": "Link",
+      "label": "Tutor Booking",
+      "options": "Tutor Booking",
+      "reqd": 1,
+      "in_list_view": "1 "
+    },
+    {
+      "fieldname": "payment_transaction",
+      "fieldtype": "Link",
+      "label": "Payment Transaction",
+      "options": "Payment Transaction"
+    },
+    {
+      "fieldname": "student_profile",
+      "fieldtype": "Link",
+      "label": "Student Profile",
+      "options": "Student Profile",
+      "reqd": 1,
+      "in_list_view": "1 "
+    },
+    {
+      "fieldname": "refund_status",
+      "fieldtype": "Select",
+      "label": "Refund Status",
+      "options": "Pending\\nApproved\\nProcessed\\nRejected",
+      "default": "Pending",
+      "in_list_view": "1 "
+    },
+    {
+      "fieldname": "original_amount",
+      "fieldtype": "Currency",
+      "label": "Original Amount (INR)"
+    },
+    {
+      "fieldname": "refund_amount",
+      "fieldtype": "Currency",
+      "label": "Refund Amount (INR)",
+      "reqd": 1,
+      "in_list_view": "1 "
+    },
+    {
+      "fieldname": "refund_method",
+      "fieldtype": "Select",
+      "label": "Refund Method",
+      "options": "Original Payment Method\\nBank Transfer\\nWallet\\nCash"
+    },
+    {
+      "fieldname": "refund_date",
+      "fieldtype": "Date",
+      "label": "Refund Date"
+    },
+    {
+      "fieldname": "reason",
+      "fieldtype": "Select",
+      "label": "Refund Reason",
+      "options": "Tutor No Show\\nSession Quality Issue\\nAccident/Emergency\\nSchedule Change\\nTechnical Issue\\nOther",
+      "reqd": "1 "
+    },
+    {
+      "fieldname": "description",
+      "fieldtype": "Text Editor",
+      "label": "Detailed Description"
+    },
+    {
+      "fieldname": "processed_by",
+      "fieldtype": "Link",
+      "label": "Processed By",
+      "options": "User",
+      "read_only": "1 "
+    },
+    {
+      "fieldname": "rejection_reason",
+      "fieldtype": "Text",
+      "label": "Rejection Reason"
+    }
+  ],
+  "permissions": [
+    {
+      "role": "System Manager",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "delete": 1,
+      "submit": 1,
+      "cancel": 1,
+      "amend": 1,
+      "permlevel": 0
+    }
+  ],
+  "links": [],
+  "actions": [],
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "engine": "InnoDB",
+  "field_order": [
+    "tutor_booking",
+    "payment_transaction",
+    "student_profile",
+    "refund_status",
+    "original_amount",
+    "refund_amount",
+    "refund_method",
+    "refund_date",
+    "reason",
+    "description",
+    "processed_by",
+    "rejection_reason"
+  ]
+}

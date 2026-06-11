@@ -1,0 +1,43 @@
+{
+  "doctype": "DocType",
+  "name": "Tutor Booking Settings",
+  "module": "Tutor Booking Platform",
+  "custom": 1,
+  "autoname": "field:settings_name",
+  "fields": [
+    {
+      "fieldname": "settings_name",
+      "fieldtype": "Data",
+      "label": "Settings Name",
+      "reqd": 1
+    },
+    {
+      "fieldname": "default_currency",
+      "fieldtype": "Link",
+      "label": "Default Currency",
+      "options": "Currency",
+      "default": "INR"
+    },
+    {
+      "fieldname": "enable_online_booking",
+      "fieldtype": "Check",
+      "label": "Enable Online Booking",
+      "default": "1"
+    },
+    {
+      "fieldname": "enable_demo_classes",
+      "fieldtype": "Check",
+      "label": "Enable Demo Classes",
+      "default": "1"
+    }
+  ],
+  "permissions": [
+    {
+      "role": "System Manager",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "delete": 1
+    }
+  ]
+}

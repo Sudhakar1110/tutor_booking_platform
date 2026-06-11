@@ -1,0 +1,122 @@
+{
+  "doctype": "DocType",
+  "name": "Learning Progress",
+  "module": "Tutor Booking Platform",
+  "custom": 0,
+  "is_submittable": 0,
+  "is_child_table": 0,
+  "istable": 0,
+  "track_changes": 1,
+  "track_seen": 1,
+  "autoname": "naming_series:",
+  "naming_rule": "By naming series",
+  "title_field": "name",
+  "search_fields": "",
+  "allow_copy": 1,
+  "allow_import": 1,
+  "allow_rename": 0,
+  "fields": [
+    {
+      "fieldname": "student_profile",
+      "fieldtype": "Link",
+      "label": "Student Profile",
+      "options": "Student Profile",
+      "reqd": 1,
+      "in_list_view": "1 "
+    },
+    {
+      "fieldname": "tutor_profile",
+      "fieldtype": "Link",
+      "label": "Tutor Profile",
+      "options": "Tutor Profile",
+      "reqd": 1,
+      "in_list_view": "1 "
+    },
+    {
+      "fieldname": "subject",
+      "fieldtype": "Link",
+      "label": "Subject",
+      "options": "Subject",
+      "reqd": 1,
+      "in_list_view": "1 "
+    },
+    {
+      "fieldname": "tutor_booking",
+      "fieldtype": "Link",
+      "label": "Tutor Booking",
+      "options": "Tutor Booking"
+    },
+    {
+      "fieldname": "sessions_completed",
+      "fieldtype": "Int",
+      "label": "Sessions Completed",
+      "read_only": "1 "
+    },
+    {
+      "fieldname": "sessions_attended",
+      "fieldtype": "Int",
+      "label": "Sessions Attended",
+      "read_only": "1 "
+    },
+    {
+      "fieldname": "total_hours",
+      "fieldtype": "Float",
+      "label": "Total Hours",
+      "read_only": "1 "
+    },
+    {
+      "fieldname": "completion_percentage",
+      "fieldtype": "Percent",
+      "label": "Completion %",
+      "read_only": "1 "
+    },
+    {
+      "fieldname": "performance_rating",
+      "fieldtype": "Select",
+      "label": "Performance Rating",
+      "options": "Excellent\\nGood\\nAverage\\nNeeds Improvement"
+    },
+    {
+      "fieldname": "notes",
+      "fieldtype": "Text Editor",
+      "label": "Progress Notes"
+    },
+    {
+      "fieldname": "last_updated",
+      "fieldtype": "Date",
+      "label": "Last Updated",
+      "read_only": "1 "
+    }
+  ],
+  "permissions": [
+    {
+      "role": "System Manager",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "delete": 1,
+      "submit": 1,
+      "cancel": 1,
+      "amend": 1,
+      "permlevel": 0
+    }
+  ],
+  "links": [],
+  "actions": [],
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "engine": "InnoDB",
+  "field_order": [
+    "student_profile",
+    "tutor_profile",
+    "subject",
+    "tutor_booking",
+    "sessions_completed",
+    "sessions_attended",
+    "total_hours",
+    "completion_percentage",
+    "performance_rating",
+    "notes",
+    "last_updated"
+  ]
+}

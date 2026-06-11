@@ -1,0 +1,113 @@
+{
+  "doctype": "DocType",
+  "name": "Demo Class Request",
+  "module": "Tutor Booking Platform",
+  "custom": 0,
+  "is_submittable": 0,
+  "is_child_table": 0,
+  "istable": 0,
+  "track_changes": 1,
+  "track_seen": 1,
+  "autoname": "naming_series:",
+  "naming_rule": "By naming series",
+  "title_field": "name",
+  "search_fields": "",
+  "allow_copy": 1,
+  "allow_import": 1,
+  "allow_rename": 0,
+  "fields": [
+    {
+      "fieldname": "student_profile",
+      "fieldtype": "Link",
+      "label": "Student Profile",
+      "options": "Student Profile",
+      "reqd": 1,
+      "in_list_view": "1 "
+    },
+    {
+      "fieldname": "tutor_profile",
+      "fieldtype": "Link",
+      "label": "Tutor Profile",
+      "options": "Tutor Profile",
+      "reqd": 1,
+      "in_list_view": "1 "
+    },
+    {
+      "fieldname": "subject",
+      "fieldtype": "Link",
+      "label": "Subject",
+      "options": "Subject",
+      "reqd": 1,
+      "in_list_view": "1 "
+    },
+    {
+      "fieldname": "status",
+      "fieldtype": "Select",
+      "label": "Status",
+      "options": "Pending\\nApproved\\nScheduled\\nCompleted\\nRejected\\nCancelled",
+      "default": "Pending",
+      "in_list_view": "1 "
+    },
+    {
+      "fieldname": "preferred_date",
+      "fieldtype": "Date",
+      "label": "Preferred Date"
+    },
+    {
+      "fieldname": "preferred_time",
+      "fieldtype": "Time",
+      "label": "Preferred Time"
+    },
+    {
+      "fieldname": "alternate_date",
+      "fieldtype": "Date",
+      "label": "Alternate Date"
+    },
+    {
+      "fieldname": "alternate_time",
+      "fieldtype": "Time",
+      "label": "Alternate Time"
+    },
+    {
+      "fieldname": "mode",
+      "fieldtype": "Select",
+      "label": "Mode",
+      "options": "Online\\nOffline"
+    },
+    {
+      "fieldname": "message",
+      "fieldtype": "Text Editor",
+      "label": "Message to Tutor"
+    }
+  ],
+  "permissions": [
+    {
+      "role": "System Manager",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "delete": 1,
+      "submit": 1,
+      "cancel": 1,
+      "amend": 1,
+      "permlevel": 0
+    }
+  ],
+  "links": [],
+  "actions": [],
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "engine": "InnoDB",
+  "field_order": [
+    "student_profile",
+    "tutor_profile",
+    "subject",
+    "status",
+    "preferred_date",
+    "preferred_time",
+    "alternate_date",
+    "alternate_time",
+    "mode",
+    "message"
+  ]
+}

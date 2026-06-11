@@ -1,0 +1,126 @@
+{
+  "doctype": "DocType",
+  "name": "Student Requirement",
+  "module": "Tutor Booking Platform",
+  "custom": 0,
+  "is_submittable": 0,
+  "is_child_table": 0,
+  "istable": 0,
+  "track_changes": 1,
+  "track_seen": 1,
+  "autoname": "naming_series:",
+  "naming_rule": "By naming series",
+  "title_field": "name",
+  "search_fields": "",
+  "allow_copy": 1,
+  "allow_import": 1,
+  "allow_rename": 0,
+  "fields": [
+    {
+      "fieldname": "student_profile",
+      "fieldtype": "Link",
+      "label": "Student Profile",
+      "options": "Student Profile",
+      "reqd": 1,
+      "in_list_view": "1 "
+    },
+    {
+      "fieldname": "subject",
+      "fieldtype": "Link",
+      "label": "Subject",
+      "options": "Subject",
+      "reqd": 1,
+      "in_list_view": "1 "
+    },
+    {
+      "fieldname": "requirement_title",
+      "fieldtype": "Data",
+      "label": "Requirement Title",
+      "reqd": "1 "
+    },
+    {
+      "fieldname": "status",
+      "fieldtype": "Select",
+      "label": "Status",
+      "options": "Open\\nMatched\\nClosed",
+      "default": "Open",
+      "in_list_view": "1 "
+    },
+    {
+      "fieldname": "preferred_mode",
+      "fieldtype": "Select",
+      "label": "Preferred Mode",
+      "options": "Online\\nOffline\\nBoth"
+    },
+    {
+      "fieldname": "preferred_gender",
+      "fieldtype": "Select",
+      "label": "Preferred Tutor Gender",
+      "options": "Any\\nMale\\nFemale"
+    },
+    {
+      "fieldname": "budget_per_hour",
+      "fieldtype": "Currency",
+      "label": "Budget Per Hour (INR)"
+    },
+    {
+      "fieldname": "preferred_days",
+      "fieldtype": "Data",
+      "label": "Preferred Days"
+    },
+    {
+      "fieldname": "description",
+      "fieldtype": "Text Editor",
+      "label": "Detailed Description"
+    },
+    {
+      "fieldname": "location",
+      "fieldtype": "Data",
+      "label": "Preferred Location / Area"
+    },
+    {
+      "fieldname": "urgency",
+      "fieldtype": "Select",
+      "label": "Urgency",
+      "options": "Low\\nMedium\\nHigh\\nImmediate",
+      "default": "Medium"
+    },
+    {
+      "fieldname": "requirement_date",
+      "fieldtype": "Date",
+      "label": "Requirement Date"
+    }
+  ],
+  "permissions": [
+    {
+      "role": "System Manager",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "delete": 1,
+      "submit": 1,
+      "cancel": 1,
+      "amend": 1,
+      "permlevel": 0
+    }
+  ],
+  "links": [],
+  "actions": [],
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "engine": "InnoDB",
+  "field_order": [
+    "student_profile",
+    "subject",
+    "requirement_title",
+    "status",
+    "preferred_mode",
+    "preferred_gender",
+    "budget_per_hour",
+    "preferred_days",
+    "description",
+    "location",
+    "urgency",
+    "requirement_date"
+  ]
+}

@@ -1,0 +1,147 @@
+{
+  "doctype": "DocType",
+  "name": "Tutor Session",
+  "module": "Tutor Booking Platform",
+  "custom": 0,
+  "is_submittable": 0,
+  "is_child_table": 0,
+  "istable": 0,
+  "track_changes": 1,
+  "track_seen": 1,
+  "autoname": "naming_series:",
+  "naming_rule": "By naming series",
+  "title_field": "name",
+  "search_fields": "",
+  "allow_copy": 1,
+  "allow_import": 1,
+  "allow_rename": 0,
+  "fields": [
+    {
+      "fieldname": "tutor_booking",
+      "fieldtype": "Link",
+      "label": "Tutor Booking",
+      "options": "Tutor Booking",
+      "reqd": 1,
+      "in_list_view": "1 "
+    },
+    {
+      "fieldname": "tutor_profile",
+      "fieldtype": "Link",
+      "label": "Tutor Profile",
+      "options": "Tutor Profile",
+      "reqd": 1,
+      "in_list_view": "1 "
+    },
+    {
+      "fieldname": "student_profile",
+      "fieldtype": "Link",
+      "label": "Student Profile",
+      "options": "Student Profile",
+      "reqd": "1 "
+    },
+    {
+      "fieldname": "status",
+      "fieldtype": "Select",
+      "label": "Status",
+      "options": "Scheduled\\nOngoing\\nCompleted\\nCancelled\\nNo Show",
+      "default": "Scheduled",
+      "in_list_view": "1 "
+    },
+    {
+      "fieldname": "session_date",
+      "fieldtype": "Date",
+      "label": "Session Date",
+      "reqd": 1,
+      "in_list_view": "1 "
+    },
+    {
+      "fieldname": "start_time",
+      "fieldtype": "Time",
+      "label": "Start Time",
+      "reqd": "1 "
+    },
+    {
+      "fieldname": "end_time",
+      "fieldtype": "Time",
+      "label": "End Time"
+    },
+    {
+      "fieldname": "duration_minutes",
+      "fieldtype": "Int",
+      "label": "Duration (Minutes)"
+    },
+    {
+      "fieldname": "subject",
+      "fieldtype": "Link",
+      "label": "Subject",
+      "options": "Subject",
+      "in_list_view": "1 "
+    },
+    {
+      "fieldname": "mode",
+      "fieldtype": "Select",
+      "label": "Mode",
+      "options": "Online\\nOffline"
+    },
+    {
+      "fieldname": "meeting_link",
+      "fieldtype": "Data",
+      "label": "Meeting Link"
+    },
+    {
+      "fieldname": "session_number",
+      "fieldtype": "Int",
+      "label": "Session Number"
+    },
+    {
+      "fieldname": "homework_assigned",
+      "fieldtype": "Check",
+      "label": "Homework Assigned"
+    },
+    {
+      "fieldname": "notes",
+      "fieldtype": "Text Editor",
+      "label": "Session Notes"
+    },
+    {
+      "fieldname": "tutor_remarks",
+      "fieldtype": "Text",
+      "label": "Tutor Remarks"
+    }
+  ],
+  "permissions": [
+    {
+      "role": "System Manager",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "delete": 1,
+      "submit": 1,
+      "cancel": 1,
+      "amend": 1,
+      "permlevel": 0
+    }
+  ],
+  "links": [],
+  "actions": [],
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "engine": "InnoDB",
+  "field_order": [
+    "tutor_booking",
+    "tutor_profile",
+    "student_profile",
+    "status",
+    "session_date",
+    "start_time",
+    "end_time",
+    "duration_minutes",
+    "subject",
+    "mode",
+    "meeting_link",
+    "session_number",
+    "homework_assigned",
+    "notes",
+    "tutor_remarks"
+  ]
+}

@@ -1,0 +1,144 @@
+{
+  "doctype": "DocType",
+  "name": "Payment Transaction",
+  "module": "Tutor Booking Platform",
+  "custom": 0,
+  "is_submittable": 0,
+  "is_child_table": 0,
+  "istable": 0,
+  "track_changes": 1,
+  "track_seen": 1,
+  "autoname": "naming_series:",
+  "naming_rule": "By naming series",
+  "title_field": "name",
+  "search_fields": "",
+  "allow_copy": 1,
+  "allow_import": 1,
+  "allow_rename": 0,
+  "fields": [
+    {
+      "fieldname": "tutor_booking",
+      "fieldtype": "Link",
+      "label": "Tutor Booking",
+      "options": "Tutor Booking",
+      "reqd": 1,
+      "in_list_view": "1 "
+    },
+    {
+      "fieldname": "student_profile",
+      "fieldtype": "Link",
+      "label": "Student Profile",
+      "options": "Student Profile",
+      "reqd": 1,
+      "in_list_view": "1 "
+    },
+    {
+      "fieldname": "tutor_profile",
+      "fieldtype": "Link",
+      "label": "Tutor Profile",
+      "options": "Tutor Profile",
+      "reqd": "1 "
+    },
+    {
+      "fieldname": "payment_status",
+      "fieldtype": "Select",
+      "label": "Payment Status",
+      "options": "Pending\\nCompleted\\nFailed\\nRefunded\\nCancelled",
+      "default": "Pending",
+      "in_list_view": "1 "
+    },
+    {
+      "fieldname": "amount",
+      "fieldtype": "Currency",
+      "label": "Amount (INR)",
+      "reqd": 1,
+      "in_list_view": "1 "
+    },
+    {
+      "fieldname": "platform_commission",
+      "fieldtype": "Currency",
+      "label": "Platform Commission (INR)",
+      "read_only": "1 "
+    },
+    {
+      "fieldname": "tutor_payout",
+      "fieldtype": "Currency",
+      "label": "Tutor Payout (INR)",
+      "read_only": "1 "
+    },
+    {
+      "fieldname": "currency",
+      "fieldtype": "Link",
+      "label": "Currency",
+      "options": "Currency",
+      "default": "INR"
+    },
+    {
+      "fieldname": "payment_method",
+      "fieldtype": "Select",
+      "label": "Payment Method",
+      "options": "UPI\\nCard\\nCash\\nBank Transfer\\nWallet",
+      "reqd": 1,
+      "in_list_view": "1 "
+    },
+    {
+      "fieldname": "payment_date",
+      "fieldtype": "Date",
+      "label": "Payment Date"
+    },
+    {
+      "fieldname": "transaction_id",
+      "fieldtype": "Data",
+      "label": "Transaction ID"
+    },
+    {
+      "fieldname": "gateway_reference",
+      "fieldtype": "Data",
+      "label": "Gateway Reference"
+    },
+    {
+      "fieldname": "upi_transaction_id",
+      "fieldtype": "Data",
+      "label": "UPI Transaction ID"
+    },
+    {
+      "fieldname": "remarks",
+      "fieldtype": "Small Text",
+      "label": "Remarks"
+    }
+  ],
+  "permissions": [
+    {
+      "role": "System Manager",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "delete": 1,
+      "submit": 1,
+      "cancel": 1,
+      "amend": 1,
+      "permlevel": 0
+    }
+  ],
+  "links": [],
+  "actions": [],
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "engine": "InnoDB",
+  "field_order": [
+    "tutor_booking",
+    "student_profile",
+    "tutor_profile",
+    "payment_status",
+    "amount",
+    "platform_commission",
+    "tutor_payout",
+    "currency",
+    "payment_method",
+    "payment_date",
+    "transaction_id",
+    "gateway_reference",
+    "upi_transaction_id",
+    "remarks"
+  ]
+}

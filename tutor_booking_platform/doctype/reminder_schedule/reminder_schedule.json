@@ -1,0 +1,95 @@
+{
+  "doctype": "DocType",
+  "name": "Reminder Schedule",
+  "module": "Tutor Booking Platform",
+  "custom": 0,
+  "is_submittable": 0,
+  "is_child_table": 0,
+  "istable": 0,
+  "track_changes": 1,
+  "track_seen": 1,
+  "autoname": "naming_series:",
+  "naming_rule": "By naming series",
+  "title_field": "name",
+  "search_fields": "",
+  "allow_copy": 1,
+  "allow_import": 1,
+  "allow_rename": 0,
+  "fields": [
+    {
+      "fieldname": "reminder_title",
+      "fieldtype": "Data",
+      "label": "Reminder Title",
+      "reqd": 1,
+      "in_list_view": "1 "
+    },
+    {
+      "fieldname": "reminder_type",
+      "fieldtype": "Select",
+      "label": "Type",
+      "options": "Session Reminder\\nPayment Due\\nProfile Incomplete\\nVerification Pending\\nGeneral",
+      "reqd": "1 "
+    },
+    {
+      "fieldname": "recipient_type",
+      "fieldtype": "Select",
+      "label": "Recipient Type",
+      "options": "Tutor\\nStudent\\nBoth"
+    },
+    {
+      "fieldname": "is_active",
+      "fieldtype": "Check",
+      "label": "Is Active",
+      "default": 1
+    },
+    {
+      "fieldname": "frequency",
+      "fieldtype": "Select",
+      "label": "Frequency",
+      "options": "One Time\\nDaily\\nWeekly\\nMonthly"
+    },
+    {
+      "fieldname": "send_before_hours",
+      "fieldtype": "Int",
+      "label": "Send Before (Hours)"
+    },
+    {
+      "fieldname": "send_time",
+      "fieldtype": "Time",
+      "label": "Send Time"
+    },
+    {
+      "fieldname": "template_message",
+      "fieldtype": "Text Editor",
+      "label": "Message Template"
+    }
+  ],
+  "permissions": [
+    {
+      "role": "System Manager",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "delete": 1,
+      "submit": 1,
+      "cancel": 1,
+      "amend": 1,
+      "permlevel": 0
+    }
+  ],
+  "links": [],
+  "actions": [],
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "engine": "InnoDB",
+  "field_order": [
+    "reminder_title",
+    "reminder_type",
+    "recipient_type",
+    "is_active",
+    "frequency",
+    "send_before_hours",
+    "send_time",
+    "template_message"
+  ]
+}

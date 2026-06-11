@@ -1,0 +1,122 @@
+{
+  "doctype": "DocType",
+  "name": "Tutor Review",
+  "module": "Tutor Booking Platform",
+  "custom": 0,
+  "is_submittable": 0,
+  "is_child_table": 0,
+  "istable": 0,
+  "track_changes": 1,
+  "track_seen": 1,
+  "autoname": "naming_series:",
+  "naming_rule": "By naming series",
+  "title_field": "name",
+  "search_fields": "",
+  "allow_copy": 1,
+  "allow_import": 1,
+  "allow_rename": 0,
+  "fields": [
+    {
+      "fieldname": "tutor_profile",
+      "fieldtype": "Link",
+      "label": "Tutor Profile",
+      "options": "Tutor Profile",
+      "reqd": 1,
+      "in_list_view": "1 "
+    },
+    {
+      "fieldname": "student_profile",
+      "fieldtype": "Link",
+      "label": "Student Profile",
+      "options": "Student Profile",
+      "reqd": 1,
+      "in_list_view": "1 "
+    },
+    {
+      "fieldname": "tutor_booking",
+      "fieldtype": "Link",
+      "label": "Tutor Booking",
+      "options": "Tutor Booking"
+    },
+    {
+      "fieldname": "review_date",
+      "fieldtype": "Date",
+      "label": "Review Date"
+    },
+    {
+      "fieldname": "rating",
+      "fieldtype": "Rating",
+      "label": "Overall Rating",
+      "reqd": 1,
+      "in_list_view": "1 "
+    },
+    {
+      "fieldname": "teaching_quality",
+      "fieldtype": "Rating",
+      "label": "Teaching Quality"
+    },
+    {
+      "fieldname": "punctuality",
+      "fieldtype": "Rating",
+      "label": "Punctuality"
+    },
+    {
+      "fieldname": "communication",
+      "fieldtype": "Rating",
+      "label": "Communication"
+    },
+    {
+      "fieldname": "is_approved",
+      "fieldtype": "Check",
+      "label": "Approved",
+      "read_only": "1 "
+    },
+    {
+      "fieldname": "review_title",
+      "fieldtype": "Data",
+      "label": "Review Title"
+    },
+    {
+      "fieldname": "review_text",
+      "fieldtype": "Text Editor",
+      "label": "Review"
+    },
+    {
+      "fieldname": "tutor_response",
+      "fieldtype": "Text",
+      "label": "Tutor Response"
+    }
+  ],
+  "permissions": [
+    {
+      "role": "System Manager",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "delete": 1,
+      "submit": 1,
+      "cancel": 1,
+      "amend": 1,
+      "permlevel": 0
+    }
+  ],
+  "links": [],
+  "actions": [],
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "engine": "InnoDB",
+  "field_order": [
+    "tutor_profile",
+    "student_profile",
+    "tutor_booking",
+    "review_date",
+    "rating",
+    "teaching_quality",
+    "punctuality",
+    "communication",
+    "is_approved",
+    "review_title",
+    "review_text",
+    "tutor_response"
+  ]
+}

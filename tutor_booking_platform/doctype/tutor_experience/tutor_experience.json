@@ -1,0 +1,103 @@
+{
+  "doctype": "DocType",
+  "name": "Tutor Experience",
+  "module": "Tutor Booking Platform",
+  "custom": 0,
+  "is_submittable": 0,
+  "is_child_table": 0,
+  "istable": 0,
+  "track_changes": 1,
+  "track_seen": 1,
+  "autoname": "naming_series:",
+  "naming_rule": "By naming series",
+  "title_field": "name",
+  "search_fields": "",
+  "allow_copy": 1,
+  "allow_import": 1,
+  "allow_rename": 0,
+  "fields": [
+    {
+      "fieldname": "tutor_profile",
+      "fieldtype": "Link",
+      "label": "Tutor Profile",
+      "options": "Tutor Profile",
+      "reqd": 1,
+      "in_list_view": "1 "
+    },
+    {
+      "fieldname": "organization_name",
+      "fieldtype": "Data",
+      "label": "Organization Name",
+      "reqd": 1,
+      "in_list_view": "1 "
+    },
+    {
+      "fieldname": "role_title",
+      "fieldtype": "Data",
+      "label": "Role / Title",
+      "reqd": "1 "
+    },
+    {
+      "fieldname": "employment_type",
+      "fieldtype": "Select",
+      "label": "Employment Type",
+      "options": "Full Time\\nPart Time\\nFreelance\\nContract"
+    },
+    {
+      "fieldname": "from_date",
+      "fieldtype": "Date",
+      "label": "From Date",
+      "reqd": "1 "
+    },
+    {
+      "fieldname": "to_date",
+      "fieldtype": "Date",
+      "label": "To Date"
+    },
+    {
+      "fieldname": "is_current",
+      "fieldtype": "Check",
+      "label": "Currently Working Here"
+    },
+    {
+      "fieldname": "total_experience_months",
+      "fieldtype": "Int",
+      "label": "Total Months",
+      "read_only": "1 "
+    },
+    {
+      "fieldname": "description",
+      "fieldtype": "Text Editor",
+      "label": "Description"
+    }
+  ],
+  "permissions": [
+    {
+      "role": "System Manager",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "delete": 1,
+      "submit": 1,
+      "cancel": 1,
+      "amend": 1,
+      "permlevel": 0
+    }
+  ],
+  "links": [],
+  "actions": [],
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "engine": "InnoDB",
+  "field_order": [
+    "tutor_profile",
+    "organization_name",
+    "role_title",
+    "employment_type",
+    "from_date",
+    "to_date",
+    "is_current",
+    "total_experience_months",
+    "description"
+  ]
+}

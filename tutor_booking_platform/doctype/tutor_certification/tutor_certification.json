@@ -1,0 +1,101 @@
+{
+  "doctype": "DocType",
+  "name": "Tutor Certification",
+  "module": "Tutor Booking Platform",
+  "custom": 0,
+  "is_submittable": 0,
+  "is_child_table": 0,
+  "istable": 0,
+  "track_changes": 1,
+  "track_seen": 1,
+  "autoname": "naming_series:",
+  "naming_rule": "By naming series",
+  "title_field": "name",
+  "search_fields": "",
+  "allow_copy": 1,
+  "allow_import": 1,
+  "allow_rename": 0,
+  "fields": [
+    {
+      "fieldname": "tutor_profile",
+      "fieldtype": "Link",
+      "label": "Tutor Profile",
+      "options": "Tutor Profile",
+      "reqd": 1,
+      "in_list_view": "1 "
+    },
+    {
+      "fieldname": "certification_name",
+      "fieldtype": "Data",
+      "label": "Certification Name",
+      "reqd": 1,
+      "in_list_view": "1 "
+    },
+    {
+      "fieldname": "issuing_authority",
+      "fieldtype": "Data",
+      "label": "Issuing Authority",
+      "reqd": "1 "
+    },
+    {
+      "fieldname": "certification_id",
+      "fieldtype": "Data",
+      "label": "Certification ID / Number"
+    },
+    {
+      "fieldname": "issue_date",
+      "fieldtype": "Date",
+      "label": "Issue Date"
+    },
+    {
+      "fieldname": "expiry_date",
+      "fieldtype": "Date",
+      "label": "Expiry Date"
+    },
+    {
+      "fieldname": "is_lifetime_valid",
+      "fieldtype": "Check",
+      "label": "Lifetime Valid"
+    },
+    {
+      "fieldname": "certificate_file",
+      "fieldtype": "Attach",
+      "label": "Certificate Document"
+    },
+    {
+      "fieldname": "is_verified",
+      "fieldtype": "Check",
+      "label": "Verified",
+      "read_only": "1 "
+    }
+  ],
+  "permissions": [
+    {
+      "role": "System Manager",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "delete": 1,
+      "submit": 1,
+      "cancel": 1,
+      "amend": 1,
+      "permlevel": 0
+    }
+  ],
+  "links": [],
+  "actions": [],
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "engine": "InnoDB",
+  "field_order": [
+    "tutor_profile",
+    "certification_name",
+    "issuing_authority",
+    "certification_id",
+    "issue_date",
+    "expiry_date",
+    "is_lifetime_valid",
+    "certificate_file",
+    "is_verified"
+  ]
+}

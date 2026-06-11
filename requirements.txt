@@ -1,0 +1,2 @@
+# Frappe is listed as a dependency in pyproject.toml
+frappe>=15.0.0

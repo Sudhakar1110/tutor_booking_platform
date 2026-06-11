@@ -1,0 +1,109 @@
+{
+  "doctype": "DocType",
+  "name": "Attendance Record",
+  "module": "Tutor Booking Platform",
+  "custom": 0,
+  "is_submittable": 0,
+  "is_child_table": 0,
+  "istable": 0,
+  "track_changes": 1,
+  "track_seen": 1,
+  "autoname": "naming_series:",
+  "naming_rule": "By naming series",
+  "title_field": "name",
+  "search_fields": "",
+  "allow_copy": 1,
+  "allow_import": 1,
+  "allow_rename": 0,
+  "fields": [
+    {
+      "fieldname": "tutor_session",
+      "fieldtype": "Link",
+      "label": "Tutor Session",
+      "options": "Tutor Session",
+      "reqd": 1,
+      "in_list_view": "1 "
+    },
+    {
+      "fieldname": "student_profile",
+      "fieldtype": "Link",
+      "label": "Student Profile",
+      "options": "Student Profile",
+      "reqd": 1,
+      "in_list_view": "1 "
+    },
+    {
+      "fieldname": "tutor_profile",
+      "fieldtype": "Link",
+      "label": "Tutor Profile",
+      "options": "Tutor Profile",
+      "reqd": "1 "
+    },
+    {
+      "fieldname": "subject",
+      "fieldtype": "Link",
+      "label": "Subject",
+      "options": "Subject"
+    },
+    {
+      "fieldname": "attendance_date",
+      "fieldtype": "Date",
+      "label": "Attendance Date",
+      "reqd": 1,
+      "in_list_view": "1 "
+    },
+    {
+      "fieldname": "status",
+      "fieldtype": "Select",
+      "label": "Attendance Status",
+      "options": "Present\\nAbsent\\nLate\\nExcused",
+      "default": "Present",
+      "reqd": 1,
+      "in_list_view": "1 "
+    },
+    {
+      "fieldname": "check_in_time",
+      "fieldtype": "Time",
+      "label": "Check-In Time"
+    },
+    {
+      "fieldname": "check_out_time",
+      "fieldtype": "Time",
+      "label": "Check-Out Time"
+    },
+    {
+      "fieldname": "remarks",
+      "fieldtype": "Small Text",
+      "label": "Remarks"
+    }
+  ],
+  "permissions": [
+    {
+      "role": "System Manager",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "delete": 1,
+      "submit": 1,
+      "cancel": 1,
+      "amend": 1,
+      "permlevel": 0
+    }
+  ],
+  "links": [],
+  "actions": [],
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "engine": "InnoDB",
+  "field_order": [
+    "tutor_session",
+    "student_profile",
+    "tutor_profile",
+    "subject",
+    "attendance_date",
+    "status",
+    "check_in_time",
+    "check_out_time",
+    "remarks"
+  ]
+}

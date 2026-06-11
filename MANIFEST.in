@@ -1,0 +1,2 @@
+include requirements.txt
+recursive-include tutor_booking_platform *.json *.js *.css *.html *.py *.txt *.md

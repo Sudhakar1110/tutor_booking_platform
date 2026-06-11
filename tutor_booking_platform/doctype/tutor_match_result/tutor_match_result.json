@@ -1,0 +1,111 @@
+{
+  "doctype": "DocType",
+  "name": "Tutor Match Result",
+  "module": "Tutor Booking Platform",
+  "custom": 0,
+  "is_submittable": 0,
+  "is_child_table": 0,
+  "istable": 0,
+  "track_changes": 1,
+  "track_seen": 1,
+  "autoname": "naming_series:",
+  "naming_rule": "By naming series",
+  "title_field": "name",
+  "search_fields": "",
+  "allow_copy": 1,
+  "allow_import": 1,
+  "allow_rename": 0,
+  "fields": [
+    {
+      "fieldname": "search_request",
+      "fieldtype": "Link",
+      "label": "Search Request",
+      "options": "Tutor Search Request",
+      "reqd": 1,
+      "in_list_view": "1 "
+    },
+    {
+      "fieldname": "tutor_profile",
+      "fieldtype": "Link",
+      "label": "Tutor Profile",
+      "options": "Tutor Profile",
+      "reqd": 1,
+      "in_list_view": "1 "
+    },
+    {
+      "fieldname": "match_score",
+      "fieldtype": "Float",
+      "label": "Match Score (%)",
+      "precision": 2,
+      "in_list_view": "1 "
+    },
+    {
+      "fieldname": "status",
+      "fieldtype": "Select",
+      "label": "Status",
+      "options": "Suggested\\nShortlisted\\nContacted\\nBooked\\nRejected",
+      "default": "Suggested",
+      "in_list_view": "1 "
+    },
+    {
+      "fieldname": "tutor_name",
+      "fieldtype": "Data",
+      "label": "Tutor Name",
+      "fetch_from": "tutor_profile.tutor_name",
+      "read_only": "1 "
+    },
+    {
+      "fieldname": "hourly_rate",
+      "fieldtype": "Currency",
+      "label": "Rate Per Hour",
+      "fetch_from": "tutor_profile.hourly_rate",
+      "read_only": "1 "
+    },
+    {
+      "fieldname": "average_rating",
+      "fieldtype": "Float",
+      "label": "Rating",
+      "fetch_from": "tutor_profile.average_rating",
+      "read_only": "1 "
+    },
+    {
+      "fieldname": "match_date",
+      "fieldtype": "Date",
+      "label": "Match Date"
+    },
+    {
+      "fieldname": "student_notes",
+      "fieldtype": "Text",
+      "label": "Student Notes"
+    }
+  ],
+  "permissions": [
+    {
+      "role": "System Manager",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "delete": 1,
+      "submit": 1,
+      "cancel": 1,
+      "amend": 1,
+      "permlevel": 0
+    }
+  ],
+  "links": [],
+  "actions": [],
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "engine": "InnoDB",
+  "field_order": [
+    "search_request",
+    "tutor_profile",
+    "match_score",
+    "status",
+    "tutor_name",
+    "hourly_rate",
+    "average_rating",
+    "match_date",
+    "student_notes"
+  ]
+}
