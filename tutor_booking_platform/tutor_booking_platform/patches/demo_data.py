@@ -16,7 +16,7 @@ def main():
             return doc.name
         return name
 
-    def random_date(start="2024-06-01", end="2024-12-31"):
+    def random_date(start="2026-06-01", end="2026-12-31"):
         s = date.fromisoformat(start)
         e = date.fromisoformat(end)
         return s + timedelta(days=random.randint(0, (e - s).days))
@@ -150,7 +150,7 @@ def main():
     # ----- 13. TUTOR VERIFICATIONS -----
     print("\n--- Creating Tutor Verifications ---")
     for i, tn in enumerate(tutor_names):
-        create_if_not_exists("Tutor Verification", f"TVER-2024-{i+1:04d}", {"doctype": "Tutor Verification", "tutor_profile": tn, "verification_status": "Verified", "verification_type": "Full Verification", "id_proof_type": "Aadhaar", "id_proof_number": f"XXXX-XXXX-{4000+i:04d}", "verification_date": random_date("2024-01-01", "2024-06-01")})
+        create_if_not_exists("Tutor Verification", f"TVER-2024-{i+1:04d}", {"doctype": "Tutor Verification", "tutor_profile": tn, "verification_status": "Verified", "verification_type": "Full Verification", "id_proof_type": "Aadhaar", "id_proof_number": f"XXXX-XXXX-{4000+i:04d}", "verification_date": random_date("2026-01-01", "2026-06-01")})
         print(f"  ✓ {tutors[i]['name']}")
 
     # ----- 14. STUDENT PROFILES -----
@@ -188,25 +188,25 @@ def main():
     # ----- 18. TUTOR SEARCH REQUESTS -----
     print("\n--- Creating Tutor Search Requests ---")
     for i in range(15):
-        create_if_not_exists("Tutor Search Request", f"TSRQ-2024-{i+1:04d}", {"doctype": "Tutor Search Request", "student_profile": student_names[i % len(student_names)], "subject": req_subjects[i % len(req_subjects)], "teaching_mode": "Online", "status": random.choice(["Searching", "Matched", "Closed"]), "max_budget": random.choice([500, 800, 1000, 1500, 2000]), "preferred_gender": "Any", "search_date": random_date("2024-06-01", "2024-09-30")})
+        create_if_not_exists("Tutor Search Request", f"TSRQ-2024-{i+1:04d}", {"doctype": "Tutor Search Request", "student_profile": student_names[i % len(student_names)], "subject": req_subjects[i % len(req_subjects)], "teaching_mode": "Online", "status": random.choice(["Searching", "Matched", "Closed"]), "max_budget": random.choice([500, 800, 1000, 1500, 2000]), "preferred_gender": "Any", "search_date": random_date("2026-06-01", "2026-09-30")})
         print(f"  ✓ Search #{i+1}")
 
     # ----- 19. TUTOR MATCH RESULTS -----
     print("\n--- Creating Tutor Match Results ---")
     for i in range(15):
-        create_if_not_exists("Tutor Match Result", f"TMRS-2024-{i+1:04d}", {"doctype": "Tutor Match Result", "search_request": f"TSRQ-2024-{i+1:04d}", "tutor_profile": tutor_names[i % len(tutor_names)], "match_score": round(random.uniform(75, 98), 1), "status": random.choice(["Suggested", "Shortlisted", "Contacted", "Booked"]), "match_date": random_date("2024-06-01", "2024-10-31")})
+        create_if_not_exists("Tutor Match Result", f"TMRS-2024-{i+1:04d}", {"doctype": "Tutor Match Result", "search_request": f"TSRQ-2024-{i+1:04d}", "tutor_profile": tutor_names[i % len(tutor_names)], "match_score": round(random.uniform(75, 98), 1), "status": random.choice(["Suggested", "Shortlisted", "Contacted", "Booked"]), "match_date": random_date("2026-06-01", "2026-10-31")})
         print(f"  ✓ Match #{i+1}")
 
     # ----- 20. DEMO CLASS REQUESTS -----
     print("\n--- Creating Demo Class Requests ---")
     for i in range(10):
-        create_if_not_exists("Demo Class Request", f"DMRQ-2024-{i+1:04d}", {"doctype": "Demo Class Request", "student_profile": student_names[i % len(student_names)], "tutor_profile": tutor_names[i % len(tutor_names)], "subject": req_subjects[i % len(req_subjects)], "status": random.choice(["Approved", "Scheduled", "Completed"]), "preferred_date": random_date("2024-07-01", "2024-11-30"), "preferred_time": time(10, 0), "mode": "Online"})
+        create_if_not_exists("Demo Class Request", f"DMRQ-2024-{i+1:04d}", {"doctype": "Demo Class Request", "student_profile": student_names[i % len(student_names)], "tutor_profile": tutor_names[i % len(tutor_names)], "subject": req_subjects[i % len(req_subjects)], "status": random.choice(["Approved", "Scheduled", "Completed"]), "preferred_date": random_date("2026-07-01", "2026-11-30"), "preferred_time": time(10, 0), "mode": "Online"})
         print(f"  ✓ Demo Request #{i+1}")
 
     # ----- 21. DEMO CLASS SCHEDULES -----
     print("\n--- Creating Demo Class Schedules ---")
     for i in range(10):
-        create_if_not_exists("Demo Class Schedule", f"DMSC-2024-{i+1:04d}", {"doctype": "Demo Class Schedule", "demo_class_request": f"DMRQ-2024-{i+1:04d}", "tutor_profile": tutor_names[i % len(tutor_names)], "student_profile": student_names[i % len(student_names)], "status": random.choice(["Scheduled", "Completed"]), "scheduled_date": random_date("2024-07-15", "2024-12-15"), "start_time": time(11, 0), "end_time": time(12, 0), "duration_minutes": 60, "mode": "Online"})
+        create_if_not_exists("Demo Class Schedule", f"DMSC-2024-{i+1:04d}", {"doctype": "Demo Class Schedule", "demo_class_request": f"DMRQ-2024-{i+1:04d}", "tutor_profile": tutor_names[i % len(tutor_names)], "student_profile": student_names[i % len(student_names)], "status": random.choice(["Scheduled", "Completed"]), "scheduled_date": random_date("2026-07-15", "2026-12-15"), "start_time": time(11, 0), "end_time": time(12, 0), "duration_minutes": 60, "mode": "Online"})
         print(f"  ✓ Demo Schedule #{i+1}")
 
     # ----- 22. TUTOR BOOKINGS -----
@@ -217,7 +217,7 @@ def main():
         hours = random.choice([10, 20, 30, 40])
         bname = f"TBKN-2024-{i+1:04d}"
         subj = req_subjects[i % len(req_subjects)]
-        create_if_not_exists("Tutor Booking", bname, {"doctype": "Tutor Booking", "booking_title": f"{subj} - {students[i % len(students)][0]}", "booking_status": random.choice(["Confirmed", "Active", "Completed"]), "student_profile": student_names[i % len(student_names)], "tutor_profile": tutor_names[i % len(tutor_names)], "subject": subj, "teaching_mode": "Online", "booking_date": random_date("2024-06-01", "2024-11-01"), "start_date": random_date("2024-06-15", "2024-09-01"), "end_date": random_date("2024-09-15", "2024-12-31"), "sessions_per_week": random.choice([2, 3]), "hours_per_session": 1, "rate_per_hour": rate, "total_hours": hours, "total_amount": rate * hours, "payment_status": random.choice(["Paid", "Partially Paid", "Unpaid"])})
+        create_if_not_exists("Tutor Booking", bname, {"doctype": "Tutor Booking", "booking_title": f"{subj} - {students[i % len(students)][0]}", "booking_status": random.choice(["Confirmed", "Active", "Completed"]), "student_profile": student_names[i % len(student_names)], "tutor_profile": tutor_names[i % len(tutor_names)], "subject": subj, "teaching_mode": "Online", "booking_date": random_date("2026-06-01", "2026-11-01"), "start_date": random_date("2026-06-15", "2026-09-01"), "end_date": random_date("2026-09-15", "2026-12-31"), "sessions_per_week": random.choice([2, 3]), "hours_per_session": 1, "rate_per_hour": rate, "total_hours": hours, "total_amount": rate * hours, "payment_status": random.choice(["Paid", "Partially Paid", "Unpaid"])})
         booking_names.append(bname)
         print(f"  ✓ Booking #{i+1}: {subj}")
 
@@ -225,7 +225,7 @@ def main():
     print("\n--- Creating Tutor Sessions ---")
     session_names = []
     for i in range(30):
-        sdate = random_date("2024-07-01", "2024-12-20")
+        sdate = random_date("2026-07-01", "2026-12-20")
         st = random_time()
         sesname = f"TSES-2024.{sdate.month:02d}.{i+1:04d}"
         create_if_not_exists("Tutor Session", sesname, {"doctype": "Tutor Session", "tutor_booking": booking_names[i % len(booking_names)], "tutor_profile": tutor_names[i % len(tutor_names)], "student_profile": student_names[i % len(student_names)], "status": random.choice(["Completed", "Completed", "Completed", "Scheduled"]), "session_date": sdate, "start_time": st, "end_time": time(st.hour + 1, st.minute), "duration_minutes": 60, "subject": req_subjects[i % len(req_subjects)], "mode": "Online", "session_number": (i % 10) + 1})
@@ -235,59 +235,59 @@ def main():
     # ----- 24. ONLINE CLASSES -----
     print("\n--- Creating Online Classes ---")
     for i in range(10):
-        create_if_not_exists("Online Class", f"ONCL-2024-{i+1:04d}", {"doctype": "Online Class", "class_title": f"{req_subjects[i % len(req_subjects)]} - Live", "tutor_profile": tutor_names[i % len(tutor_names)], "subject": req_subjects[i % len(req_subjects)], "status": random.choice(["Scheduled", "Completed", "Live"]), "class_date": random_date("2024-07-01", "2024-12-31"), "start_time": time(10, 0), "end_time": time(11, 30), "max_students": 30, "platform": "Zoom", "meeting_link": f"https://zoom.us/j/12345678{i:02d}"})
+        create_if_not_exists("Online Class", f"ONCL-2024-{i+1:04d}", {"doctype": "Online Class", "class_title": f"{req_subjects[i % len(req_subjects)]} - Live", "tutor_profile": tutor_names[i % len(tutor_names)], "subject": req_subjects[i % len(req_subjects)], "status": random.choice(["Scheduled", "Completed", "Live"]), "class_date": random_date("2026-07-01", "2026-12-31"), "start_time": time(10, 0), "end_time": time(11, 30), "max_students": 30, "platform": "Zoom", "meeting_link": f"https://zoom.us/j/12345678{i:02d}"})
         print(f"  ✓ Online Class #{i+1}")
 
     # ----- 25. OFFLINE CLASSES -----
     print("\n--- Creating Offline Classes ---")
     locs = ["Andheri", "Bandra", "Powai", "Thane", "Malad", "Dadar", "Borivali", "Chembur", "Vashi", "Nerul"]
     for i in range(10):
-        create_if_not_exists("Offline Class", f"OFCL-2024-{i+1:04d}", {"doctype": "Offline Class", "class_title": f"{req_subjects[i % len(req_subjects)]} - Classroom", "tutor_profile": tutor_names[i % len(tutor_names)], "subject": req_subjects[i % len(req_subjects)], "status": random.choice(["Scheduled", "Completed"]), "class_date": random_date("2024-07-01", "2024-12-31"), "start_time": time(9, 0), "end_time": time(11, 0), "location": f"{locs[i]} Learning Center", "city": "Mumbai", "max_students": 20})
+        create_if_not_exists("Offline Class", f"OFCL-2024-{i+1:04d}", {"doctype": "Offline Class", "class_title": f"{req_subjects[i % len(req_subjects)]} - Classroom", "tutor_profile": tutor_names[i % len(tutor_names)], "subject": req_subjects[i % len(req_subjects)], "status": random.choice(["Scheduled", "Completed"]), "class_date": random_date("2026-07-01", "2026-12-31"), "start_time": time(9, 0), "end_time": time(11, 0), "location": f"{locs[i]} Learning Center", "city": "Mumbai", "max_students": 20})
         print(f"  ✓ Offline Class #{i+1}")
 
     # ----- 26. LEARNING SCHEDULES -----
     print("\n--- Creating Learning Schedules ---")
     wdays = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
     for i in range(20):
-        create_if_not_exists("Learning Schedule", f"LSCH-2024-{i+1:04d}", {"doctype": "Learning Schedule", "tutor_booking": booking_names[i % len(booking_names)], "student_profile": student_names[i % len(student_names)], "tutor_profile": tutor_names[i % len(tutor_names)], "subject": req_subjects[i % len(req_subjects)], "day_of_week": wdays[i % 5], "start_time": time(16 + i % 4, 0), "end_time": time(17 + i % 4, 0), "is_active": 1, "valid_from": date(2024, 7, 1), "valid_to": date(2024, 12, 31)})
+        create_if_not_exists("Learning Schedule", f"LSCH-2024-{i+1:04d}", {"doctype": "Learning Schedule", "tutor_booking": booking_names[i % len(booking_names)], "student_profile": student_names[i % len(student_names)], "tutor_profile": tutor_names[i % len(tutor_names)], "subject": req_subjects[i % len(req_subjects)], "day_of_week": wdays[i % 5], "start_time": time(16 + i % 4, 0), "end_time": time(17 + i % 4, 0), "is_active": 1, "valid_from": date(2026, 7, 1), "valid_to": date(2026, 12, 31)})
         print(f"  ✓ Schedule #{i+1}")
 
     # ----- 27. ATTENDANCE RECORDS -----
     print("\n--- Creating Attendance Records ---")
     for i in range(50):
-        create_if_not_exists("Attendance Record", f"ATRC-2024.{random.randint(7,12):02d}.{i+1:04d}", {"doctype": "Attendance Record", "tutor_session": session_names[i % len(session_names)], "student_profile": student_names[i % len(student_names)], "tutor_profile": tutor_names[i % len(tutor_names)], "subject": req_subjects[i % len(req_subjects)], "attendance_date": random_date("2024-07-01", "2024-12-15"), "status": random.choice(["Present", "Present", "Present", "Absent", "Late"]), "check_in_time": time(9, 0), "check_out_time": time(10, 0)})
+        create_if_not_exists("Attendance Record", f"ATRC-2024.{random.randint(7,12):02d}.{i+1:04d}", {"doctype": "Attendance Record", "tutor_session": session_names[i % len(session_names)], "student_profile": student_names[i % len(student_names)], "tutor_profile": tutor_names[i % len(tutor_names)], "subject": req_subjects[i % len(req_subjects)], "attendance_date": random_date("2026-07-01", "2026-12-15"), "status": random.choice(["Present", "Present", "Present", "Absent", "Late"]), "check_in_time": time(9, 0), "check_out_time": time(10, 0)})
         print(f"  ✓ Attendance #{i+1}")
 
     # ----- 28. LEARNING PROGRESS -----
     print("\n--- Creating Learning Progress ---")
     for i in range(20):
-        create_if_not_exists("Learning Progress", f"LPRG-2024-{i+1:04d}", {"doctype": "Learning Progress", "student_profile": student_names[i % len(student_names)], "tutor_profile": tutor_names[i % len(tutor_names)], "subject": req_subjects[i % len(req_subjects)], "tutor_booking": booking_names[i % len(booking_names)], "sessions_completed": random.randint(3, 15), "sessions_attended": random.randint(3, 15), "total_hours": random.randint(5, 30), "completion_percentage": random.randint(20, 90), "performance_rating": random.choice(["Excellent", "Good", "Average"]), "last_updated": random_date("2024-09-01", "2024-12-31")})
+        create_if_not_exists("Learning Progress", f"LPRG-2024-{i+1:04d}", {"doctype": "Learning Progress", "student_profile": student_names[i % len(student_names)], "tutor_profile": tutor_names[i % len(tutor_names)], "subject": req_subjects[i % len(req_subjects)], "tutor_booking": booking_names[i % len(booking_names)], "sessions_completed": random.randint(3, 15), "sessions_attended": random.randint(3, 15), "total_hours": random.randint(5, 30), "completion_percentage": random.randint(20, 90), "performance_rating": random.choice(["Excellent", "Good", "Average"]), "last_updated": random_date("2026-09-01", "2026-12-31")})
         print(f"  ✓ Progress #{i+1}")
 
     # ----- 29. PAYMENT TRANSACTIONS -----
     print("\n--- Creating Payment Transactions ---")
     for i in range(20):
         amt = random.choice([500, 1000, 1500, 2500, 5000])
-        create_if_not_exists("Payment Transaction", f"PTXN-2024.{random.randint(7,12):02d}.{i+1:04d}", {"doctype": "Payment Transaction", "tutor_booking": booking_names[i % len(booking_names)], "student_profile": student_names[i % len(student_names)], "tutor_profile": tutor_names[i % len(tutor_names)], "payment_status": random.choice(["Completed", "Completed", "Completed", "Pending"]), "amount": amt, "platform_commission": round(amt * 0.1, 2), "tutor_payout": round(amt * 0.9, 2), "payment_method": random.choice(["UPI", "Card", "Cash", "Bank Transfer"]), "payment_date": random_date("2024-07-01", "2024-12-31"), "currency": "INR"})
+        create_if_not_exists("Payment Transaction", f"PTXN-2024.{random.randint(7,12):02d}.{i+1:04d}", {"doctype": "Payment Transaction", "tutor_booking": booking_names[i % len(booking_names)], "student_profile": student_names[i % len(student_names)], "tutor_profile": tutor_names[i % len(tutor_names)], "payment_status": random.choice(["Completed", "Completed", "Completed", "Pending"]), "amount": amt, "platform_commission": round(amt * 0.1, 2), "tutor_payout": round(amt * 0.9, 2), "payment_method": random.choice(["UPI", "Card", "Cash", "Bank Transfer"]), "payment_date": random_date("2026-07-01", "2026-12-31"), "currency": "INR"})
         print(f"  ✓ Payment #{i+1}: ₹{amt}")
 
     # ----- 30. CARD PAYMENTS -----
     print("\n--- Creating Card Payments ---")
     for i in range(10):
-        create_if_not_exists("Card Payment", f"CRDP-2024-{i+1:04d}", {"doctype": "Card Payment", "payment_transaction": f"PTXN-2024.{(7 + i % 5):02d}.{(i % 20) + 1:04d}", "tutor_booking": booking_names[i % len(booking_names)], "amount": random.choice([1000, 1500, 2500, 5000]), "payment_status": "Success", "card_type": random.choice(["Visa", "Mastercard", "RuPay"]), "card_last_four": f"{random.randint(1000, 9999)}", "gateway": "Razorpay", "payment_date": random_date("2024-07-01", "2024-12-31")})
+        create_if_not_exists("Card Payment", f"CRDP-2024-{i+1:04d}", {"doctype": "Card Payment", "payment_transaction": f"PTXN-2024.{(7 + i % 5):02d}.{(i % 20) + 1:04d}", "tutor_booking": booking_names[i % len(booking_names)], "amount": random.choice([1000, 1500, 2500, 5000]), "payment_status": "Success", "card_type": random.choice(["Visa", "Mastercard", "RuPay"]), "card_last_four": f"{random.randint(1000, 9999)}", "gateway": "Razorpay", "payment_date": random_date("2026-07-01", "2026-12-31")})
         print(f"  ✓ Card Payment #{i+1}")
 
     # ----- 31. CASH PAYMENTS -----
     print("\n--- Creating Cash Payments ---")
     for i in range(10):
-        create_if_not_exists("Cash Payment", f"CSHP-2024-{i+1:04d}", {"doctype": "Cash Payment", "tutor_booking": booking_names[(i+10) % len(booking_names)], "amount": random.choice([500, 800, 1000]), "payment_status": "Received", "receipt_number": f"RCP-{1000+i}", "payment_date": random_date("2024-07-01", "2024-12-31")})
+        create_if_not_exists("Cash Payment", f"CSHP-2024-{i+1:04d}", {"doctype": "Cash Payment", "tutor_booking": booking_names[(i+10) % len(booking_names)], "amount": random.choice([500, 800, 1000]), "payment_status": "Received", "receipt_number": f"RCP-{1000+i}", "payment_date": random_date("2026-07-01", "2026-12-31")})
         print(f"  ✓ Cash Payment #{i+1}")
 
     # ----- 32. REFUND REQUESTS -----
     print("\n--- Creating Refund Requests ---")
     for i in range(5):
         amt = random.choice([500, 1000, 1500])
-        create_if_not_exists("Refund Request", f"RFND-2024.{i+1:04d}", {"doctype": "Refund Request", "tutor_booking": booking_names[i % len(booking_names)], "student_profile": student_names[i % len(student_names)], "refund_status": random.choice(["Approved", "Processed"]), "original_amount": amt + 500, "refund_amount": amt, "refund_method": "Original Payment Method", "refund_date": random_date("2024-08-01", "2024-12-31"), "reason": random.choice(["Session Quality Issue", "Schedule Change", "Other"])})
+        create_if_not_exists("Refund Request", f"RFND-2024.{i+1:04d}", {"doctype": "Refund Request", "tutor_booking": booking_names[i % len(booking_names)], "student_profile": student_names[i % len(student_names)], "refund_status": random.choice(["Approved", "Processed"]), "original_amount": amt + 500, "refund_amount": amt, "refund_method": "Original Payment Method", "refund_date": random_date("2026-08-01", "2026-12-31"), "reason": random.choice(["Session Quality Issue", "Schedule Change", "Other"])})
         print(f"  ✓ Refund #{i+1}: ₹{amt}")
 
     # ----- 33. TUTOR REVIEWS -----
@@ -295,20 +295,20 @@ def main():
     rtexts = ["Excellent teaching methodology!", "Very patient and knowledgeable.", "Great session! Highly recommend.", "Wonderful tutor!", "Professional and dedicated."]
     for i in range(25):
         rv = random.choice([3, 4, 4, 5, 5])
-        create_if_not_exists("Tutor Review", f"TRVW-2024.{i+1:04d}", {"doctype": "Tutor Review", "tutor_profile": tutor_names[i % len(tutor_names)], "student_profile": student_names[i % len(student_names)], "tutor_booking": booking_names[i % len(booking_names)], "review_date": random_date("2024-08-01", "2024-12-31"), "rating": rv, "teaching_quality": rv, "punctuality": rv, "communication": rv, "is_approved": 1, "review_title": f"{'Excellent' if rv >= 4 else 'Good'} Tutor", "review_text": random.choice(rtexts)})
+        create_if_not_exists("Tutor Review", f"TRVW-2024.{i+1:04d}", {"doctype": "Tutor Review", "tutor_profile": tutor_names[i % len(tutor_names)], "student_profile": student_names[i % len(student_names)], "tutor_booking": booking_names[i % len(booking_names)], "review_date": random_date("2026-08-01", "2026-12-31"), "rating": rv, "teaching_quality": rv, "punctuality": rv, "communication": rv, "is_approved": 1, "review_title": f"{'Excellent' if rv >= 4 else 'Good'} Tutor", "review_text": random.choice(rtexts)})
         print(f"  ✓ Review #{i+1}")
 
     # ----- 34. TUTOR RATINGS -----
     print("\n--- Creating Tutor Ratings ---")
     for i in range(25):
         rv = random.choice([4, 4.5, 5])
-        create_if_not_exists("Tutor Rating", f"TRAT-2024.{i+1:04d}", {"doctype": "Tutor Rating", "tutor_profile": tutor_names[i % len(tutor_names)], "student_profile": student_names[i % len(student_names)], "tutor_session": session_names[i % len(session_names)], "rating_date": random_date("2024-08-01", "2024-12-31"), "overall_rating": rv, "subject_knowledge": rv, "teaching_methodology": rv, "punctuality": rv, "communication_skills": rv, "would_recommend": 1})
+        create_if_not_exists("Tutor Rating", f"TRAT-2024.{i+1:04d}", {"doctype": "Tutor Rating", "tutor_profile": tutor_names[i % len(tutor_names)], "student_profile": student_names[i % len(student_names)], "tutor_session": session_names[i % len(session_names)], "rating_date": random_date("2026-08-01", "2026-12-31"), "overall_rating": rv, "subject_knowledge": rv, "teaching_methodology": rv, "punctuality": rv, "communication_skills": rv, "would_recommend": 1})
         print(f"  ✓ Rating #{i+1}")
 
     # ----- 35. STUDENT FEEDBACK -----
     print("\n--- Creating Student Feedback ---")
     for i in range(15):
-        create_if_not_exists("Student Feedback", f"SFBK-2024.{i+1:04d}", {"doctype": "Student Feedback", "student_profile": student_names[i % len(student_names)], "tutor_profile": tutor_names[i % len(tutor_names)], "tutor_session": session_names[i % len(session_names)], "feedback_date": random_date("2024-09-01", "2024-12-31"), "session_helpful": 1, "topics_covered": random.choice(["Algebra", "Newton's Laws", "Organic Chem", "Cell Biology", "Grammar"]), "difficulty_level": "Just Right", "overall_experience": random.choice(["Excellent", "Good"]), "feedback_text": random.choice(rtexts)})
+        create_if_not_exists("Student Feedback", f"SFBK-2024.{i+1:04d}", {"doctype": "Student Feedback", "student_profile": student_names[i % len(student_names)], "tutor_profile": tutor_names[i % len(tutor_names)], "tutor_session": session_names[i % len(session_names)], "feedback_date": random_date("2026-09-01", "2026-12-31"), "session_helpful": 1, "topics_covered": random.choice(["Algebra", "Newton's Laws", "Organic Chem", "Cell Biology", "Grammar"]), "difficulty_level": "Just Right", "overall_experience": random.choice(["Excellent", "Good"]), "feedback_text": random.choice(rtexts)})
         print(f"  ✓ Feedback #{i+1}")
 
     # ----- 36. NOTIFICATION LOGS -----
@@ -332,7 +332,7 @@ def main():
     print("\n--- Creating Chat Messages ---")
     ctexts = ["Hi, I have a doubt about today's homework.", "Sure, share your question.", "Can we reschedule?", "Yes, what time works?", "The session was helpful!", "Please complete the practice problems.", "I've shared the study material.", "Great progress today!"]
     for i in range(50):
-        create_if_not_exists("Chat Message", f"CMSG-2024.{random.randint(7,12):02d}.{i+1:04d}", {"doctype": "Chat Message", "message_thread": thread_names[i % len(thread_names)], "sender": random.choice(["Tutor", "Student"]), "sender_type": random.choice(["Tutor", "Student"]), "message_type": "Text", "message_text": random.choice(ctexts), "sent_at": datetime.combine(random_date("2024-08-01", "2024-12-31"), random_time()), "is_read": random.choice([0, 1])})
+        create_if_not_exists("Chat Message", f"CMSG-2024.{random.randint(7,12):02d}.{i+1:04d}", {"doctype": "Chat Message", "message_thread": thread_names[i % len(thread_names)], "sender": random.choice(["Tutor", "Student"]), "sender_type": random.choice(["Tutor", "Student"]), "message_type": "Text", "message_text": random.choice(ctexts), "sent_at": datetime.combine(random_date("2026-08-01", "2026-12-31"), random_time()), "is_read": random.choice([0, 1])})
         print(f"  ✓ Chat #{i+1}")
 
     # ----- 39. REMINDER SCHEDULES -----
