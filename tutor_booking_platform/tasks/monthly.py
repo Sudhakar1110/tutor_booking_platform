@@ -10,11 +10,11 @@ def generate_revenue_report():
         month_start = add_months(today(), -1)
         result = frappe.db.sql("""
             SELECT SUM(amount) as total, COUNT(name) as count
-            FROM \`tabPayment Transaction\`
+            FROM `tabPayment Transaction`
             WHERE payment_status = 'Completed'
               AND docstatus = 1
               AND creation >= %s
-        """, month_start, as_dict=True)
+        """, (month_start,), as_dict=True)
         total = result[0].total or 0 if result else 0
         count = result[0].count or 0 if result else 0
         frappe.log_error(

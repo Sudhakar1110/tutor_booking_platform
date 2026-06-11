@@ -17,7 +17,7 @@ class TutorReview(Document):
             result = frappe.db.sql("""
                 SELECT AVG(rating) as avg FROM `tabTutor Review`
                 WHERE tutor_profile = %s
-            """, self.tutor_profile, as_dict=True)
+            """, (self.tutor_profile,), as_dict=True)
             avg = round(result[0].avg or 0, 2) if result else 0
             frappe.db.set_value("Tutor Profile", self.tutor_profile, "average_rating", avg,
                                 update_modified=False)

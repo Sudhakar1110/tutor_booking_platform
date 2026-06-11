@@ -6,9 +6,9 @@ def get_tutor_rating(tutor_profile):
     """Return average rating for a tutor."""
     result = frappe.db.sql("""
         SELECT AVG(overall_rating) as avg_rating, COUNT(name) as total_reviews
-        FROM \`tabTutor Rating\`
+        FROM `tabTutor Rating`
         WHERE tutor_profile = %s AND docstatus = 1
-    """, tutor_profile, as_dict=True)
+    """, (tutor_profile,), as_dict=True)
     if result:
         return {
             "avg_rating": round(result[0].avg_rating or 0, 2),

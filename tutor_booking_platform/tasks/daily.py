@@ -76,9 +76,9 @@ def update_tutor_ratings():
         for tutor in tutors:
             result = frappe.db.sql("""
                 SELECT AVG(overall_rating) as avg
-                FROM \`tabTutor Rating\`
+                FROM `tabTutor Rating`
                 WHERE tutor_profile = %s AND docstatus = 1
-            """, tutor.name, as_dict=True)
+            """, (tutor.name,), as_dict=True)
             avg = round(result[0].avg or 0, 2) if result else 0
             frappe.db.set_value("Tutor Profile", tutor.name, "average_rating", avg,
                                 update_modified=False)
