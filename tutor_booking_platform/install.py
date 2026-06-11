@@ -13,6 +13,8 @@ def after_install():
     create_roles()
     create_default_settings()
     create_module_def()
+    clean_workspace()
+    fix_doctype_modules()
     frappe.db.commit()
     frappe.clear_cache()
     print("✅ Tutor Booking Platform installed successfully.")
@@ -22,7 +24,7 @@ def after_migrate():
     """Run after bench migrate."""
     create_default_settings()
     clean_workspace()
-    fix_child_table_modules()
+    fix_doctype_modules()
     frappe.db.commit()
     frappe.clear_cache()
     print("✅ Tutor Booking Platform migration completed.")
@@ -141,32 +143,11 @@ def clean_workspace():
         frappe.log_error(frappe.get_traceback(), "clean_workspace Error")
 
 
-def fix_child_table_modules():
-    """Fix module assignment for child table doctypes."""
-    child_tables = [
-        "Student Address",
-        "Student Preference",
-        "Tutor Qualification",
-        "Tutor Experience",
-        "Tutor Certification",
-        "Tutor Availability",
-        "Learning Schedule",
-        "Learning Progress",
-        "Attendance Record",
-        "UPI Payment",
-        "Card Payment",
-        "Cash Payment",
-        "Notification Log",
-        "Message Thread",
-        "Chat Message",
-        "Reminder Schedule",
-        "Tutor Rating",
-        "Student Feedback",
-    ]
-    for dt_name in child_tables:
-        try:
-            if frappe.db.exists("DocType", dt_name):
-                frappe.db.set_value("DocType", dt_name, "module", "Tutor Booking Platform")
-        except Exception:
-            pass
-    print("✅ Fixed module for child table doctypes")
+def fix_doctype_modules():
+    """Ensure all Tutor Booking Platform doctypes have correct module assignment."""
+    try:
+        for dt in frappe.get_all("DocType", {"module": "Tutor Booking Platform"}, pluck="name"):
+            frappe.db.set_value("DocType", dt, "module", "Tutor Booking Platform")
+    except Exception as e:
+        frappe.log_error(str(e), "fix_doctype_modules Error")
+    print("✅ Fixed module for Tutor Booking Platform doctypes")
