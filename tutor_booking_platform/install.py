@@ -177,24 +177,18 @@ def clean_workspace():
 def fix_doctype_modules():
     """Ensure all Tutor Booking Platform doctypes have correct module assignment."""
     try:
-        # Fix TBP doctypes that may have wrong module (e.g., from other app fixtures)
-        tbp_app_doctypes = [
-            "Attendance Record", "Card Payment", "Cash Payment", "Chat Message",
-            "Course", "Course Category", "Demo Class Request", "Demo Class Schedule",
-            "Learning Progress", "Learning Schedule", "Message Thread",
-            "Notification Log", "Offline Class", "Online Class", "Payment Transaction",
-            "Refund Request", "Reminder Schedule", "Skill", "Skill Category",
-            "Student Address", "Student Feedback", "Student Preference",
-            "Student Profile", "Student Requirement", "Subject", "Subject Category",
-            "Tutor Availability", "Tutor Booking", "Tutor Booking Settings",
-            "Tutor Certification", "Tutor Experience", "Tutor Match Result",
-            "Tutor Profile", "Tutor Qualification", "Tutor Rating", "Tutor Review",
-            "Tutor Search Request", "Tutor Session", "Tutor Verification", "UPI Payment",
+        # 1. Fix module for ALL TBP DocTypes (including child tables) dynamically
+        for dt in frappe.get_all("DocType", {"module": "Tutor Booking Platform"}, pluck="name"):
+            frappe.db.set_value("DocType", dt, "module", "Tutor Booking Platform")
+
+        # 2. Also fix known TBP DocTypes that other apps may have reassigned to wrong module
+        known_tbp_doctypes = [
+            "Refund Request",  # other apps may set this to "Payment Management"
         ]
-        for dt in tbp_app_doctypes:
+        for dt in known_tbp_doctypes:
             if frappe.db.exists("DocType", dt):
                 current_module = frappe.db.get_value("DocType", dt, "module")
-                if current_module != "Tutor Booking Platform":
+                if current_module and current_module != "Tutor Booking Platform":
                     frappe.db.set_value("DocType", dt, "module", "Tutor Booking Platform")
                     print(f"  Fixed module for {dt}: '{current_module}' → 'Tutor Booking Platform'")
     except Exception as e:
