@@ -4,6 +4,23 @@
    Tutor Booking Platform workspace.
    ============================================================ */
 
+/* ─── Hide Construction Marketplace floating cart widget ──── */
+/* construction_marketplace/public/js/construction_marketplace.bundle.js
+   injects a floating e-commerce cart on ALL pages (lines 141-210).
+   This is irrelevant on a Tutor Booking Platform workspace. */
+#floating-cart-widget,
+#floating-cart-btn,
+#mini-cart-overlay,
+#mini-cart-panel,
+#cart-count-badge,
+.mini-cart-header,
+.mini-cart-body,
+.mini-cart-footer,
+.mini-cart-empty,
+.mini-cart-checkout-btn {
+    display: none !important;
+}
+
 /* ─── Hide Pharmacy Management injected toasts on Desk ───── */
 /* pharmacy_management/public/js/pharmacy.js injects toast
    notifications at position-fixed bottom-0 end-0 via showToast() */
