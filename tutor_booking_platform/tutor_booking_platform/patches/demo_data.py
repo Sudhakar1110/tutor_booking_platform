@@ -268,7 +268,7 @@ def main():
     print("\n--- Creating Payment Transactions ---")
     for i in range(20):
         amt = random.choice([500, 1000, 1500, 2500, 5000])
-        create_if_not_exists("Payment Transaction", f"PTXN-2024.{random.randint(7,12):02d}.{i+1:04d}", {"doctype": "Payment Transaction", "tutor_booking": booking_names[i % len(booking_names)], "student_profile": student_names[i % len(student_names)], "tutor_profile": tutor_names[i % len(tutor_names)], "payment_status": random.choice(["Completed", "Completed", "Completed", "Pending"]), "amount": amt, "platform_commission": round(amt * 0.1, 2), "tutor_payout": round(amt * 0.9, 2), "payment_method": random.choice(["UPI", "Card", "Cash", "Bank Transfer"]), "payment_date": random_date("2026-07-01", "2026-12-31"), "currency": "INR"})
+        create_if_not_exists("Payment Transaction", f"PTXN-2024.{random.randint(7,12):02d}.{i+1:04d}", {"doctype": "Payment Transaction", "tutor_booking": booking_names[i % len(booking_names)], "student_profile": student_names[i % len(student_names)], "tutor_profile": tutor_names[i % len(tutor_names)], "payment_status": random.choice(["Completed", "Completed", "Completed", "Pending"]), "amount": amt, "platform_commission": round(amt * 0.1, 2), "tutor_payout": round(amt * 0.9, 2), "payment_method": random.choice(["Card", "Cash", "Bank Transfer", "Wallet"]), "payment_date": random_date("2026-07-01", "2026-12-31"), "currency": "INR"})
         print(f"  ✓ Payment #{i+1}: ₹{amt}")
 
     # ----- 30. CARD PAYMENTS -----
