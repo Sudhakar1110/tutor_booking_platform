@@ -2,12 +2,11 @@
 # Run: bench --site [sitename] console
 # Then: exec(open(frappe.get_app_path("tutor_booking_platform") + "/patches/demo_data.py").read())
 
-import frappe
-from datetime import date, time, datetime, timedelta
-import random
-
-
 def main():
+    import frappe
+    from datetime import date, time, datetime, timedelta
+    import random
+
     # All helpers defined inside main() for exec() scope compatibility
 
     def create_if_not_exists(doctype, name, data):
