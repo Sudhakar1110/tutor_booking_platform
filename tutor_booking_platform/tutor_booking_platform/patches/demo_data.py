@@ -4,25 +4,25 @@
 
 import frappe
 from datetime import date, time, datetime, timedelta
-import random
-
-def create_if_not_exists(doctype, name, data):
-    """Create a document only if it doesn't already exist."""
-    if not frappe.db.exists(doctype, name):
-        doc = frappe.get_doc(data)
-        doc.insert(ignore_permissions=True, ignore_mandatory=True)
-        return doc.name
-    return name
-
-def random_date(start="2024-06-01", end="2024-12-31"):
+import randomdef random_date(start="2024-06-01", end="2024-12-31"):
     s = date.fromisoformat(start)
     e = date.fromisoformat(end)
     return s + timedelta(days=random.randint(0, (e - s).days))
 
+
 def random_time():
     return time(random.randint(8, 18), random.choice([0, 15, 30, 45]))
 
+
 def main():
+    # Helper - defined inside main for exec() scope compatibility
+    def create_if_not_exists(doctype, name, data):
+        if not frappe.db.exists(doctype, name):
+            doc = frappe.get_doc(data)
+            doc.insert(ignore_permissions=True, ignore_mandatory=True)
+            return doc.name
+        return name
+
     print("=" * 60)
     print("TUTOR BOOKING PLATFORM - DEMO DATA CREATION")
     print("=" * 60)
