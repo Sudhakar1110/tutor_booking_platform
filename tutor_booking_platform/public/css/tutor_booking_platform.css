@@ -1,0 +1,47 @@
+/* ============================================================
+   Tutor Booking Platform — Desk Styles
+   Hides external app elements that shouldn't appear in
+   the Tutor Booking Platform workspace.
+   ============================================================ */
+
+/* ─── Hide Pharmacy Management Shopping Cart Elements ──────── */
+/* These are injected by pharmacy_management/public/js/pharmacy.js
+   and pharmacy_management/templates/pages/base.html */
+
+.hide-pharmacy-cart .cart-badge,
+.hide-pharmacy-cart .pharmacy-cart,
+body .cart-badge,
+body .pharmacy-cart,
+body a[href*="cart"]:not([href*="booking"]):not([href*="tutor"]),
+body .bi-cart3,
+body .bi-cart-plus,
+body .bi-cart-x {
+    display: none !important;
+}
+
+/* Hide Pharmacy Management toast notifications on Desk */
+.toast.position-fixed.bottom-0.end-0 {
+    display: none !important;
+}
+
+/* ─── Hide Pharmacy Management Wishlist Elements ───────────── */
+.wishlist-badge,
+.bi-heart,
+.bi-heart-fill,
+.bi-suit-heart,
+.bi-suit-heart-fill {
+    display: none !important;
+}
+
+/* ─── Hide Farm2Home elements if any leak through ──────────── */
+body .farm2home-cart,
+body [class*="farm2home"] [class*="cart"] {
+    display: none !important;
+}
+
+/* ─── Generic: Hide any floating bottom-right widgets ─────── */
+.position-fixed.bottom-0.end-0,
+[style*="position: fixed"][style*="bottom: 0"][style*="right: 0"],
+[style*="position:fixed"][style*="bottom:0"][style*="right:0"] {
+    display: none !important;
+}

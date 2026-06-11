@@ -118,6 +118,9 @@ permission_query_conditions = {
     "Payment Transaction": "tutor_booking_platform.permissions.payment_transaction.get_permission_query_conditions",
 }
 
+# ─── Assets (Desk-side includes) ─────────────────────────────────────────────
+app_include_css = "/assets/tutor_booking_platform/css/tutor_booking_platform.css"
+
 # ─── Jinja Globals ────────────────────────────────────────────────────────────
 jinja = {
     "methods": [
