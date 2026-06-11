@@ -13,7 +13,7 @@ def main():
     def create_if_not_exists(doctype, name, data):
         if not frappe.db.exists(doctype, name):
             doc = frappe.get_doc(data)
-            doc.insert(ignore_permissions=True, ignore_mandatory=True)
+            doc.insert(ignore_permissions=True, ignore_mandatory=True, ignore_links=True)
             return doc.name
         return name
 
