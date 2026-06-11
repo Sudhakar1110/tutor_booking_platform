@@ -10,6 +10,7 @@ from frappe import _
 def after_install():
     """Run after app installation."""
     frappe.db.commit()
+    frappe.clear_cache()
     create_roles()
     create_default_settings()
     create_module_def()
@@ -22,6 +23,8 @@ def after_install():
 
 def after_migrate():
     """Run after bench migrate."""
+    # Clear cache FIRST so get_meta() sees freshly-synced DocTypes
+    frappe.clear_cache()
     create_default_settings()
     clean_workspace()
     fix_doctype_modules()
@@ -174,8 +177,26 @@ def clean_workspace():
 def fix_doctype_modules():
     """Ensure all Tutor Booking Platform doctypes have correct module assignment."""
     try:
-        for dt in frappe.get_all("DocType", {"module": "Tutor Booking Platform"}, pluck="name"):
-            frappe.db.set_value("DocType", dt, "module", "Tutor Booking Platform")
+        # Fix TBP doctypes that may have wrong module (e.g., from other app fixtures)
+        tbp_app_doctypes = [
+            "Attendance Record", "Card Payment", "Cash Payment", "Chat Message",
+            "Course", "Course Category", "Demo Class Request", "Demo Class Schedule",
+            "Learning Progress", "Learning Schedule", "Message Thread",
+            "Notification Log", "Offline Class", "Online Class", "Payment Transaction",
+            "Refund Request", "Reminder Schedule", "Skill", "Skill Category",
+            "Student Address", "Student Feedback", "Student Preference",
+            "Student Profile", "Student Requirement", "Subject", "Subject Category",
+            "Tutor Availability", "Tutor Booking", "Tutor Booking Settings",
+            "Tutor Certification", "Tutor Experience", "Tutor Match Result",
+            "Tutor Profile", "Tutor Qualification", "Tutor Rating", "Tutor Review",
+            "Tutor Search Request", "Tutor Session", "Tutor Verification", "UPI Payment",
+        ]
+        for dt in tbp_app_doctypes:
+            if frappe.db.exists("DocType", dt):
+                current_module = frappe.db.get_value("DocType", dt, "module")
+                if current_module != "Tutor Booking Platform":
+                    frappe.db.set_value("DocType", dt, "module", "Tutor Booking Platform")
+                    print(f"  Fixed module for {dt}: '{current_module}' → 'Tutor Booking Platform'")
     except Exception as e:
         frappe.log_error(str(e), "fix_doctype_modules Error")
     print("✅ Fixed module for Tutor Booking Platform doctypes")
