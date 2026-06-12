@@ -99,10 +99,10 @@ TUTOR_SPECS = [
     ("Dr. Vikram Joshi", "Python", "IIT Madras, B.Tech CS", 7, 900),
     ("Ms. Shweta Menon", "Data Science", "IIM Bangalore, Data Science Program", 5, 1500),
     ("Prof. Ravi Gupta", "Artificial Intelligence", "Stanford Online, AI Certificate", 6, 1800),
-    ("Mr. Harsh Mehta", "Full Stack", "UpGrad, Full Stack Development", 8, 1100),
+    ("Mr. Harsh Mehta", "Python", "UpGrad, Full Stack Development", 8, 1100),
     ("Dr. Kavita Rao", "Aptitude", "IMS, CAT Topper 99.9%ile", 14, 500),
     ("Ms. Lata Krishnan", "Reasoning", "LSAT India, Top 1% scorer", 10, 550),
-    ("Dr. Suresh Iyer", "Communication", "XLRI, HRM + Soft Skills", 13, 700),
+    ("Dr. Suresh Iyer", "English", "XLRI, HRM + Soft Skills", 13, 700),
 ]
 
 SUBJECT_NAMES = [
@@ -362,12 +362,11 @@ def generate_demo_data():
     print("\n─── Student Addresses, Requirements, Preferences ───")
     addr_n, req_n, pref_n = 0, 0, 0
     for sp_name in student_names:
-        city = frappe.db.get_value("Student Profile", sp_name, "city") or "Mumbai"
-        # Address
+        # Address (Student Profile has no city field, use random city)
         if create_doc("Student Address", {
             "student_profile": sp_name, "address_type": "Home", "is_default": 1,
             "address_line1": f"{random.randint(1,999)}, {choice(['MG Road', 'Park St', 'Lake View'])}",
-            "city": city, "state": "Maharashtra", "pincode": f"{random.randint(100000,999999)}",
+            "city": choice([c[0] for c in CITIES]), "state": "Maharashtra", "pincode": f"{random.randint(100000,999999)}",
         }): addr_n += 1
         # 1 Requirement
         subj = choice(list(subject_map.values())) if subject_map else None
