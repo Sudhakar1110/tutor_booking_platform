@@ -240,7 +240,7 @@ def generate_demo_data():
         first_name = tname.split()[1] if len(tname.split()) > 1 else tname.split()[0]
         last_name = tname.split()[-1]
         city, state = choice(CITIES)
-        levels = choice(["High School, Undergraduate", "All Levels", "Undergraduate, Postgraduate", "High School, Undergraduate, Postgraduate"])
+        levels = choice(["High School", "Undergraduate", "Postgraduate", "All Levels"])
         tp = create_doc("Tutor Profile", {
             "tutor_name": tname,
             "gender": choice(["Male", "Female"]),
