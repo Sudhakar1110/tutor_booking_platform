@@ -78,6 +78,18 @@
         })
         .then(function(response) { return response.json(); })
         .then(function(data) {
+            // Handle login specially — Frappe's /api/method/login returns home_page, not redirect_url
+            var redirectUrl = data.redirect_url || data.home_page || null;
+            
+            if (redirectUrl && actionUrl && actionUrl.endsWith('/login')) {
+                // Login success — redirect immediately
+                if (submitBtn) {
+                    submitBtn.innerHTML = '<i class="fas fa-check"></i> Redirecting...';
+                }
+                window.location.href = redirectUrl;
+                return;
+            }
+            
             // Show success message
             showAlert('success', 'Success! Your request has been submitted.');
             if (submitBtn) {
@@ -86,10 +98,10 @@
             }
             form.reset();
             
-            // Redirect if provided
-            if (data.redirect_url) {
+            // Redirect if provided (non-login forms)
+            if (redirectUrl) {
                 setTimeout(function() {
-                    window.location.href = data.redirect_url;
+                    window.location.href = redirectUrl;
                 }, 1500);
             }
         })
