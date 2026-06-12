@@ -1,0 +1,109 @@
+{% extends "templates/base.html" %}
+
+{% block title %}Become a Tutor - Tutor Booking Platform{% endblock %}
+
+{% block content %}
+<section class="page-header">
+    <div class="container">
+        <div class="breadcrumb">
+            <a href="/">Home</a> <span>›</span> <span>Become a Tutor</span>
+        </div>
+        <h1>Become a Tutor</h1>
+        <p>Share your knowledge and earn by teaching students worldwide</p>
+    </div>
+</section>
+
+<section class="section section-light">
+    <div class="container" style="max-width:700px;">
+        <div class="card" style="padding:40px;">
+            <div style="text-align:center;margin-bottom:30px;">
+                <div style="width:64px;height:64px;border-radius:16px;background:linear-gradient(135deg,var(--primary),var(--primary-light));display:flex;align-items:center;justify-content:center;margin:0 auto 16px;color:white;font-size:1.5rem;">
+                    <i class="fas fa-chalkboard-teacher"></i>
+                </div>
+                <h2 style="font-size:1.5rem;font-weight:700;">Join as a Tutor</h2>
+                <p style="color:var(--gray-500);">Fill in your details to get started. Our team will review and verify your profile.</p>
+            </div>
+
+            <form id="tutorRegistrationForm" method="POST" action="/api/method/tutor_booking_platform.api.registration.register_tutor">
+                <div class="form-group">
+                    <label>Full Name <span class="required">*</span></label>
+                    <input type="text" class="form-control" name="tutor_name" required placeholder="Enter your full name">
+                </div>
+                <div class="form-group">
+                    <label>Email Address <span class="required">*</span></label>
+                    <input type="email" class="form-control" name="email" required placeholder="your@email.com">
+                </div>
+                <div class="form-group">
+                    <label>Mobile Number <span class="required">*</span></label>
+                    <input type="tel" class="form-control" name="mobile" required placeholder="+91 9876543210">
+                </div>
+                <div class="form-group">
+                    <label>Password <span class="required">*</span></label>
+                    <input type="password" class="form-control" name="password" required placeholder="Create a password (min 6 characters)">
+                </div>
+                <div class="form-group">
+                    <label>Primary Subject <span class="required">*</span></label>
+                    <select class="form-control" name="primary_subject" required>
+                        <option value="">Select your primary subject</option>
+                        <option value="Mathematics">Mathematics</option>
+                        <option value="Physics">Physics</option>
+                        <option value="Chemistry">Chemistry</option>
+                        <option value="Biology">Biology</option>
+                        <option value="English">English</option>
+                        <option value="Python">Python</option>
+                        <option value="Java">Java</option>
+                        <option value="Data Science">Data Science</option>
+                        <option value="IELTS">IELTS</option>
+                        <option value="Aptitude">Aptitude</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Years of Experience <span class="required">*</span></label>
+                    <input type="number" class="form-control" name="experience_years" required min="0" placeholder="e.g. 5">
+                </div>
+                <div class="form-group">
+                    <label>Rate Per Hour (₹) <span class="required">*</span></label>
+                    <input type="number" class="form-control" name="hourly_rate" required min="100" placeholder="e.g. 500">
+                </div>
+                <div class="form-group">
+                    <label>Teaching Mode <span class="required">*</span></label>
+                    <select class="form-control" name="teaching_mode" required>
+                        <option value="">Select teaching mode</option>
+                        <option value="Online">Online</option>
+                        <option value="Offline">Offline</option>
+                        <option value="Both">Both</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>City</label>
+                    <input type="text" class="form-control" name="city" placeholder="Your city">
+                </div>
+                <div class="form-group">
+                    <label>Short Bio <span class="required">*</span></label>
+                    <textarea class="form-control" name="short_bio" required rows="3" placeholder="Brief introduction about yourself and your teaching experience"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Teaching Levels</label>
+                    <select class="form-control" name="teaching_levels">
+                        <option value="">Select levels you teach</option>
+                        <option value="Primary">Primary</option>
+                        <option value="Middle School">Middle School</option>
+                        <option value="High School">High School</option>
+                        <option value="Undergraduate">Undergraduate</option>
+                        <option value="Postgraduate">Postgraduate</option>
+                        <option value="All Levels">All Levels</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Languages Known</label>
+                    <input type="text" class="form-control" name="languages_known" placeholder="e.g. English, Hindi, Tamil">
+                </div>
+                <button type="submit" class="btn btn-primary btn-block btn-lg">Register as Tutor <i class="fas fa-arrow-right"></i></button>
+                <p style="text-align:center;margin-top:16px;font-size:0.85rem;color:var(--gray-500);">
+                    Already have an account? <a href="/login" style="color:var(--primary);font-weight:600;">Login here</a>
+                </p>
+            </form>
+        </div>
+    </div>
+</section>
+{% endblock %}

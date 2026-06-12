@@ -1,0 +1,119 @@
+{% extends "templates/base.html" %}
+
+{% block title %}About Us - Tutor Booking Platform{% endblock %}
+
+{% block content %}
+{% set route = 'about' %}
+
+<section class="page-header">
+    <div class="container">
+        <div class="breadcrumb">
+            <a href="/">Home</a> <span>›</span> <span>About Us</span>
+        </div>
+        <h1>About Us</h1>
+        <p>Empowering learners with the best tutors since 2024</p>
+    </div>
+</section>
+
+<section class="section section-white">
+    <div class="container">
+        <div class="about-grid">
+            <div>
+                <span class="subtitle" style="display:inline-block;background:rgba(79,70,229,0.1);color:var(--primary);padding:4px 14px;border-radius:20px;font-size:0.85rem;font-weight:600;margin-bottom:12px;">Our Story</span>
+                <h2 style="font-size:2rem;font-weight:800;margin-bottom:16px;">Your Trusted Partner in Education</h2>
+                <p style="color:var(--gray-600);line-height:1.8;margin-bottom:16px;">Tutor Booking Platform was founded with a simple mission — to make quality education accessible to everyone. We connect students with expert tutors who are passionate about teaching and committed to helping learners achieve their goals.</p>
+                <p style="color:var(--gray-600);line-height:1.8;margin-bottom:16px;">Our platform offers a comprehensive range of subjects from academic tutoring for school and college students to professional skills development for working professionals. We believe that every student deserves personalized attention and the right guidance.</p>
+                <p style="color:var(--gray-600);line-height:1.8;">With a rigorous tutor verification process, flexible scheduling options, and a focus on learning outcomes, we've become the preferred choice for thousands of students and tutors across India.</p>
+            </div>
+            <div class="about-image">
+                <i class="fas fa-graduation-cap"></i>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section section-light">
+    <div class="container">
+        <div class="section-header">
+            <span class="subtitle">Our Values</span>
+            <h2>What Drives Us</h2>
+            <p>The principles that guide everything we do</p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="icon"><i class="fas fa-handshake"></i></div>
+                <h3>Trust &amp; Transparency</h3>
+                <p>We verify every tutor and provide genuine reviews, ratings, and transparent pricing to help you make informed decisions.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon"><i class="fas fa-trophy"></i></div>
+                <h3>Excellence in Education</h3>
+                <p>We maintain high standards by carefully selecting qualified tutors who demonstrate expertise and teaching ability.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon"><i class="fas fa-users"></i></div>
+                <h3>Student First</h3>
+                <p>Every feature we build and decision we make is centered around improving the learning experience for our students.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon"><i class="fas fa-leaf"></i></div>
+                <h3>Continuous Growth</h3>
+                <p>We constantly evolve our platform with new features, subjects, and tools to better serve our growing community.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon"><i class="fas fa-heart"></i></div>
+                <h3>Passion for Teaching</h3>
+                <p>We believe great teachers transform lives. Our platform empowers passionate educators to reach more students.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon"><i class="fas fa-globe"></i></div>
+                <h3>Accessible Learning</h3>
+                <p>With both online and offline options, we make quality education accessible to students regardless of location.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section section-white">
+    <div class="container">
+        <div class="section-header">
+            <span class="subtitle">Our Team</span>
+            <h2>Meet the Team</h2>
+            <p>Passionate people building the future of education</p>
+        </div>
+        <div class="team-grid">
+            <div class="team-card">
+                <div class="avatar" style="margin:0 auto 16px;font-size:2rem;background:linear-gradient(135deg,var(--primary),var(--primary-light));display:flex;align-items:center;justify-content:center;width:80px;height:80px;border-radius:50%;"><i class="fas fa-user"></i></div>
+                <h4>Rajesh Kumar</h4>
+                <p>Founder &amp; CEO</p>
+            </div>
+            <div class="team-card">
+                <div class="avatar" style="margin:0 auto 16px;font-size:2rem;background:linear-gradient(135deg,#7C3AED,#A855F7);display:flex;align-items:center;justify-content:center;width:80px;height:80px;border-radius:50%;"><i class="fas fa-user"></i></div>
+                <h4>Priya Sharma</h4>
+                <p>Head of Operations</p>
+            </div>
+            <div class="team-card">
+                <div class="avatar" style="margin:0 auto 16px;font-size:2rem;background:linear-gradient(135deg,#059669,#10B981);display:flex;align-items:center;justify-content:center;width:80px;height:80px;border-radius:50%;"><i class="fas fa-user"></i></div>
+                <h4>Amit Verma</h4>
+                <p>Technical Lead</p>
+            </div>
+            <div class="team-card">
+                <div class="avatar" style="margin:0 auto 16px;font-size:2rem;background:linear-gradient(135deg,#D97706,#F59E0B);display:flex;align-items:center;justify-content:center;width:80px;height:80px;border-radius:50%;"><i class="fas fa-user"></i></div>
+                <h4>Neha Gupta</h4>
+                <p>Community Manager</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section section-dark">
+    <div class="container" style="text-align:center;">
+        <h2 style="font-size:2rem;font-weight:800;margin-bottom:16px;">Join Our Community</h2>
+        <p style="color:rgba(255,255,255,0.6);max-width:550px;margin:0 auto 30px;font-size:1.1rem;">Whether you're a student looking to learn or a tutor wanting to share your knowledge, we'd love to have you.</p>
+        <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
+            <a href="/student-registration" class="btn btn-white btn-lg"><i class="fas fa-user-plus"></i> Join as Student</a>
+            <a href="/tutor-registration" class="btn btn-outline-light btn-lg"><i class="fas fa-chalkboard-teacher"></i> Join as Tutor</a>
+        </div>
+    </div>
+</section>
+{% endblock %}

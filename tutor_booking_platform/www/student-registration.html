@@ -1,0 +1,100 @@
+{% extends "templates/base.html" %}
+
+{% block title %}Register as Student - Tutor Booking Platform{% endblock %}
+
+{% block content %}
+<section class="page-header">
+    <div class="container">
+        <div class="breadcrumb">
+            <a href="/">Home</a> <span>›</span> <span>Register</span>
+        </div>
+        <h1>Student Registration</h1>
+        <p>Create your account to find the perfect tutor and start learning</p>
+    </div>
+</section>
+
+<section class="section section-light">
+    <div class="container" style="max-width:700px;">
+        <div class="card" style="padding:40px;">
+            <div style="text-align:center;margin-bottom:30px;">
+                <div style="width:64px;height:64px;border-radius:16px;background:linear-gradient(135deg,#10B981,#059669);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;color:white;font-size:1.5rem;">
+                    <i class="fas fa-user-graduate"></i>
+                </div>
+                <h2 style="font-size:1.5rem;font-weight:700;">Create Student Account</h2>
+                <p style="color:var(--gray-500);">Join thousands of students who are learning with expert tutors</p>
+            </div>
+
+            <form id="studentRegistrationForm" method="POST" action="/api/method/tutor_booking_platform.api.registration.register_student">
+                <div class="form-group">
+                    <label>Full Name <span class="required">*</span></label>
+                    <input type="text" class="form-control" name="student_name" required placeholder="Enter your full name">
+                </div>
+                <div class="form-group">
+                    <label>Email Address <span class="required">*</span></label>
+                    <input type="email" class="form-control" name="email" required placeholder="your@email.com">
+                </div>
+                <div class="form-group">
+                    <label>Mobile Number <span class="required">*</span></label>
+                    <input type="tel" class="form-control" name="mobile" required placeholder="+91 9876543210">
+                </div>
+                <div class="form-group">
+                    <label>Password <span class="required">*</span></label>
+                    <input type="password" class="form-control" name="password" required placeholder="Create a password (min 6 characters)">
+                </div>
+                <div class="form-group">
+                    <label>Current Class / Grade</label>
+                    <select class="form-control" name="current_class">
+                        <option value="">Select your class</option>
+                        <option value="Class 6">Class 6</option>
+                        <option value="Class 7">Class 7</option>
+                        <option value="Class 8">Class 8</option>
+                        <option value="Class 9">Class 9</option>
+                        <option value="Class 10">Class 10</option>
+                        <option value="Class 11">Class 11</option>
+                        <option value="Class 12">Class 12</option>
+                        <option value="Undergraduate">Undergraduate</option>
+                        <option value="Postgraduate">Postgraduate</option>
+                        <option value="Working Professional">Working Professional</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>School / College Name</label>
+                    <input type="text" class="form-control" name="school_college" placeholder="Enter your school or college name">
+                </div>
+                <div class="form-group">
+                    <label>Preferred Learning Mode</label>
+                    <select class="form-control" name="preferred_learning_mode">
+                        <option value="">Select preferred mode</option>
+                        <option value="Online">Online</option>
+                        <option value="Offline">Offline</option>
+                        <option value="Both">Both</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Preferred Timing</label>
+                    <select class="form-control" name="preferred_timing">
+                        <option value="">Select preferred timing</option>
+                        <option value="Morning">Morning</option>
+                        <option value="Afternoon">Afternoon</option>
+                        <option value="Evening">Evening</option>
+                        <option value="Weekends Only">Weekends Only</option>
+                        <option value="Flexible">Flexible</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Budget Per Hour (₹)</label>
+                    <input type="number" class="form-control" name="budget_per_hour" min="0" placeholder="e.g. 500">
+                </div>
+                <div class="form-group">
+                    <label>Parent / Guardian Name</label>
+                    <input type="text" class="form-control" name="parent_name" placeholder="If you are a minor">
+                </div>
+                <button type="submit" class="btn btn-success btn-block btn-lg">Create Account <i class="fas fa-arrow-right"></i></button>
+                <p style="text-align:center;margin-top:16px;font-size:0.85rem;color:var(--gray-500);">
+                    Already have an account? <a href="/login" style="color:var(--primary);font-weight:600;">Login here</a>
+                </p>
+            </form>
+        </div>
+    </div>
+</section>
+{% endblock %}

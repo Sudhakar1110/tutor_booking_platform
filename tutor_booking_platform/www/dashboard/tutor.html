@@ -1,0 +1,141 @@
+{% extends "templates/base.html" %}
+
+{% block title %}Tutor Dashboard - Tutor Booking Platform{% endblock %}
+
+{% block content %}
+<section class="page-header breadcrumb-only">
+    <div class="container">
+        <div class="breadcrumb">
+            <a href="/">Home</a> <span>›</span> <span>Tutor Dashboard</span>
+        </div>
+        <h1>Tutor Dashboard</h1>
+    </div>
+</section>
+
+<section class="section section-light" style="padding-top:20px;">
+    <div class="container">
+        {% set is_logged_in = frappe.session.user and frappe.session.user != 'Guest' %}
+        {% if is_logged_in %}
+        <div class="dashboard-layout" style="display:grid;grid-template-columns:260px 1fr;gap:0;min-height:auto;">
+            <div class="dashboard-sidebar" style="border-radius:var(--radius);box-shadow:var(--shadow);">
+                <div class="user-info">
+                    <div class="user-avatar">{{ frappe.session.user[0]|upper }}</div>
+                    <div class="user-name">{{ tutor.tutor_name if tutor else 'Tutor' }}</div>
+                    <div class="user-role">Tutor</div>
+                </div>
+                <nav class="dashboard-nav">
+                    <a href="/dashboard/tutor" class="active"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+                    <a href="/dashboard/tutor#profile"><i class="fas fa-user"></i> My Profile</a>
+                    <a href="/dashboard/tutor#sessions"><i class="fas fa-chalkboard-teacher"></i> My Sessions</a>
+                    <a href="/dashboard/tutor#students"><i class="fas fa-users"></i> My Students</a>
+                    <a href="/dashboard/tutor#reviews"><i class="fas fa-star"></i> My Reviews</a>
+                    <a href="/dashboard/tutor#earnings"><i class="fas fa-rupee-sign"></i> My Earnings</a>
+                    <a href="/dashboard/tutor#notifications"><i class="fas fa-bell"></i> Notifications</a>
+                </nav>
+            </div>
+            <div class="dashboard-main">
+                <div class="dashboard-header">
+                    <h1>Welcome, {{ tutor.tutor_name if tutor else 'Tutor' }}!</h1>
+                </div>
+
+                <div class="dashboard-stats">
+                    <div class="dashboard-stat">
+                        <div class="icon blue"><i class="fas fa-chalkboard-teacher"></i></div>
+                        <div class="number">{{ sessions|length if sessions else '0' }}</div>
+                        <div class="label">Total Sessions</div>
+                    </div>
+                    <div class="dashboard-stat">
+                        <div class="icon green"><i class="fas fa-users"></i></div>
+                        <div class="number">{{ students|length if students else '0' }}</div>
+                        <div class="label">Students</div>
+                    </div>
+                    <div class="dashboard-stat">
+                        <div class="icon purple"><i class="fas fa-star"></i></div>
+                        <div class="number">{{ tutor.average_rating if tutor and tutor.average_rating else '0.0' }}</div>
+                        <div class="label">Rating</div>
+                    </div>
+                    <div class="dashboard-stat">
+                        <div class="icon orange"><i class="fas fa-rupee-sign"></i></div>
+                        <div class="number">₹{{ earnings|default('0') }}</div>
+                        <div class="label">Total Earnings</div>
+                    </div>
+                </div>
+
+                <h3 class="dashboard-section-title">Upcoming Sessions</h3>
+                <div class="table-container">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Session</th>
+                                <th>Student</th>
+                                <th>Date &amp; Time</th>
+                                <th>Mode</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% if sessions %}
+                            {% for s in sessions %}
+                            <tr>
+                                <td><strong>{{ s.name }}</strong></td>
+                                <td>{{ s.student_profile }}</td>
+                                <td>{{ s.session_date }} at {{ s.start_time }}</td>
+                                <td><span class="badge badge-info">{{ s.mode or 'Online' }}</span></td>
+                                <td><span class="badge {% if s.status == 'Scheduled' %}badge-warning{% elif s.status == 'Completed' %}badge-success{% elif s.status == 'Cancelled' %}badge-danger{% else %}badge-dark{% endif %}">{{ s.status }}</span></td>
+                            </tr>
+                            {% else %}
+                            <tr><td colspan="5" style="text-align:center;color:var(--gray-500);padding:30px;">No upcoming sessions.</td></tr>
+                            {% endfor %}
+                            {% else %}
+                            <tr><td colspan="5" style="text-align:center;color:var(--gray-500);padding:30px;">No sessions scheduled yet.</td></tr>
+                            {% endif %}
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3 class="dashboard-section-title">Recent Reviews</h3>
+                <div class="table-container">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Student</th>
+                                <th>Rating</th>
+                                <th>Review</th>
+                                <th>Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% if reviews %}
+                            {% for r in reviews %}
+                            <tr>
+                                <td>{{ r.student_profile }}</td>
+                                <td>
+                                    <span class="stars-display">
+                                        {% for i in range(r.rating|int) %}★{% endfor %}{% for i in range(5 - r.rating|int) %}☆{% endfor %}
+                                    </span>
+                                </td>
+                                <td>{{ r.review_text[:50] if r.review_text else 'No comment' }}{% if r.review_text and r.review_text|length > 50 %}...{% endif %}</td>
+                                <td>{{ r.review_date }}</td>
+                            </tr>
+                            {% else %}
+                            <tr><td colspan="4" style="text-align:center;color:var(--gray-500);padding:30px;">No reviews yet.</td></tr>
+                            {% endfor %}
+                            {% else %}
+                            <tr><td colspan="4" style="text-align:center;color:var(--gray-500);padding:30px;">No reviews received yet.</td></tr>
+                            {% endif %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        {% else %}
+        <div style="text-align:center;padding:60px 20px;">
+            <div style="font-size:4rem;margin-bottom:20px;color:var(--gray-300);"><i class="fas fa-chalkboard-teacher"></i></div>
+            <h2 style="font-size:1.5rem;margin-bottom:12px;">Tutor Dashboard</h2>
+            <p style="color:var(--gray-500);margin-bottom:20px;">Please login to access your tutor dashboard where you can manage sessions, view students, and track your earnings.</p>
+            <a href="/login" class="btn btn-primary btn-lg"><i class="fas fa-sign-in-alt"></i> Login to Dashboard</a>
+        </div>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,142 @@
+{% extends "templates/base.html" %}
+
+{% block title %}Student Dashboard - Tutor Booking Platform{% endblock %}
+
+{% block content %}
+<section class="page-header breadcrumb-only">
+    <div class="container">
+        <div class="breadcrumb">
+            <a href="/">Home</a> <span>›</span> <span>Student Dashboard</span>
+        </div>
+        <h1>Student Dashboard</h1>
+    </div>
+</section>
+
+<section class="section section-light" style="padding-top:20px;">
+    <div class="container">
+        {% set is_logged_in = frappe.session.user and frappe.session.user != 'Guest' %}
+        {% if is_logged_in %}
+        <div class="dashboard-layout" style="display:grid;grid-template-columns:260px 1fr;gap:0;min-height:auto;">
+            <div class="dashboard-sidebar" style="border-radius:var(--radius);box-shadow:var(--shadow);">
+                <div class="user-info">
+                    <div class="user-avatar">{{ frappe.session.user[0]|upper }}</div>
+                    <div class="user-name">{{ student.student_name if student else frappe.session.user }}</div>
+                    <div class="user-role">Student</div>
+                </div>
+                <nav class="dashboard-nav">
+                    <a href="/dashboard" class="active"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+                    <a href="/dashboard#profile"><i class="fas fa-user"></i> My Profile</a>
+                    <a href="/dashboard#bookings"><i class="fas fa-calendar-check"></i> My Bookings</a>
+                    <a href="/dashboard#demo-classes"><i class="fas fa-video"></i> Demo Classes</a>
+                    <a href="/dashboard#reviews"><i class="fas fa-star"></i> My Reviews</a>
+                    <a href="/dashboard#notifications"><i class="fas fa-bell"></i> Notifications</a>
+                    <a href="/search"><i class="fas fa-search"></i> Find Tutors</a>
+                </nav>
+            </div>
+            <div class="dashboard-main">
+                <div class="dashboard-header">
+                    <h1>Welcome, {{ student.student_name if student else 'Student' }}!</h1>
+                    <div><a href="/search" class="btn btn-primary"><i class="fas fa-search"></i> Find a Tutor</a></div>
+                </div>
+
+                <div class="dashboard-stats">
+                    <div class="dashboard-stat">
+                        <div class="icon blue"><i class="fas fa-calendar-check"></i></div>
+                        <div class="number">{{ bookings|length if bookings else '0' }}</div>
+                        <div class="label">Active Bookings</div>
+                    </div>
+                    <div class="dashboard-stat">
+                        <div class="icon green"><i class="fas fa-video"></i></div>
+                        <div class="number">{{ demo_classes|length if demo_classes else '0' }}</div>
+                        <div class="label">Demo Classes</div>
+                    </div>
+                    <div class="dashboard-stat">
+                        <div class="icon purple"><i class="fas fa-star"></i></div>
+                        <div class="number">{{ reviews|length if reviews else '0' }}</div>
+                        <div class="label">Reviews Given</div>
+                    </div>
+                    <div class="dashboard-stat">
+                        <div class="icon orange"><i class="fas fa-bell"></i></div>
+                        <div class="number">{{ notifications|length if notifications else '0' }}</div>
+                        <div class="label">Notifications</div>
+                    </div>
+                </div>
+
+                <h3 class="dashboard-section-title">My Bookings</h3>
+                <div class="table-container">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Booking ID</th>
+                                <th>Tutor</th>
+                                <th>Subject</th>
+                                <th>Status</th>
+                                <th>Start Date</th>
+                                <th>Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% if bookings %}
+                            {% for b in bookings %}
+                            <tr>
+                                <td><strong>{{ b.name }}</strong></td>
+                                <td>{{ b.tutor_profile }}</td>
+                                <td>{{ b.subject }}</td>
+                                <td><span class="badge {% if b.booking_status == 'Confirmed' %}badge-success{% elif b.booking_status == 'Pending' %}badge-warning{% elif b.booking_status == 'Completed' %}badge-info{% elif b.booking_status == 'Cancelled' %}badge-danger{% else %}badge-dark{% endif %}">{{ b.booking_status }}</span></td>
+                                <td>{{ b.start_date }}</td>
+                                <td>₹{{ b.total_amount or b.rate_per_hour }}</td>
+                            </tr>
+                            {% else %}
+                            <tr><td colspan="6" style="text-align:center;color:var(--gray-500);padding:30px;">No bookings yet. <a href="/search" style="color:var(--primary);">Find a tutor</a> to get started!</td></tr>
+                            {% endfor %}
+                            {% else %}
+                            <tr><td colspan="6" style="text-align:center;color:var(--gray-500);padding:30px;">No bookings yet. <a href="/search" style="color:var(--primary);font-weight:600;">Browse tutors</a> to book your first session!</td></tr>
+                            {% endif %}
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3 class="dashboard-section-title">Upcoming Sessions</h3>
+                <div class="table-container">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Session</th>
+                                <th>Tutor</th>
+                                <th>Date &amp; Time</th>
+                                <th>Mode</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% if sessions %}
+                            {% for s in sessions %}
+                            <tr>
+                                <td><strong>{{ s.name }}</strong></td>
+                                <td>{{ s.tutor_profile }}</td>
+                                <td>{{ s.session_date }} at {{ s.start_time }}</td>
+                                <td><span class="badge badge-info">{{ s.mode or 'Online' }}</span></td>
+                                <td><span class="badge {% if s.status == 'Scheduled' %}badge-warning{% elif s.status == 'Completed' %}badge-success{% elif s.status == 'Cancelled' %}badge-danger{% else %}badge-dark{% endif %}">{{ s.status }}</span></td>
+                            </tr>
+                            {% else %}
+                            <tr><td colspan="5" style="text-align:center;color:var(--gray-500);padding:30px;">No upcoming sessions.</td></tr>
+                            {% endfor %}
+                            {% else %}
+                            <tr><td colspan="5" style="text-align:center;color:var(--gray-500);padding:30px;">No sessions scheduled yet.</td></tr>
+                            {% endif %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        {% else %}
+        <div style="text-align:center;padding:60px 20px;">
+            <div style="font-size:4rem;margin-bottom:20px;color:var(--gray-300);"><i class="fas fa-tachometer-alt"></i></div>
+            <h2 style="font-size:1.5rem;margin-bottom:12px;">Student Dashboard</h2>
+            <p style="color:var(--gray-500);margin-bottom:20px;">Please login to access your student dashboard where you can manage bookings, view sessions, and track your learning progress.</p>
+            <a href="/login" class="btn btn-primary btn-lg"><i class="fas fa-sign-in-alt"></i> Login to Dashboard</a>
+        </div>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,160 @@
+{% extends "templates/base.html" %}
+
+{% block title %}Find Tutors - Tutor Booking Platform{% endblock %}
+
+{% block content %}
+{% set route = 'tutors' %}
+
+<section class="page-header">
+    <div class="container">
+        <div class="breadcrumb">
+            <a href="/">Home</a> <span>›</span> <span>Find Tutors</span>
+        </div>
+        <h1>Find the Perfect Tutor</h1>
+        <p>Browse our verified tutors and find the right match for your learning needs</p>
+    </div>
+</section>
+
+<section class="section section-light">
+    <div class="container">
+        {% if not tutors %}
+        <div style="text-align:center;padding:40px;">
+            <div style="font-size:4rem;margin-bottom:20px;color:var(--gray-300);"><i class="fas fa-users"></i></div>
+            <h2 style="font-size:1.5rem;margin-bottom:12px;">Tutors Will Appear Here</h2>
+            <p style="color:var(--gray-500);margin-bottom:20px;">Once tutors are registered and verified, they will be listed here with their profiles.</p>
+            <a href="/tutor-registration" class="btn btn-primary">Become a Tutor</a>
+        </div>
+
+        <!-- Sample tutor cards for preview -->
+        <div class="grid-3" style="margin-top:40px;">
+            {% set sample_tutors = [
+                {"name":"Dr. Sharma","subject":"Mathematics","rating":"4.9","reviews":"124","city":"Mumbai","exp":"8 yrs","rate":"800","img":"DS"},
+                {"name":"Prof. Patel","subject":"Physics","rating":"4.8","reviews":"98","city":"Delhi","exp":"6 yrs","rate":"700","img":"PP"},
+                {"name":"Mrs. Gupta","subject":"Chemistry","rating":"4.9","reviews":"156","city":"Bangalore","exp":"10 yrs","rate":"900","img":"MG"},
+                {"name":"Mr. Kumar","subject":"English","rating":"4.7","reviews":"87","city":"Pune","exp":"5 yrs","rate":"600","img":"MK"},
+                {"name":"Dr. Reddy","subject":"Biology","rating":"4.8","reviews":"112","city":"Hyderabad","exp":"7 yrs","rate":"750","img":"DR"},
+                {"name":"Ms. Singh","subject":"Python","rating":"4.9","reviews":"203","city":"Online","exp":"9 yrs","rate":"1200","img":"MS"}
+            ] %}
+            {% for t in sample_tutors %}
+            <a href="/tutor_detail?name=sample" class="tutor-card">
+                <div class="tutor-card-image"></div>
+                <div class="tutor-card-avatar" style="font-size:1.5rem;">{{ t.img }}</div>
+                <div class="tutor-card-body">
+                    <h3>{{ t.name }}</h3>
+                    <p class="subject">{{ t.subject }}</p>
+                    <div class="rating">
+                        <span class="stars">★★★★★</span>
+                        <span class="count">({{ t.rating }})</span>
+                    </div>
+                    <div class="meta">
+                        <span><i class="fas fa-map-marker-alt"></i> {{ t.city }}</span>
+                        <span><i class="fas fa-briefcase"></i> {{ t.exp }}</span>
+                    </div>
+                    <div class="price">₹{{ t.rate }}<small>/hour</small></div>
+                </div>
+            </a>
+            {% endfor %}
+        </div>
+        {% else %}
+        <!-- Filters -->
+        <div class="filters-bar">
+            <div class="filter-group">
+                <label>Subject</label>
+                <select class="form-control" onchange="filterTutors()" id="filterSubject">
+                    <option value="">All Subjects</option>
+                    {% for subject in frappe.get_all('Subject', filters={'is_active': 1}, fields=['name', 'subject_name']) %}
+                    <option value="{{ subject.name }}">{{ subject.subject_name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="filter-group">
+                <label>City</label>
+                <select class="form-control" onchange="filterTutors()" id="filterCity">
+                    <option value="">All Cities</option>
+                    <option value="Mumbai">Mumbai</option>
+                    <option value="Delhi">Delhi</option>
+                    <option value="Bangalore">Bangalore</option>
+                    <option value="Hyderabad">Hyderabad</option>
+                    <option value="Chennai">Chennai</option>
+                    <option value="Pune">Pune</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label>Teaching Mode</label>
+                <select class="form-control" onchange="filterTutors()" id="filterMode">
+                    <option value="">All Modes</option>
+                    <option value="Online">Online</option>
+                    <option value="Offline">Offline</option>
+                    <option value="Both">Both</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label>Sort By</label>
+                <select class="form-control" onchange="filterTutors()" id="filterSort">
+                    <option value="rating">Highest Rated</option>
+                    <option value="experience">Most Experienced</option>
+                    <option value="rate_low">Price: Low to High</option>
+                    <option value="rate_high">Price: High to Low</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="search-results-count"><strong>{{ tutors|length }}</strong> tutors found</div>
+        <div class="grid-3" id="tutorsGrid">
+            {% for tutor in tutors %}
+            <a href="/tutor_detail?name={{ tutor.name }}" class="tutor-card">
+                <div class="tutor-card-image"></div>
+                <div class="tutor-card-avatar">
+                    {% if tutor.profile_image %}
+                    <img src="{{ tutor.profile_image }}" alt="{{ tutor.tutor_name }}" style="width:100%;height:100%;border-radius:50%;object-fit:cover;">
+                    {% else %}
+                    {{ tutor.tutor_name[0] if tutor.tutor_name else 'T' }}
+                    {% endif %}
+                </div>
+                <div class="tutor-card-body">
+                    <h3>{{ tutor.tutor_name }}</h3>
+                    <p class="subject">{{ tutor.primary_subject }}</p>
+                    <div class="rating">
+                        <span class="stars">★★★★★</span>
+                        <span class="count">({{ tutor.average_rating or '0.0' }})</span>
+                    </div>
+                    <div class="meta">
+                        <span><i class="fas fa-map-marker-alt"></i> {{ tutor.city or 'Online' }}</span>
+                        <span><i class="fas fa-briefcase"></i> {{ tutor.experience_years or 0 }} yrs</span>
+                    </div>
+                    <div class="price">₹{{ tutor.hourly_rate }}<small>/hour</small></div>
+                </div>
+            </a>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        <div class="pagination">
+            <span class="active">1</span>
+            <a href="#">2</a>
+            <a href="#">3</a>
+            <a href="#">…</a>
+            <a href="#">10</a>
+        </div>
+    </div>
+</section>
+
+<script>
+function filterTutors() {
+    // Client-side filter for tutor listing
+    var subject = document.getElementById('filterSubject')?.value || '';
+    var city = document.getElementById('filterCity')?.value || '';
+    var mode = document.getElementById('filterMode')?.value || '';
+    var sort = document.getElementById('filterSort')?.value || 'rating';
+    
+    var params = new URLSearchParams();
+    if (subject) params.set('subject', subject);
+    if (city) params.set('city', city);
+    if (mode) params.set('mode', mode);
+    if (sort) params.set('sort', sort);
+    
+    var queryString = params.toString();
+    window.location.href = '/tutors' + (queryString ? '?' + queryString : '');
+}
+</script>
+{% endblock %}

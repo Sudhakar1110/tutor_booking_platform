@@ -1,0 +1,110 @@
+{% extends "templates/base.html" %}
+
+{% block title %}Reviews &amp; Ratings - Tutor Booking Platform{% endblock %}
+
+{% block content %}
+<section class="page-header">
+    <div class="container">
+        <div class="breadcrumb">
+            <a href="/">Home</a> <span>›</span> <span>Reviews</span>
+        </div>
+        <h1>Reviews &amp; Ratings</h1>
+        <p>See what students and tutors say about their experience</p>
+    </div>
+</section>
+
+<section class="section section-light">
+    <div class="container">
+        <div class="section-header">
+            <div style="font-size:3rem;color:var(--secondary);margin-bottom:12px;">★★★★★</div>
+            <h2 style="font-size:2.5rem;font-weight:800;">4.8</h2>
+            <p style="color:var(--gray-500);">Average rating based on thousands of reviews</p>
+        </div>
+
+        <div class="grid-3">
+            <div class="testimonial-card">
+                <div class="stars">★★★★★</div>
+                <p class="quote">"Excellent teaching methodology! My tutor breaks down complex concepts into simple, understandable chunks. My grades have improved significantly."</p>
+                <div class="author">
+                    <div class="author-avatar">RK</div>
+                    <div class="author-info">
+                        <h4>Rahul Kumar</h4>
+                        <p>Mathematics Student</p>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="stars">★★★★★</div>
+                <p class="quote">"The demo class feature is fantastic. I tried three different tutors before finding the perfect match. The platform made it so easy!"</p>
+                <div class="author">
+                    <div class="author-avatar">SM</div>
+                    <div class="author-info">
+                        <h4>Sneha Mishra</h4>
+                        <p>IELTS Student</p>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="stars">★★★★★</div>
+                <p class="quote">"I've been teaching on this platform for 6 months now. The payment system is reliable, and the students are genuine. Great experience overall!"</p>
+                <div class="author">
+                    <div class="author-avatar">AK</div>
+                    <div class="author-info">
+                        <h4>Dr. Amit Kapoor</h4>
+                        <p>Physics Tutor</p>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="stars">★★★★☆</div>
+                <p class="quote">"Good platform with quality tutors. Would like to see more filter options for searching. Overall, a great learning experience."</p>
+                <div class="author">
+                    <div class="author-avatar">PV</div>
+                    <div class="author-info">
+                        <h4>Priya Verma</h4>
+                        <p>Chemistry Student</p>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="stars">★★★★★</div>
+                <p class="quote">"As a working professional, I needed flexible timing for my Python classes. My tutor was incredibly accommodating. Highly recommended!"</p>
+                <div class="author">
+                    <div class="author-avatar">VK</div>
+                    <div class="author-info">
+                        <h4>Vikram Khanna</h4>
+                        <p>Python Student</p>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="stars">★★★★★</div>
+                <p class="quote">"My daughter's English has improved tremendously since she started with her tutor. The progress tracking feature helps us monitor her improvement."</p>
+                <div class="author">
+                    <div class="author-avatar">NP</div>
+                    <div class="author-info">
+                        <h4>Neha Patel</h4>
+                        <p>Parent of Student</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="pagination">
+            <span class="active">1</span>
+            <a href="#">2</a>
+            <a href="#">3</a>
+            <a href="#">…</a>
+            <a href="#">12</a>
+        </div>
+    </div>
+</section>
+
+<section class="section section-white" style="text-align:center;">
+    <div class="container">
+        <h2 style="font-size:1.5rem;font-weight:700;margin-bottom:12px;">Share Your Experience</h2>
+        <p style="color:var(--gray-500);margin-bottom:24px;">Have you used our platform? We'd love to hear your feedback!</p>
+        <a href="/contact" class="btn btn-primary btn-lg"><i class="fas fa-star"></i> Write a Review</a>
+    </div>
+</section>
+{% endblock %}

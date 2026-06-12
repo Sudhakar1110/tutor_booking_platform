@@ -1,0 +1,99 @@
+{% extends "templates/base.html" %}
+
+{% block title %}Book a Tutor - Tutor Booking Platform{% endblock %}
+
+{% block content %}
+<section class="page-header breadcrumb-only">
+    <div class="container">
+        <div class="breadcrumb">
+            <a href="/">Home</a> <span>›</span>
+            <a href="/tutors">Tutors</a> <span>›</span>
+            <span>Book a Session</span>
+        </div>
+        <h1>Book a Tutoring Session</h1>
+        <p>Fill in the details to book your session with an expert tutor</p>
+    </div>
+</section>
+
+<section class="section section-light">
+    <div class="container" style="max-width:700px;">
+        <div class="card" style="padding:40px;">
+            <div style="text-align:center;margin-bottom:30px;">
+                <div style="width:56px;height:56px;border-radius:14px;background:linear-gradient(135deg,var(--accent),var(--accent-dark));display:flex;align-items:center;justify-content:center;margin:0 auto 16px;color:white;font-size:1.3rem;">
+                    <i class="fas fa-calendar-check"></i>
+                </div>
+                <h2 style="font-size:1.4rem;font-weight:700;">Book Session</h2>
+                {% if frappe.form_dict.tutor %}
+                <p style="color:var(--gray-500);">Booking with tutor: <strong style="color:var(--primary);">{{ frappe.form_dict.tutor }}</strong></p>
+                {% else %}
+                <p style="color:var(--gray-500);">Fill in the details to book a tutoring session</p>
+                {% endif %}
+            </div>
+
+            <form id="bookingForm" method="POST" action="/api/method/tutor_booking_platform.api.booking.create_booking">
+                <div class="form-group">
+                    <label>Booking Title <span class="required">*</span></label>
+                    <input type="text" class="form-control" name="booking_title" required placeholder="e.g. Mathematics Tutoring - Class 10">
+                </div>
+                <div class="form-group">
+                    <label>Tutor Profile <span class="required">*</span></label>
+                    <input type="text" class="form-control" name="tutor_profile" required placeholder="Tutor ID (e.g. TUT-2024-0001)" value="{{ frappe.form_dict.tutor or '' }}">
+                </div>
+                <div class="form-group">
+                    <label>Subject <span class="required">*</span></label>
+                    <select class="form-control" name="subject" required>
+                        <option value="">Select Subject</option>
+                        <option value="Mathematics">Mathematics</option>
+                        <option value="Physics">Physics</option>
+                        <option value="Chemistry">Chemistry</option>
+                        <option value="Biology">Biology</option>
+                        <option value="English">English</option>
+                        <option value="Python">Python</option>
+                        <option value="Java">Java</option>
+                        <option value="Data Science">Data Science</option>
+                        <option value="IELTS">IELTS</option>
+                        <option value="Aptitude">Aptitude</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Teaching Mode <span class="required">*</span></label>
+                    <select class="form-control" name="teaching_mode" required>
+                        <option value="">Select Mode</option>
+                        <option value="Online">Online</option>
+                        <option value="Offline">Offline</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Start Date <span class="required">*</span></label>
+                    <input type="date" class="form-control" name="start_date" required>
+                </div>
+                <div class="form-group">
+                    <label>End Date</label>
+                    <input type="date" class="form-control" name="end_date">
+                </div>
+                <div class="form-group">
+                    <label>Sessions Per Week</label>
+                    <input type="number" class="form-control" name="sessions_per_week" min="1" max="7" placeholder="e.g. 3">
+                </div>
+                <div class="form-group">
+                    <label>Hours Per Session</label>
+                    <input type="number" class="form-control" name="hours_per_session" min="0.5" step="0.5" placeholder="e.g. 1.5">
+                </div>
+                <div class="form-group">
+                    <label>Rate Per Hour (₹) <span class="required">*</span></label>
+                    <input type="number" class="form-control" name="rate_per_hour" required min="0" placeholder="e.g. 500">
+                </div>
+                <div class="form-group">
+                    <label>Total Hours</label>
+                    <input type="number" class="form-control" name="total_hours" min="0" step="0.5" placeholder="e.g. 20">
+                </div>
+                <div class="form-group">
+                    <label>Special Instructions</label>
+                    <textarea class="form-control" name="special_instructions" rows="3" placeholder="Any specific requirements or topics you want to cover"></textarea>
+                </div>
+                <button type="submit" class="btn btn-success btn-block btn-lg">Confirm Booking <i class="fas fa-check-circle"></i></button>
+            </form>
+        </div>
+    </div>
+</section>
+{% endblock %}

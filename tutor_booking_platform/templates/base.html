@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="{% block meta_description %}Find the best tutors for your learning needs. Connect with expert tutors across subjects, courses, and locations.{% endblock %}">
+    <title>{% block title %}Tutor Booking Platform{% endblock %}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="/assets/tutor_booking_platform/css/website.css">
+    {% block head %}{% endblock %}
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar-inner">
+            <a href="/" class="navbar-brand">
+                <span class="logo-icon"><i class="fas fa-graduation-cap"></i></span>
+                TutorBooking
+            </a>
+            <div class="navbar-links" id="navbarLinks">
+                <a href="/" class="{% if route == 'home' %}active{% endif %}">Home</a>
+                <a href="/tutors" class="{% if route == 'tutors' %}active{% endif %}">Find Tutors</a>
+                <a href="/subjects" class="{% if route == 'subjects' %}active{% endif %}">Subjects</a>
+                <a href="/courses" class="{% if route == 'courses' %}active{% endif %}">Courses</a>
+                <a href="/about" class="{% if route == 'about' %}active{% endif %}">About Us</a>
+                <a href="/contact" class="{% if route == 'contact' %}active{% endif %}">Contact</a>
+            </div>
+            <div class="navbar-actions">
+                {% if frappe.session.user and frappe.session.user != 'Guest' %}
+                    <a href="/dashboard" class="btn btn-primary btn-sm"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+                {% else %}
+                    <a href="/login" class="btn btn-outline btn-sm"><i class="fas fa-sign-in-alt"></i> Login</a>
+                    <a href="/student-registration" class="btn btn-primary btn-sm"><i class="fas fa-user-plus"></i> Register</a>
+                {% endif %}
+            </div>
+            <button class="navbar-toggle" onclick="toggleNavbar()">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    {% block content %}{% endblock %}
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="logo-text">
+                        <span style="width:36px;height:36px;border-radius:8px;background:linear-gradient(135deg,var(--primary),var(--primary-light));display:inline-flex;align-items:center;justify-content:center;font-size:0.9rem;"><i class="fas fa-graduation-cap"></i></span>
+                        TutorBooking
+                    </div>
+                    <p>Your trusted platform to find the best tutors for every subject. Connect with expert educators, book demo classes, and start learning today.</p>
+                    <div class="footer-social">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h4>Quick Links</h4>
+                    <div class="footer-links">
+                        <a href="/">Home</a>
+                        <a href="/tutors">Find Tutors</a>
+                        <a href="/subjects">Subjects</a>
+                        <a href="/courses">Courses</a>
+                        <a href="/search">Search</a>
+                    </div>
+                </div>
+                <div>
+                    <h4>For Students</h4>
+                    <div class="footer-links">
+                        <a href="/search">Search Tutors</a>
+                        <a href="/student-registration">Register</a>
+                        <a href="/login">Login</a>
+                        <a href="/faq">FAQ</a>
+                        <a href="/reviews">Reviews</a>
+                    </div>
+                </div>
+                <div>
+                    <h4>For Tutors</h4>
+                    <div class="footer-links">
+                        <a href="/tutor-registration">Become a Tutor</a>
+                        <a href="/tutors">Tutor Listing</a>
+                        <a href="/faq">Tutor FAQ</a>
+                        <a href="/contact">Contact Us</a>
+                    </div>
+                </div>
+                <div>
+                    <h4>Support</h4>
+                    <div class="footer-links">
+                        <a href="/about">About Us</a>
+                        <a href="/contact">Contact</a>
+                        <a href="/privacy-policy">Privacy Policy</a>
+                        <a href="/terms">Terms &amp; Conditions</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>&copy; {{ frappe.utils.nowdate()[:4] }} Tutor Booking Platform. All rights reserved.</span>
+                <span>Built on Frappe Framework</span>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function toggleNavbar() {
+            document.getElementById('navbarLinks').classList.toggle('open');
+        }
+
+        // FAQ Accordion
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.faq-question').forEach(function(btn) {
+                btn.addEventListener('click', function() {
+                    this.classList.toggle('active');
+                    var answer = this.nextElementSibling;
+                    answer.classList.toggle('open');
+                });
+            });
+        });
+
+        // Star Rating System
+        function setupStarRating(container) {
+            var stars = container.querySelectorAll('.star-input');
+            stars.forEach(function(star, index) {
+                star.addEventListener('click', function() {
+                    var value = this.getAttribute('data-value');
+                    container.querySelector('input[type="hidden"]').value = value;
+                    stars.forEach(function(s, i) {
+                        if (i < value) {
+                            s.classList.add('active');
+                            s.textContent = '★';
+                        } else {
+                            s.classList.remove('active');
+                            s.textContent = '☆';
+                        }
+                    });
+                });
+            });
+        }
+    </script>
+    <script src="/assets/tutor_booking_platform/js/website.js"></script>
+    {% block scripts %}{% endblock %}
+</body>
+</html>

@@ -1,0 +1,49 @@
+{% extends "templates/base.html" %}
+
+{% block title %}Subjects - Tutor Booking Platform{% endblock %}
+
+{% block content %}
+<section class="page-header">
+    <div class="container">
+        <div class="breadcrumb">
+            <a href="/">Home</a> <span>›</span> <span>Subjects</span>
+        </div>
+        <h1>Explore Subjects</h1>
+        <p>Discover a wide range of subjects taught by expert tutors</p>
+    </div>
+</section>
+
+<section class="section section-light">
+    <div class="container">
+        {% set subject_categories = {
+            'Academic Subjects': ['Mathematics', 'Physics', 'Chemistry', 'Biology', 'English', 'History', 'Geography', 'Hindi'],
+            'Competitive Exams': ['JEE Main', 'JEE Advanced', 'NEET', 'UPSC', 'SSC', 'Banking', 'CAT', 'GATE'],
+            'Programming & IT': ['Python', 'Java', 'C++', 'Web Development', 'Data Science', 'Machine Learning', 'SQL', 'React'],
+            'Languages': ['English', 'Hindi', 'French', 'German', 'Spanish', 'Japanese', 'Mandarin', 'Sanskrit'],
+            'Professional Skills': ['Communication', 'Leadership', 'Digital Marketing', 'Excel', 'Public Speaking', 'Business Writing']
+        } %}
+
+        {% for category, subjects_list in subject_categories.items() %}
+        <div style="margin-bottom:50px;">
+            <h2 style="font-size:1.5rem;font-weight:700;margin-bottom:20px;display:flex;align-items:center;gap:10px;">
+                <span style="width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,var(--primary),var(--primary-light));display:inline-flex;align-items:center;justify-content:center;color:white;font-size:0.9rem;">
+                    <i class="fas {% if 'Academic' in category %}fa-book{% elif 'Competitive' in category %}fa-trophy{% elif 'Programming' in category %}fa-code{% elif 'Languages' in category %}fa-language{% else %}fa-briefcase{% endif %}"></i>
+                </span>
+                {{ category }}
+            </h2>
+            <div class="grid-4">
+                {% for subject in subjects_list %}
+                <a href="/search?subject={{ subject }}" class="subject-card">
+                    <div class="icon">
+                        <i class="fas {% if subject in ['Mathematics','Physics','Chemistry','Biology'] %}fa-flask{% elif subject in ['Python','Java','C++'] %}fa-code{% elif subject in ['English','Hindi','French','German','Spanish','Japanese','Mandarin','Sanskrit'] %}fa-language{% elif subject in ['JEE Main','JEE Advanced','NEET'] %}fa-graduation-cap{% else %}fa-book{% endif %}"></i>
+                    </div>
+                    <h3>{{ subject }}</h3>
+                    <p>Expert Tutors Available</p>
+                </a>
+                {% endfor %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}

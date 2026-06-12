@@ -1,0 +1,74 @@
+{% extends "templates/base.html" %}
+
+{% block title %}Courses - Tutor Booking Platform{% endblock %}
+
+{% block content %}
+<section class="page-header">
+    <div class="container">
+        <div class="breadcrumb">
+            <a href="/">Home</a> <span>›</span> <span>Courses</span>
+        </div>
+        <h1>Explore Courses</h1>
+        <p>Structured learning paths designed for your success</p>
+    </div>
+</section>
+
+<section class="section section-light">
+    <div class="container">
+        {% set sample_courses = [
+            {"name":"Python Programming","category":"IT Courses","duration":"8 Weeks","level":"Beginner","fee":"₹8,000","desc":"Learn Python from scratch - basics to advanced concepts with hands-on projects.","icon":"fa-code"},
+            {"name":"Java Full Stack","category":"IT Courses","duration":"16 Weeks","level":"Intermediate","fee":"₹25,000","desc":"Master Java, Spring Boot, and frontend technologies.","icon":"fa-coffee"},
+            {"name":"Spoken English","category":"Language Courses","duration":"6 Weeks","level":"Beginner","fee":"₹4,500","desc":"Improve your English speaking, grammar, and communication skills.","icon":"fa-language"},
+            {"name":"IELTS Preparation","category":"Language Courses","duration":"8 Weeks","level":"All Levels","fee":"₹12,000","desc":"Comprehensive IELTS training with mock tests and personalized feedback.","icon":"fa-language"},
+            {"name":"Data Science","category":"IT Courses","duration":"12 Weeks","level":"Advanced","fee":"₹20,000","desc":"Learn data analysis, ML, and statistical modeling with real datasets.","icon":"fa-chart-bar"},
+            {"name":"Mathematics Foundation","category":"Academic Courses","duration":"10 Weeks","level":"Beginner","fee":"₹6,000","desc":"Build a strong foundation in mathematics from basics to advanced concepts.","icon":"fa-calculator"}
+        ] %}
+
+        <div class="grid-3">
+            {% for course in sample_courses %}
+            <div class="card" style="padding:30px;">
+                <div style="width:56px;height:56px;border-radius:14px;background:linear-gradient(135deg,var(--primary),var(--primary-light));display:flex;align-items:center;justify-content:center;color:white;font-size:1.3rem;margin-bottom:16px;">
+                    <i class="fas {{ course.icon }}"></i>
+                </div>
+                <h3 style="font-size:1.1rem;font-weight:700;margin-bottom:8px;">{{ course.name }}</h3>
+                <span class="badge badge-info" style="margin-bottom:12px;">{{ course.category }}</span>
+                <p style="color:var(--gray-500);font-size:0.9rem;margin-bottom:16px;line-height:1.6;">{{ course.desc }}</p>
+                <div style="display:flex;gap:16px;margin-bottom:16px;font-size:0.85rem;color:var(--gray-500);">
+                    <span><i class="far fa-clock"></i> {{ course.duration }}</span>
+                    <span><i class="fas fa-signal"></i> {{ course.level }}</span>
+                </div>
+                <div style="font-size:1.3rem;font-weight:700;color:var(--primary);margin-bottom:16px;">{{ course.fee }}</div>
+                <a href="/search?course={{ course.name }}" class="btn btn-primary btn-block">View Details</a>
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="section-header" style="margin-top:60px;">
+            <span class="subtitle">Course Categories</span>
+            <h2>Browse by Category</h2>
+        </div>
+        <div class="grid-4">
+            <a href="/search?category=Academic" class="subject-card">
+                <div class="icon"><i class="fas fa-graduation-cap"></i></div>
+                <h3>Academic Courses</h3>
+                <p>School &amp; College Subjects</p>
+            </a>
+            <a href="/search?category=IT" class="subject-card">
+                <div class="icon"><i class="fas fa-code"></i></div>
+                <h3>IT &amp; Programming</h3>
+                <p>Tech Skills Development</p>
+            </a>
+            <a href="/search?category=Language" class="subject-card">
+                <div class="icon"><i class="fas fa-language"></i></div>
+                <h3>Language Courses</h3>
+                <p>Learn New Languages</p>
+            </a>
+            <a href="/search?category=Professional" class="subject-card">
+                <div class="icon"><i class="fas fa-briefcase"></i></div>
+                <h3>Professional Skills</h3>
+                <p>Career Development</p>
+            </a>
+        </div>
+    </div>
+</section>
+{% endblock %}

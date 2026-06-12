@@ -1,0 +1,102 @@
+{% extends "templates/base.html" %}
+
+{% block title %}Search Tutors - Tutor Booking Platform{% endblock %}
+
+{% block content %}
+<section class="search-hero">
+    <div class="container">
+        <h1 style="font-size:2rem;font-weight:800;color:white;text-align:center;margin-bottom:20px;">Find Your Perfect Tutor</h1>
+        <form class="search-form" method="GET" action="/search">
+            <input type="text" name="q" placeholder="Search subject, course, or tutor name..." value="{{ frappe.form_dict.q or '' }}">
+            <select name="subject">
+                <option value="">All Subjects</option>
+                <option value="Mathematics" {{ 'selected' if frappe.form_dict.subject == 'Mathematics' }}>Mathematics</option>
+                <option value="Physics" {{ 'selected' if frappe.form_dict.subject == 'Physics' }}>Physics</option>
+                <option value="Chemistry" {{ 'selected' if frappe.form_dict.subject == 'Chemistry' }}>Chemistry</option>
+                <option value="Biology" {{ 'selected' if frappe.form_dict.subject == 'Biology' }}>Biology</option>
+                <option value="English" {{ 'selected' if frappe.form_dict.subject == 'English' }}>English</option>
+                <option value="Python" {{ 'selected' if frappe.form_dict.subject == 'Python' }}>Python</option>
+                <option value="Java" {{ 'selected' if frappe.form_dict.subject == 'Java' }}>Java</option>
+                <option value="IELTS" {{ 'selected' if frappe.form_dict.subject == 'IELTS' }}>IELTS</option>
+                <option value="Data Science" {{ 'selected' if frappe.form_dict.subject == 'Data Science' }}>Data Science</option>
+            </select>
+            <select name="city">
+                <option value="">All Cities</option>
+                <option value="Mumbai" {{ 'selected' if frappe.form_dict.city == 'Mumbai' }}>Mumbai</option>
+                <option value="Delhi" {{ 'selected' if frappe.form_dict.city == 'Delhi' }}>Delhi</option>
+                <option value="Bangalore" {{ 'selected' if frappe.form_dict.city == 'Bangalore' }}>Bangalore</option>
+                <option value="Hyderabad" {{ 'selected' if frappe.form_dict.city == 'Hyderabad' }}>Hyderabad</option>
+                <option value="Chennai" {{ 'selected' if frappe.form_dict.city == 'Chennai' }}>Chennai</option>
+                <option value="Pune" {{ 'selected' if frappe.form_dict.city == 'Pune' }}>Pune</option>
+                <option value="Kolkata" {{ 'selected' if frappe.form_dict.city == 'Kolkata' }}>Kolkata</option>
+                <option value="Online" {{ 'selected' if frappe.form_dict.city == 'Online' }}>Online</option>
+            </select>
+            <select name="mode">
+                <option value="">All Modes</option>
+                <option value="Online" {{ 'selected' if frappe.form_dict.mode == 'Online' }}>Online</option>
+                <option value="Offline" {{ 'selected' if frappe.form_dict.mode == 'Offline' }}>Offline</option>
+            </select>
+            <button type="submit" class="btn btn-secondary" style="padding:14px 32px;font-size:1rem;">Search</button>
+        </form>
+    </div>
+</section>
+
+<section class="section section-light">
+    <div class="container">
+        {% set has_query = frappe.form_dict.q or frappe.form_dict.subject or frappe.form_dict.city %}
+        <div class="search-results-count">
+            {% if has_query %}
+                <strong>Search results</strong> for your query
+            {% else %}
+                <strong>Browse all available tutors</strong>
+            {% endif %}
+        </div>
+
+        <div class="grid-3">
+            {% set sample_results = [
+                {"name":"Dr. Amit Sharma","subject":"Mathematics","rating":"4.9","city":"Mumbai","exp":"8 yrs","rate":"800","mode":"Both"},
+                {"name":"Prof. Neha Patel","subject":"Physics","rating":"4.8","city":"Delhi","exp":"6 yrs","rate":"700","mode":"Online"},
+                {"name":"Mrs. Kavita Gupta","subject":"Chemistry","rating":"4.9","city":"Bangalore","exp":"10 yrs","rate":"900","mode":"Offline"},
+                {"name":"Mr. Rajesh Kumar","subject":"English","rating":"4.7","city":"Pune","exp":"5 yrs","rate":"600","mode":"Online"},
+                {"name":"Dr. Priya Reddy","subject":"Biology","rating":"4.8","city":"Hyderabad","exp":"7 yrs","rate":"750","mode":"Both"},
+                {"name":"Ms. Ananya Singh","subject":"Python","rating":"4.9","city":"Online","exp":"9 yrs","rate":"1200","mode":"Online"},
+                {"name":"Mr. Vikram Joshi","subject":"Java","rating":"4.6","city":"Chennai","exp":"4 yrs","rate":"1000","mode":"Online"},
+                {"name":"Dr. Sneha Verma","subject":"Data Science","rating":"4.9","city":"Bengaluru","exp":"11 yrs","rate":"1500","mode":"Online"},
+                {"name":"Mr. Deepak Malhotra","subject":"Aptitude","rating":"4.7","city":"Delhi","exp":"6 yrs","rate":"500","mode":"Both"}
+            ] %}
+            {% for t in sample_results %}
+            <a href="/tutor_detail?name={{ t.name }}" class="tutor-card">
+                <div class="tutor-card-image"></div>
+                <div class="tutor-card-avatar" style="font-size:1.5rem;">
+                    {% set initials = t.name.split(' ') %}
+                    {{ initials[0][0] if initials[0] else '' }}{{ initials[-1][0] if initials|length > 1 else '' }}
+                </div>
+                <div class="tutor-card-body">
+                    <h3>{{ t.name }}</h3>
+                    <p class="subject">{{ t.subject }}</p>
+                    <div class="rating">
+                        <span class="stars">★★★★★</span>
+                        <span class="count">({{ t.rating }})</span>
+                    </div>
+                    <div class="meta">
+                        <span><i class="fas fa-map-marker-alt"></i> {{ t.city }}</span>
+                        <span><i class="fas fa-briefcase"></i> {{ t.exp }}</span>
+                        <span><i class="fas fa-chalkboard-teacher"></i> {{ t.mode }}</span>
+                    </div>
+                    <div class="price">₹{{ t.rate }}<small>/hour</small></div>
+                </div>
+            </a>
+            {% endfor %}
+        </div>
+
+        <div class="pagination">
+            <span class="active">1</span>
+            <a href="#">2</a>
+            <a href="#">3</a>
+            <a href="#">4</a>
+            <a href="#">5</a>
+            <a href="#">Next →</a>
+        </div>
+    </div>
+</section>
+{% endblock %}

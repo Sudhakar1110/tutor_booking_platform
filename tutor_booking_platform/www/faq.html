@@ -1,0 +1,82 @@
+{% extends "templates/base.html" %}
+
+{% block title %}FAQ - Tutor Booking Platform{% endblock %}
+
+{% block content %}
+<section class="page-header">
+    <div class="container">
+        <div class="breadcrumb">
+            <a href="/">Home</a> <span>›</span> <span>FAQ</span>
+        </div>
+        <h1>Frequently Asked Questions</h1>
+        <p>Find answers to common questions about our platform</p>
+    </div>
+</section>
+
+<section class="section section-light">
+    <div class="container" style="max-width:800px;">
+        <h2 style="font-size:1.4rem;font-weight:700;margin-bottom:24px;display:flex;align-items:center;gap:10px;">
+            <span style="width:32px;height:32px;border-radius:8px;background:linear-gradient(135deg,var(--primary),var(--primary-light));display:inline-flex;align-items:center;justify-content:center;color:white;font-size:0.8rem;"><i class="fas fa-users"></i></span>
+            For Students
+        </h2>
+        <div class="faq-item">
+            <div class="faq-question">How do I find a tutor? <span class="arrow">▼</span></div>
+            <div class="faq-answer">You can search for tutors using the search bar on the homepage or visit the "Find Tutors" page. You can filter by subject, city, teaching mode, and more to find the perfect match for your learning needs.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">Is the demo class really free? <span class="arrow">▼</span></div>
+            <div class="faq-answer">Yes! Most tutors offer a free demo class so you can experience their teaching style before committing to regular sessions. Simply request a demo class from the tutor's profile page.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">How do I book a tutor? <span class="arrow">▼</span></div>
+            <div class="faq-answer">Once you've found a tutor you like, click the "Book Now" button on their profile. Fill in the booking form with your preferred schedule and requirements. The tutor will confirm your booking.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">Can I change my tutor if I'm not satisfied? <span class="arrow">▼</span></div>
+            <div class="faq-answer">Absolutely! You can always search for and book a different tutor. We encourage you to use the free demo class feature to find the best match before making a long-term commitment.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">How are payments handled? <span class="arrow">▼</span></div>
+            <div class="faq-answer">Payments are processed through our secure platform. You can pay via card, bank transfer, or other available methods. Payments are released to tutors after sessions are completed.</div>
+        </div>
+
+        <h2 style="font-size:1.4rem;font-weight:700;margin:40px 0 24px;display:flex;align-items:center;gap:10px;">
+            <span style="width:32px;height:32px;border-radius:8px;background:linear-gradient(135deg,#7C3AED,#A855F7);display:inline-flex;align-items:center;justify-content:center;color:white;font-size:0.8rem;"><i class="fas fa-chalkboard-teacher"></i></span>
+            For Tutors
+        </h2>
+        <div class="faq-item">
+            <div class="faq-question">How do I register as a tutor? <span class="arrow">▼</span></div>
+            <div class="faq-answer">Click on "Become a Tutor" button and fill in your details including your qualifications, experience, and teaching preferences. Our team will review and verify your profile.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">How do I get paid? <span class="arrow">▼</span></div>
+            <div class="faq-answer">Tutors receive payments through our secure payment system. You can track your earnings in the Tutor Dashboard and request withdrawals as per the payment schedule.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">Can I set my own rates? <span class="arrow">▼</span></div>
+            <div class="faq-answer">Yes! You have complete control over your pricing. Set your hourly rate based on your experience, expertise, and market rates.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">What subjects can I teach? <span class="arrow">▼</span></div>
+            <div class="faq-answer">You can teach any subject you're qualified in - from academic subjects to professional skills, programming languages, test preparation, and more.</div>
+        </div>
+
+        <h2 style="font-size:1.4rem;font-weight:700;margin:40px 0 24px;display:flex;align-items:center;gap:10px;">
+            <span style="width:32px;height:32px;border-radius:8px;background:linear-gradient(135deg,#10B981,#059669);display:inline-flex;align-items:center;justify-content:center;color:white;font-size:0.8rem;"><i class="fas fa-cog"></i></span>
+            General
+        </h2>
+        <div class="faq-item">
+            <div class="faq-question">Is my personal information secure? <span class="arrow">▼</span></div>
+            <div class="faq-answer">Yes, we take data security seriously. Your personal information is encrypted and protected. We never share your data with third parties without your consent.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">Can I access the platform on mobile? <span class="arrow">▼</span></div>
+            <div class="faq-answer">Our website is fully responsive and works seamlessly on all devices including smartphones and tablets. You can access all features from any device with an internet connection.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">How do I contact support? <span class="arrow">▼</span></div>
+            <div class="faq-answer">You can reach our support team through the Contact Us page, email us at support@tutorbooking.com, or call us at +91 1800-123-4567.</div>
+        </div>
+    </div>
+</section>
+{% endblock %}

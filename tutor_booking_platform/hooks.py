@@ -122,6 +122,17 @@ permission_query_conditions = {
 app_include_css = "/assets/tutor_booking_platform/css/tutor_booking_platform.css"
 app_include_js  = "/assets/tutor_booking_platform/js/tutor_booking_platform.js"
 
+# ─── Website Configuration ────────────────────────────────────────────────
+website_context = {
+    "splash_image": "/assets/tutor_booking_platform/images/logo.png",
+    "favicon": "/assets/tutor_booking_platform/images/favicon.ico",
+    "full_width": True,
+}
+
+# ─── Website Routes ────────────────────────────────────────────────────────────
+# All www/ pages are automatically served by Frappe.
+# See: https://frappeframework.com/docs/v14/user/en/guides/website/
+
 # ─── Jinja Globals ────────────────────────────────────────────────────────────
 jinja = {
     "methods": [
@@ -129,3 +140,8 @@ jinja = {
         "tutor_booking_platform.utils.jinja_helpers.get_session_count",
     ]
 }
+
+# ─── Web Includes ──────────────────────────────────────────────────────────────
+# These are loaded on ALL web pages (not Desk)
+web_include_css = "/assets/tutor_booking_platform/css/website.css"
+web_include_js = "/assets/tutor_booking_platform/js/website.js"
