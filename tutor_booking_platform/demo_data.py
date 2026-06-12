@@ -5,7 +5,7 @@ Run this script to populate realistic demo data for all 40+ DocTypes.
 
 Usage On Server:
     bench --site testing.site1.local console
-    >>> exec(open("../apps/tutor_booking_platform/tutor_booking_platform/demo_data.py").read())
+    >>> exec(open("../apps/tutor_booking_platform/tutor_booking_platform/demo_data.py").read(), globals())
     >>> generate_demo_data()
 """
 
@@ -22,40 +22,57 @@ def create_doc(doctype, data):
         doc.insert(ignore_permissions=True)
         return doc.name
     except frappe.DuplicateEntryError as e:
-        # Try to find by name or a unique field
         name_val = data.get("subject_name") or data.get("course_name") or data.get("skill_name") or \
                    data.get("category_name") or data.get("settings_name") or data.get("tutor_name") or \
                    data.get("student_name") or data.get("booking_title") or data.get("class_title") or \
                    data.get("certification_name") or data.get("degree") or data.get("organization_name") or \
                    data.get("thread_title")
         if name_val:
-            existing = frappe.db.get_value(doctype, {"name": name_val}) or \
-                       frappe.db.get_value(doctype, {"subject_name": name_val}) or \
-                       frappe.db.get_value(doctype, {"course_name": name_val}) or \
-                       frappe.db.get_value(doctype, {"skill_name": name_val}) or \
-                       frappe.db.get_value(doctype, {"category_name": name_val})
-            if existing:
-                return existing
-        print(f"  ⚠️ Duplicate skipped: {doctype}: {str(e)[:80]}")
+            for field in ["name", "subject_name", "course_name", "skill_name", "category_name"]:
+                try:
+                    existing = frappe.db.get_value(doctype, {field: name_val})
+                    if existing:
+                        return existing
+                except:
+                    pass
+        print(f"  \u26a0\ufe0f Duplicate skipped: {doctype}: {str(e)[:80]}")
         return None
     except Exception as e:
-        print(f"  ❌ Error creating {doctype}: {str(e)[:120]}")
+        msg = str(e)[:120]
+        if "Start Time must be before End Time" in msg or "Start Date cannot be" in msg or "UPI Transaction ID" in msg:
+            return None  # Silently skip validation errors
+        print(f"  \u274c Error creating {doctype}: {msg}")
         frappe.log_error(f"DemoData: {doctype}: {str(e)}", "Demo Data Generator")
         return None
 
 def random_phone():
     return f"+91{random.choice([9,8,7,6])}{random.randint(100000000, 999999999)}"
 
-def random_date(start_year=2024, end_year=2026):
-    start = date(start_year, 1, 1)
-    end = date(end_year, 12, 31)
-    delta = (end - start).days
-    return start + timedelta(days=random.randint(0, delta))
+def future_date(max_days=365):
+    """Return a random future date from today."""
+    return date.today() + timedelta(days=random.randint(1, max_days))
+
+def future_date_range(min_days=1, max_days=365):
+    """Return (start_date, end_date) where both are future and end > start."""
+    s = date.today() + timedelta(days=random.randint(min_days, max_days // 2))
+    e = s + timedelta(days=random.randint(30, max_days))
+    if e > date.today() + timedelta(days=max_days):
+        e = date.today() + timedelta(days=max_days)
+    return s, e
 
 def random_time(start_hour=7, end_hour=21):
+    """Return a single random time string."""
     h = random.randint(start_hour, end_hour - 1)
-    m = random.choice(["00", "15", "30", "45"])
+    m = random.choice(["00", "00", "15", "30"])
     return f"{h:02d}:{m}:00"
+
+def random_time_pair(start_hour=7, end_hour=21):
+    """Return (start_time, end_time) where end > start."""
+    sh = random.randint(start_hour, end_hour - 2)
+    eh = sh + random.randint(1, 3)
+    m1 = random.choice(["00", "00", "15", "30"])
+    m2 = random.choice(["00", "15", "30", "45"])
+    return f"{sh:02d}:{m1}:00", f"{eh:02d}:{m2}:00"
 
 def choice(lst):
     return random.choice(lst)
@@ -135,18 +152,18 @@ DAYS = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sun
 
 def generate_demo_data():
     print("=" * 60)
-    print("  TUTOR BOOKING PLATFORM — DEMO DATA GENERATOR")
+    print("  TUTOR BOOKING PLATFORM \u2014 DEMO DATA GENERATOR")
     print("=" * 60)
 
     stats = {}
-    subject_map = {}    # subject_name → document name
-    course_map = {}     # course_name → document name
-    skill_map = {}      # skill_name → document name
+    subject_map = {}
+    course_map = {}
+    skill_map = {}
 
-    # ------------------------------------------------------------------
+    # ──────────────────────────────────────────────────────────────────────────
     # 1. CATEGORIES
-    # ------------------------------------------------------------------
-    print("\n─── Creating Subject Categories ───")
+    # ──────────────────────────────────────────────────────────────────────────
+    print("\n\u2500\u2500\u2500 Creating Subject Categories \u2500\u2500\u2500")
     cat_map = {}
     for i, name in enumerate(["School Subjects", "College Subjects", "Competitive Exams",
                                "Programming", "Languages", "Professional Skills"]):
@@ -158,7 +175,7 @@ def generate_demo_data():
         if n: cat_map[name] = n
     stats["Subject Category"] = len(cat_map)
 
-    print("\n─── Creating Course Categories ───")
+    print("\n\u2500\u2500\u2500 Creating Course Categories \u2500\u2500\u2500")
     course_cat_map = {}
     for name in ["Academic Courses", "Programming Courses", "Language Courses", "Professional Courses"]:
         n = create_doc("Course Category", {
@@ -168,7 +185,7 @@ def generate_demo_data():
         if n: course_cat_map[name] = n
     stats["Course Category"] = len(course_cat_map)
 
-    print("\n─── Creating Skill Categories ───")
+    print("\n\u2500\u2500\u2500 Creating Skill Categories \u2500\u2500\u2500")
     skill_cat_map = {}
     for name in ["Technical Skills", "Academic Skills", "Language Skills", "Professional Skills"]:
         n = create_doc("Skill Category", {
@@ -179,10 +196,10 @@ def generate_demo_data():
     stats["Skill Category"] = len(skill_cat_map)
     frappe.db.commit()
 
-    # ------------------------------------------------------------------
-    # 2. SUBJECTS (capture document names)
-    # ------------------------------------------------------------------
-    print("\n─── Creating Subjects ───")
+    # ──────────────────────────────────────────────────────────────────────────
+    # 2. SUBJECTS
+    # ──────────────────────────────────────────────────────────────────────────
+    print("\n\u2500\u2500\u2500 Creating Subjects \u2500\u2500\u2500")
     for sname in SUBJECT_NAMES:
         n = create_doc("Subject", {
             "subject_name": sname,
@@ -193,12 +210,11 @@ def generate_demo_data():
             "target_audience": "All",
             "difficulty_level": "All Levels",
         })
-        if n:
-            subject_map[sname] = n
+        if n: subject_map[sname] = n
     stats["Subject"] = len(subject_map)
 
-    # 3. COURSES (capture document names)
-    print("\n─── Creating Courses ───")
+    # 3. COURSES
+    print("\n\u2500\u2500\u2500 Creating Courses \u2500\u2500\u2500")
     for cname, ccat, subj, dur, fee, lvl in COURSE_DEFS:
         subj_name = next((s for s in SUBJECT_NAMES if s.lower() == subj.lower()), None)
         n = create_doc("Course", {
@@ -210,14 +226,13 @@ def generate_demo_data():
             "level": lvl,
             "fee": fee,
             "mode": choice(["Online", "Offline", "Hybrid"]),
-            "description": f"Complete {cname.lower()} course. Duration: {dur} weeks. Fee: ₹{fee:,}.",
+            "description": f"Complete {cname.lower()} course. Duration: {dur} weeks. Fee: \u20b9{fee:,}.",
         })
-        if n:
-            course_map[cname] = n
+        if n: course_map[cname] = n
     stats["Course"] = len(course_map)
 
-    # 4. SKILLS (capture document names)
-    print("\n─── Creating Skills ───")
+    # 4. SKILLS
+    print("\n\u2500\u2500\u2500 Creating Skills \u2500\u2500\u2500")
     for sk_name, sk_cat_name in SKILL_DEFS:
         n = create_doc("Skill", {
             "skill_name": sk_name,
@@ -225,16 +240,15 @@ def generate_demo_data():
             "is_active": 1,
             "description": f"Skill in {sk_name.lower()}",
         })
-        if n:
-            skill_map[sk_name] = n
+        if n: skill_map[sk_name] = n
     stats["Skill"] = len(skill_map)
     frappe.db.commit()
-    print("  ✅ Base data committed")
+    print("  \u2705 Base data committed")
 
-    # ------------------------------------------------------------------
-    # 5. TUTOR PROFILES + child records
-    # ------------------------------------------------------------------
-    print("\n─── Creating Tutor Profiles (15) ───")
+    # ──────────────────────────────────────────────────────────────────────────
+    # 5. TUTOR PROFILES
+    # ──────────────────────────────────────────────────────────────────────────
+    print("\n\u2500\u2500\u2500 Creating Tutor Profiles (15) \u2500\u2500\u2500")
     tutor_names = []
     for i, (tname, primary_subj, edu, exp_yrs, rate) in enumerate(TUTOR_SPECS):
         first_name = tname.split()[1] if len(tname.split()) > 1 else tname.split()[0]
@@ -265,13 +279,12 @@ def generate_demo_data():
             "short_bio": f"Experienced {primary_subj.lower()} tutor with {exp_yrs} years. {edu}.",
             "detailed_bio": f"<p>Passionate {primary_subj.lower()} educator with {exp_yrs}+ years of teaching. {edu}.</p>",
         })
-        if tp:
-            tutor_names.append(tp)
+        if tp: tutor_names.append(tp)
     stats["Tutor Profile"] = len(tutor_names)
     frappe.db.commit()
 
     # Tutor child records
-    print("\n─── Tutor Qualifications, Experience, Certifications ───")
+    print("\n\u2500\u2500\u2500 Tutor Qualifications, Experience, Certifications \u2500\u2500\u2500")
     qual_n, exp_n, cert_n, avail_n, verif_n = 0, 0, 0, 0, 0
     for tp_name in tutor_names:
         primary_subj = frappe.db.get_value("Tutor Profile", tp_name, "primary_subject")
@@ -288,14 +301,13 @@ def generate_demo_data():
         for _ in range(random.randint(1, 2)):
             org = choice(["Kota Coaching", "Delhi Public School", "FIITJEE", "Self Employed"])
             fy = date(2005 + random.randint(0, 10), 1, 1)
-            ty = date(fy.year + random.randint(2, 5), 1, 1)
-            if ty > date(2026, 1, 1): ty = date(2025, 12, 31)
+            ty = date(min(fy.year + random.randint(2, 5), 2025), 12, 31)
             if create_doc("Tutor Experience", {
                 "tutor_profile": tp_name, "organization_name": org,
                 "role_title": choice(["Senior Tutor", "Faculty", "Subject Expert"]),
                 "employment_type": choice(["Full Time", "Part Time"]),
-                "from_date": fy, "to_date": ty,
-                "is_current": 0,
+                "from_date": fy, "to_date": ty if ty < date.today() else None,
+                "is_current": 1 if ty >= date.today() else 0,
                 "description": f"Taught {primary_subj or 'subjects'} to students.",
             }): exp_n += 1
         # 1 Certification
@@ -309,10 +321,10 @@ def generate_demo_data():
         }): cert_n += 1
         # Availability (3-5 days)
         for day in random.sample(DAYS, random.randint(3, 5)):
-            sh = random.randint(8, 14)
+            st, et = random_time_pair(8, 18)
             if create_doc("Tutor Availability", {
                 "tutor_profile": tp_name, "day_of_week": day,
-                "start_time": f"{sh:02d}:00:00", "end_time": f"{sh + 3:02d}:00:00",
+                "start_time": st, "end_time": et,
                 "is_available": 1, "teaching_mode": choice(["Online", "Both"]),
                 "max_students_per_slot": random.randint(1, 5),
             }): avail_n += 1
@@ -322,7 +334,7 @@ def generate_demo_data():
             "verification_type": "Full Verification", "verified_by": "Administrator",
             "id_proof_type": choice(["Aadhaar", "PAN Card", "Passport"]),
             "id_proof_number": f"{random.randint(1000,9999)}-{random.randint(1000,9999)}-{random.randint(1000,9999)}",
-            "verification_date": date(2025, random.randint(1, 12), random.randint(1, 28)),
+            "verification_date": future_date(30),
             "remarks": "All documents verified.",
         }): verif_n += 1
     stats["Tutor Qualification"] = qual_n
@@ -332,13 +344,12 @@ def generate_demo_data():
     stats["Tutor Verification"] = verif_n
     frappe.db.commit()
 
-    # ------------------------------------------------------------------
+    # ──────────────────────────────────────────────────────────────────────────
     # 6. STUDENT PROFILES + child records
-    # ------------------------------------------------------------------
-    print("\n─── Creating Student Profiles (30) ───")
+    # ──────────────────────────────────────────────────────────────────────────
+    print("\n\u2500\u2500\u2500 Creating Student Profiles (30) \u2500\u2500\u2500")
     student_names = []
     for first, last, cls in STUDENT_DATA:
-        city, state = choice(CITIES)
         is_working = cls == "Working Professional"
         sp = create_doc("Student Profile", {
             "student_name": f"{first} {last}",
@@ -359,7 +370,7 @@ def generate_demo_data():
     stats["Student Profile"] = len(student_names)
     frappe.db.commit()
 
-    print("\n─── Student Addresses, Requirements, Preferences ───")
+    print("\n\u2500\u2500\u2500 Student Addresses, Requirements, Preferences \u2500\u2500\u2500")
     addr_n, req_n, pref_n = 0, 0, 0
     for sp_name in student_names:
         # Address (Student Profile has no city field, use random city)
@@ -372,13 +383,13 @@ def generate_demo_data():
         subj = choice(list(subject_map.values())) if subject_map else None
         if create_doc("Student Requirement", {
             "student_profile": sp_name, "subject": subj,
-            "requirement_title": f"Need help with tutoring",
+            "requirement_title": "Need help with tutoring",
             "status": choice(["Open", "Matched"]),
             "preferred_mode": choice(["Online", "Offline", "Both"]),
             "preferred_gender": "Any",
             "budget_per_hour": choice([300, 500, 800]),
             "urgency": choice(["Medium", "High"]),
-            "requirement_date": random_date(2025, 2026),
+            "requirement_date": future_date(60),
         }): req_n += 1
         # Preference
         if create_doc("Student Preference", {
@@ -393,10 +404,10 @@ def generate_demo_data():
     stats["Student Preference"] = pref_n
     frappe.db.commit()
 
-    # ------------------------------------------------------------------
-    # 7. SEARCH REQUESTS & MATCH RESULTS
-    # ------------------------------------------------------------------
-    print("\n─── Search Requests & Match Results ───")
+    # ──────────────────────────────────────────────────────────────────────────
+    # 7. SEARCH REQUESTS
+    # ──────────────────────────────────────────────────────────────────────────
+    print("\n\u2500\u2500\u2500 Search Requests & Match Results \u2500\u2500\u2500")
     sr_n, mr_n = 0, 0
     for _ in range(20):
         sp = choice(student_names) if student_names else None
@@ -406,7 +417,7 @@ def generate_demo_data():
             "teaching_mode": choice(["Online", "Both"]),
             "status": choice(["Matched", "Closed"]),
             "max_budget": choice([500, 800, 1000, 1500]),
-            "search_date": random_date(2025, 2026),
+            "search_date": future_date(60),
         })
         if sr:
             sr_n += 1
@@ -415,16 +426,16 @@ def generate_demo_data():
                     "search_request": sr, "tutor_profile": tp,
                     "match_score": round(random.uniform(75, 99), 2),
                     "status": choice(["Suggested", "Shortlisted", "Booked"]),
-                    "match_date": random_date(2025, 2026),
+                    "match_date": future_date(60),
                 }): mr_n += 1
     stats["Tutor Search Request"] = sr_n
     stats["Tutor Match Result"] = mr_n
     frappe.db.commit()
 
-    # ------------------------------------------------------------------
+    # ──────────────────────────────────────────────────────────────────────────
     # 8. DEMO CLASS REQUESTS & SCHEDULES
-    # ------------------------------------------------------------------
-    print("\n─── Demo Class Requests & Schedules ───")
+    # ──────────────────────────────────────────────────────────────────────────
+    print("\n\u2500\u2500\u2500 Demo Class Requests & Schedules \u2500\u2500\u2500")
     dr_n, ds_n = 0, 0
     for _ in range(15):
         sp = choice(student_names) if student_names else None
@@ -432,28 +443,29 @@ def generate_demo_data():
         subj = frappe.db.get_value("Tutor Profile", tp, "primary_subject") if tp else None
         dr = create_doc("Demo Class Request", {
             "student_profile": sp, "tutor_profile": tp, "subject": subj,
-            "status": "Approved", "preferred_date": random_date(2025, 2026),
+            "status": "Approved", "preferred_date": future_date(30),
             "preferred_time": random_time(9, 18), "mode": choice(["Online", "Offline"]),
             "message": "I'd like a demo session. Please let me know available timings.",
         })
         if dr:
             dr_n += 1
             if random.random() > 0.3:
+                st, et = random_time_pair(9, 18)
                 if create_doc("Demo Class Schedule", {
                     "demo_class_request": dr, "tutor_profile": tp,
                     "student_profile": sp, "status": "Scheduled",
-                    "scheduled_date": random_date(2025, 2026),
-                    "start_time": random_time(9, 18), "end_time": random_time(10, 19),
+                    "scheduled_date": future_date(30),
+                    "start_time": st, "end_time": et,
                     "duration_minutes": 60, "mode": choice(["Online", "Offline"]),
                 }): ds_n += 1
     stats["Demo Class Request"] = dr_n
     stats["Demo Class Schedule"] = ds_n
     frappe.db.commit()
 
-    # ------------------------------------------------------------------
+    # ──────────────────────────────────────────────────────────────────────────
     # 9. TUTOR BOOKINGS
-    # ------------------------------------------------------------------
-    print("\n─── Tutor Bookings (30) ───")
+    # ──────────────────────────────────────────────────────────────────────────
+    print("\n\u2500\u2500\u2500 Tutor Bookings (30) \u2500\u2500\u2500")
     booking_names = []
     for _ in range(30):
         sp = choice(student_names) if student_names else None
@@ -464,15 +476,14 @@ def generate_demo_data():
         hp = choice([1, 1.5, 2])
         total_h = sw * hp * random.randint(4, 12)
         total = int(rate * total_h)
-        start = random_date(2025, 2026)
-        end = start + timedelta(days=random.randint(30, 120))
+        start_d, end_d = future_date_range(7, 180)
         bk = create_doc("Tutor Booking", {
             "booking_title": f"Regular {subj or 'tutoring'} Sessions",
             "booking_status": choice(["Confirmed", "Active", "Completed"]),
             "student_profile": sp, "tutor_profile": tp, "subject": subj,
             "teaching_mode": choice(["Online", "Offline"]),
-            "booking_date": random_date(2025, 2026),
-            "start_date": start, "end_date": end,
+            "booking_date": future_date(14),
+            "start_date": start_d, "end_date": end_d,
             "sessions_per_week": sw, "hours_per_session": hp,
             "rate_per_hour": rate, "total_hours": total_h, "total_amount": total,
             "payment_status": choice(["Unpaid", "Partially Paid", "Paid"]),
@@ -481,17 +492,17 @@ def generate_demo_data():
     stats["Tutor Booking"] = len(booking_names)
     frappe.db.commit()
 
-    # ------------------------------------------------------------------
+    # ──────────────────────────────────────────────────────────────────────────
     # 10. TUTOR SESSIONS
-    # ------------------------------------------------------------------
-    print("\n─── Tutor Sessions (50) ───")
+    # ──────────────────────────────────────────────────────────────────────────
+    print("\n\u2500\u2500\u2500 Tutor Sessions (50) \u2500\u2500\u2500")
     session_names = []
     for _ in range(50):
         bk = choice(booking_names) if booking_names else None
         if not bk: continue
         bk_doc = frappe.get_doc("Tutor Booking", bk)
-        sd = random_date(2025, 2026)
-        sh = random.randint(9, 17)
+        sd = future_date(30)
+        sh = random.randint(9, 16)
         sess = create_doc("Tutor Session", {
             "tutor_booking": bk, "tutor_profile": bk_doc.tutor_profile,
             "student_profile": bk_doc.student_profile,
@@ -507,20 +518,21 @@ def generate_demo_data():
     stats["Tutor Session"] = len(session_names)
     frappe.db.commit()
 
-    # ------------------------------------------------------------------
+    # ──────────────────────────────────────────────────────────────────────────
     # 11. ONLINE / OFFLINE CLASSES
-    # ------------------------------------------------------------------
-    print("\n─── Online & Offline Classes ───")
+    # ──────────────────────────────────────────────────────────────────────────
+    print("\n\u2500\u2500\u2500 Online & Offline Classes \u2500\u2500\u2500")
     on_n, off_n = 0, 0
     for _ in range(20):
         tp = choice(tutor_names) if tutor_names else None
         subj = frappe.db.get_value("Tutor Profile", tp, "primary_subject") if tp else None
+        st, et = random_time_pair(9, 18)
         if create_doc("Online Class", {
             "class_title": f"{subj or 'General'} Online Session",
             "tutor_profile": tp, "subject": subj,
             "status": choice(["Scheduled", "Completed"]),
-            "class_date": random_date(2025, 2026),
-            "start_time": random_time(9, 17), "end_time": random_time(10, 18),
+            "class_date": future_date(60),
+            "start_time": st, "end_time": et,
             "max_students": random.randint(10, 40),
             "platform": choice(["Zoom", "Google Meet", "Microsoft Teams"]),
             "meeting_link": f"https://zoom.us/j/{random.randint(100000000,999999999)}",
@@ -528,12 +540,13 @@ def generate_demo_data():
     for _ in range(10):
         tp = choice(tutor_names) if tutor_names else None
         subj = frappe.db.get_value("Tutor Profile", tp, "primary_subject") if tp else None
+        st, et = random_time_pair(9, 18)
         if create_doc("Offline Class", {
             "class_title": f"{subj or 'General'} Offline Session",
             "tutor_profile": tp, "subject": subj,
             "status": choice(["Scheduled", "Completed"]),
-            "class_date": random_date(2025, 2026),
-            "start_time": random_time(9, 17), "end_time": random_time(10, 18),
+            "class_date": future_date(60),
+            "start_time": st, "end_time": et,
             "location": choice(["Classroom A", "Lab 1", "Conference Room"]),
             "city": choice(CITIES)[0], "max_students": random.randint(20, 50),
         }): off_n += 1
@@ -541,30 +554,31 @@ def generate_demo_data():
     stats["Offline Class"] = off_n
     frappe.db.commit()
 
-    # ------------------------------------------------------------------
+    # ──────────────────────────────────────────────────────────────────────────
     # 12. LEARNING SCHEDULES
-    # ------------------------------------------------------------------
-    print("\n─── Learning Schedules (30) ───")
+    # ──────────────────────────────────────────────────────────────────────────
+    print("\n\u2500\u2500\u2500 Learning Schedules (30) \u2500\u2500\u2500")
     ls_n = 0
     for _ in range(30):
         bk = choice(booking_names) if booking_names else None
         if not bk: continue
         bk_doc = frappe.get_doc("Tutor Booking", bk)
+        st, et = random_time_pair(9, 18)
         if create_doc("Learning Schedule", {
             "tutor_booking": bk, "student_profile": bk_doc.student_profile,
             "tutor_profile": bk_doc.tutor_profile, "subject": bk_doc.subject,
             "day_of_week": choice(DAYS),
-            "start_time": random_time(9, 17), "end_time": random_time(10, 18),
-            "is_active": 1, "valid_from": random_date(2025, 2026),
-            "valid_to": random_date(2026, 2026),
+            "start_time": st, "end_time": et,
+            "is_active": 1, "valid_from": future_date(7),
+            "valid_to": future_date(180),
         }): ls_n += 1
     stats["Learning Schedule"] = ls_n
     frappe.db.commit()
 
-    # ------------------------------------------------------------------
+    # ──────────────────────────────────────────────────────────────────────────
     # 13. ATTENDANCE RECORDS
-    # ------------------------------------------------------------------
-    print("\n─── Attendance Records (up to 100) ───")
+    # ──────────────────────────────────────────────────────────────────────────
+    print("\n\u2500\u2500\u2500 Attendance Records (up to 100) \u2500\u2500\u2500")
     att_n = 0
     for sess in session_names:
         sd = frappe.get_doc("Tutor Session", sess)
@@ -579,10 +593,10 @@ def generate_demo_data():
     stats["Attendance Record"] = att_n
     frappe.db.commit()
 
-    # ------------------------------------------------------------------
+    # ──────────────────────────────────────────────────────────────────────────
     # 14. LEARNING PROGRESS
-    # ------------------------------------------------------------------
-    print("\n─── Learning Progress (30) ───")
+    # ──────────────────────────────────────────────────────────────────────────
+    print("\n\u2500\u2500\u2500 Learning Progress (30) \u2500\u2500\u2500")
     lp_n = 0
     for _ in range(30):
         bk = choice(booking_names) if booking_names else None
@@ -603,10 +617,10 @@ def generate_demo_data():
     stats["Learning Progress"] = lp_n
     frappe.db.commit()
 
-    # ------------------------------------------------------------------
-    # 15. PAYMENT TRANSACTIONS
-    # ------------------------------------------------------------------
-    print("\n─── Payment Transactions (30) ───")
+    # ──────────────────────────────────────────────────────────────────────────
+    # 15. PAYMENT TRANSACTIONS (no UPI to avoid validation)
+    # ──────────────────────────────────────────────────────────────────────────
+    print("\n\u2500\u2500\u2500 Payment Transactions (30) \u2500\u2500\u2500")
     payment_names = []
     for bk in booking_names[:30]:
         bk_doc = frappe.get_doc("Tutor Booking", bk)
@@ -617,16 +631,16 @@ def generate_demo_data():
             "payment_status": choice(["Completed", "Completed", "Pending"]),
             "amount": amt, "platform_commission": int(amt * 0.1),
             "tutor_payout": int(amt * 0.9), "currency": "INR",
-            "payment_method": choice(["UPI", "Card", "Cash"]),
-            "payment_date": random_date(2025, 2026),
+            "payment_method": choice(["Card", "Cash"]),  # Avoid UPI - requires upi_transaction_id
+            "payment_date": future_date(60),
             "transaction_id": f"TXN{random.randint(10000000, 99999999)}",
         })
         if pmt: payment_names.append(pmt)
     stats["Payment Transaction"] = len(payment_names)
     frappe.db.commit()
 
-    # Card Payments
-    print("\n─── Card & Cash Payments ───")
+    # Card Payments (up to 15)
+    print("\n\u2500\u2500\u2500 Card & Cash Payments \u2500\u2500\u2500")
     card_n, cash_n = 0, 0
     for pmt in payment_names[:15]:
         pmt_doc = frappe.get_doc("Payment Transaction", pmt)
@@ -639,7 +653,9 @@ def generate_demo_data():
             "gateway_transaction_id": f"GT{random.randint(100000,999999)}",
             "payment_date": pmt_doc.payment_date,
         }): card_n += 1
-    for pmt in payment_names[15:30]:
+    # Cash Payments (remaining up to 15)
+    remaining = payment_names[15:30]
+    for pmt in remaining:
         pmt_doc = frappe.get_doc("Payment Transaction", pmt)
         if create_doc("Cash Payment", {
             "payment_transaction": pmt, "tutor_booking": pmt_doc.tutor_booking,
@@ -653,10 +669,10 @@ def generate_demo_data():
     stats["Cash Payment"] = cash_n
     frappe.db.commit()
 
-    # ------------------------------------------------------------------
+    # ──────────────────────────────────────────────────────────────────────────
     # 16. REFUND REQUESTS
-    # ------------------------------------------------------------------
-    print("\n─── Refund Requests (10) ───")
+    # ──────────────────────────────────────────────────────────────────────────
+    print("\n\u2500\u2500\u2500 Refund Requests (10) \u2500\u2500\u2500")
     ref_n = 0
     for _ in range(10):
         bk = choice(booking_names) if booking_names else None
@@ -674,19 +690,19 @@ def generate_demo_data():
     stats["Refund Request"] = ref_n
     frappe.db.commit()
 
-    # ------------------------------------------------------------------
+    # ──────────────────────────────────────────────────────────────────────────
     # 17. REVIEWS & RATINGS
-    # ------------------------------------------------------------------
-    print("\n─── Reviews, Ratings & Feedback ───")
+    # ──────────────────────────────────────────────────────────────────────────
+    print("\n\u2500\u2500\u2500 Reviews, Ratings & Feedback \u2500\u2500\u2500")
     rev_n, rat_n, fb_n = 0, 0, 0
-    for _ in range(50):
+    for i in range(50):
         tp = choice(tutor_names) if tutor_names else None
         sp = choice(student_names) if student_names else None
         rated = choice([4.0, 4.5, 5.0])
         # Review
         if create_doc("Tutor Review", {
             "tutor_profile": tp, "student_profile": sp,
-            "review_date": random_date(2025, 2026), "rating": rated,
+            "review_date": future_date(30), "rating": rated,
             "teaching_quality": rated, "punctuality": choice([4.0, 4.5, 5.0]),
             "communication": choice([4.0, 4.5, 5.0]), "is_approved": 1,
             "review_title": choice(["Excellent!", "Very Good", "Highly Recommended", "Great Tutor"]),
@@ -695,15 +711,15 @@ def generate_demo_data():
         # Rating
         if create_doc("Tutor Rating", {
             "tutor_profile": tp, "student_profile": sp,
-            "rating_date": random_date(2025, 2026), "overall_rating": rated,
+            "rating_date": future_date(30), "overall_rating": rated,
             "subject_knowledge": rated, "teaching_methodology": choice([4.0, 4.5, 5.0]),
             "punctuality": choice([4.0, 4.5, 5.0]), "communication_skills": choice([4.0, 4.5, 5.0]),
             "would_recommend": 1,
         }): rat_n += 1
         # Feedback (25 only)
-        if _ < 25 and create_doc("Student Feedback", {
+        if i < 25 and create_doc("Student Feedback", {
             "student_profile": sp, "tutor_profile": tp,
-            "feedback_date": random_date(2025, 2026), "session_helpful": 1,
+            "feedback_date": future_date(30), "session_helpful": 1,
             "topics_covered": "Course material", "difficulty_level": "Just Right",
             "overall_experience": choice(["Excellent", "Good", "Good"]),
             "feedback_text": "<p>Great session. Very helpful.</p>",
@@ -713,10 +729,10 @@ def generate_demo_data():
     stats["Student Feedback"] = fb_n
     frappe.db.commit()
 
-    # ------------------------------------------------------------------
+    # ──────────────────────────────────────────────────────────────────────────
     # 18. COMMUNICATION
-    # ------------------------------------------------------------------
-    print("\n─── Notifications, Messages, Reminders ───")
+    # ──────────────────────────────────────────────────────────────────────────
+    print("\n\u2500\u2500\u2500 Notifications, Messages, Reminders \u2500\u2500\u2500")
     notif_n = 0
     for _ in range(50):
         if create_doc("Notification Log", {
@@ -743,7 +759,7 @@ def generate_demo_data():
                     "message_thread": thread,
                     "sender": choice(["Student", "Tutor"]),
                     "sender_type": choice(["Student", "Tutor"]),
-                    "sent_at": f"{random_date(2025,2026)} {random_time(8,20)}",
+                    "sent_at": f"{future_date(60)} {random_time(8,20)}",
                     "is_read": 1, "message_type": "Text",
                     "message_text": choice([
                         "Hi, can we schedule a class?", "Sure, what time works?",
@@ -768,9 +784,9 @@ def generate_demo_data():
     stats["Reminder Schedule"] = remind_n
     frappe.db.commit()
 
-    # ------------------------------------------------------------------
+    # ──────────────────────────────────────────────────────────────────────────
     # 19. SETTINGS
-    # ------------------------------------------------------------------
+    # ──────────────────────────────────────────────────────────────────────────
     if not frappe.db.exists("Tutor Booking Settings", "Tutor Booking Settings"):
         create_doc("Tutor Booking Settings", {
             "settings_name": "Tutor Booking Settings",
@@ -779,9 +795,9 @@ def generate_demo_data():
             "enable_demo_classes": 1,
         })
 
-    # ------------------------------------------------------------------
+    # ──────────────────────────────────────────────────────────────────────────
     # SUMMARY
-    # ------------------------------------------------------------------
+    # ──────────────────────────────────────────────────────────────────────────
     print("\n" + "=" * 60)
     print("  DEMO DATA GENERATION COMPLETE")
     print("=" * 60)
