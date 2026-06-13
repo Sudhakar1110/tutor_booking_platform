@@ -113,7 +113,7 @@ def fix_payment_issue():
     print("\n📋 Step 5: Checking server script...")
     try:
         # Try creating a dummy document object to test methods
-        doc = frappe.new_doc("Payment Transaction")
+        frappe.new_doc("Payment Transaction")
         print(f"  ✅ Can create new Payment Transaction document")
     except Exception as e:
         print(f"  ❌ Error: {e}")
@@ -203,7 +203,7 @@ def fix_payment_issue():
 
         # Fix 5: Clear website cache too
         try:
-            frappe.cache().delete_keys("*")
+            frappe.cache().flushall()
             print("  ✅ Website cache cleared")
             fixes_applied.append("website cache cleared")
         except Exception as e:
