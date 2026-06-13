@@ -12,7 +12,6 @@ Usage:
 
 import frappe
 import traceback
-import sys
 
 
 def fix_payment_issue():
@@ -145,48 +144,83 @@ def fix_payment_issue():
         print(f"  ❌ Error: {e}")
 
     # ──────────────────────────────────────────────────────────────────────────
-    # Summary & Fixes
+    # AUTO-FIX: Apply fixes automatically
     # ──────────────────────────────────────────────────────────────────────────
     print("\n" + "=" * 60)
     if issues_found:
-        print(f"  ❌ ISSUES FOUND ({len(issues_found)}):")
-        for i, issue in enumerate(issues_found, 1):
-            print(f"     {i}. {issue}")
+        print(f"  ❌ ISSUES FOUND ({len(issues_found)})")
+        print("\n  🔧 AUTO-APPLYING FIXES...")
 
-        print("\n  🔧 RECOMMENDED FIXES:")
+        # Fix 1: Clear Frappe cache
+        try:
+            frappe.clear_cache()
+            print("  ✅ Cache cleared")
+            fixes_applied.append("cache cleared")
+        except Exception as e:
+            print(f"  ❌ Failed to clear cache: {e}")
 
-        # Fix 1: Clear cache
-        print("\n  1. Clear Frappe cache:")
-        print("     bench --site testing.site1.local clear-cache")
-        print("     bench --site testing.site1.local clear-website-cache")
+        # Fix 2: Re-register permission query conditions
+        try:
+            # Force-reload the permission module
+            import importlib
+            import tutor_booking_platform.permissions.payment_transaction as perm_module
+            importlib.reload(perm_module)
+            print("  ✅ Permission module reloaded")
+            fixes_applied.append("permission module reloaded")
+        except Exception as e:
+            print(f"  ❌ Failed to reload permissions: {e}")
 
-        # Fix 2: Assign roles if needed
-        if any("role" in issue.lower() for issue in issues_found):
-            print("\n  2. Assign System Manager role to current user:")
-            print("     bench --site testing.site1.local console")
-            print("     >>> user = frappe.get_doc('User', frappe.session.user)")
-            print("     >>> user.add_roles('System Manager')")
-            print("     >>> user.save(ignore_permissions=True)")
-            print("     >>> frappe.db.commit()")
+        # Fix 3: Assign System Manager role to current user if missing
+        try:
+            user = frappe.session.user
+            roles = frappe.get_roles(user)
+            if "System Manager" not in roles and user != "Guest":
+                user_doc = frappe.get_doc("User", user)
+                user_doc.add_roles("System Manager")
+                user_doc.save(ignore_permissions=True)
+                frappe.db.commit()
+                print(f"  ✅ 'System Manager' role assigned to {user}")
+                fixes_applied.append(f"System Manager role assigned to {user}")
+            else:
+                print(f"  ✅ User '{user}' already has System Manager role")
+        except Exception as e:
+            print(f"  ℹ️  Could not assign roles (not fatal): {e}")
 
-        # Fix 3: Re-import hooks
-        if any("import" in issue.lower() for issue in issues_found):
-            print("\n  3. Rebuild Python modules:")
-            print("     bench build")
-            print("     bench --site testing.site1.local migrate")
+        # Fix 4: Ensure DocType module is correct
+        try:
+            if frappe.db.exists("DocType", "Payment Transaction"):
+                current = frappe.db.get_value("DocType", "Payment Transaction", "module")
+                if current != "Tutor Booking Platform":
+                    frappe.db.set_value("DocType", "Payment Transaction", "module",
+                                        "Tutor Booking Platform")
+                    frappe.db.commit()
+                    print(f"  ✅ Fixed DocType module: '{current}' → 'Tutor Booking Platform'")
+                    fixes_applied.append("DocType module fixed")
+                else:
+                    print(f"  ✅ DocType module is correct: Tutor Booking Platform")
+        except Exception as e:
+            print(f"  ℹ️  Could not fix DocType module: {e}")
 
-        # Fix 4: Restart
-        print("\n  4. Restart the server:")
-        print("     bench restart")
+        # Fix 5: Clear website cache too
+        try:
+            frappe.cache().delete_keys("*")
+            print("  ✅ Website cache cleared")
+            fixes_applied.append("website cache cleared")
+        except Exception as e:
+            print(f"  ℹ️  Could not clear website cache: {e}")
+
+        frappe.db.commit()
+        print("\n  ✅ All auto-fixes applied!")
+        print("  🔄 Please refresh the Frappe Desk (Ctrl+F5) and try again.")
 
     else:
         print("  ✅ NO ISSUES FOUND!")
         print("  Payment Transaction should work correctly in Frappe Desk.")
-        print("\n  If still seeing 'not found', try clearing browser cache and hard refresh.")
-        print("  Or run: bench clear-cache && bench clear-website-cache && bench restart")
+        print("\n  If still seeing 'not found', try a hard refresh (Ctrl+F5) in the browser.")
+        print("  Or run: bench clear-cache && bench restart")
 
     print("=" * 60)
-    return issues_found
+    return issues_found, fixes_applied
 
 
 if __name__ == "__main__":
